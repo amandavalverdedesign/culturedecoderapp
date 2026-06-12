@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation® Corporate Culture Audit (Boardroom Edition)</title>
+    
+    <!-- Tailwind CSS for high-fidelity responsive layout architecture -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- html2canvas to enable downloading the customized badge as a PNG image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Google Fonts: EB Garamond (high-fidelity editorial fallback) and Plus Jakarta Sans (premium geometric body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        citrus: '#F49306',           // Vibrant warm tropical orange-yellow
+                        lush: '#A5BB1A',             // Fresh tropical green-lime
+                        flora: '#F5CAE8',            // Beautiful pastel flora pink
+                        exotic: '#E0858E',           // Dusty tropical exotic rose/coral
+                        coralReef: '#E63A26',        // Bright vibrant coral red
+                        oceans: '#9EC6AA',           // Soothing pale tropical seafoam green
+                        darkSlate: '#1C1917',        // Premium dark warm cocoa-charcoal (Absolutely zero forest green)
+                        softBase: '#FAF9F6',         // Warm sand-ivory baseline canvas
+                        lightCream: '#FFFFFF',       // Alabaster white card paper
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['ITCGaramondStd-LtCond', 'ITC Garamond Std', 'Apple Garamond', 'EB Garamond', 'Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Specific condensed typography setup to replicate ITCGaramondStd-LtCond styling beautifully */
+        .font-garamond-cond {
+            font-family: 'ITCGaramondStd-LtCond', 'ITC Garamond Std', 'Apple Garamond', 'EB Garamond', 'Garamond', 'serif';
+            font-stretch: condensed;
+            letter-spacing: -0.04em;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F6;
+            border-left: 3px solid #1C1917;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F49306;
+            border: 3px solid #1C1917;
+            border-radius: 4px;
+        }
+
+        @keyframes subtleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+            100% { transform: translateY(0px); }
+        }
+        .hover-float {
+            animation: subtleFloat 3s ease-in-out infinite;
+        }
+
+        /* Glassmorphic backdrop effect for the horizontal bottom player */
+        .glass-header {
+            background: rgba(28, 25, 23, 0.96);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+
+    <!-- SELF-HEALING PATH RESOLUTION ENGINE: Solves relative asset loading inside sandbox blobs -->
+    <script>
+        function getCandidates(src) {
+            const origin = window.location.origin;
+            let appId = '';
+            
+            const referrer = document.referrer || '';
+            const href = window.location.href || '';
+            const combined = referrer + ' ' + href;
+            
+            // Try matching typical sandboxed directory patterns
+            const uuidMatch = combined.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
+            const hashMatch = combined.match(/\/artifacts\/([a-zA-Z0-9_-]+)/);
+            const workspaceMatch = combined.match(/\/workspace\/([a-zA-Z0-9_-]+)/);
+            
+            if (uuidMatch) appId = uuidMatch[1];
+            else if (hashMatch) appId = hashMatch[1];
+            else if (workspaceMatch) appId = workspaceMatch[1];
+            
+            let candidates = [
+                src, // Primary relative path
+                'amandavalverdedesign/culturedecoderapp/culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src, // True exact code path
+                'culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src, // Fallback unpacked path
+                'images/' + src, // General unpacked images folder
+                origin + '/amandavalverdedesign/culturedecoderapp/culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src,
+                origin + '/' + src, // Absolute root
+                origin + '/images/' + src
+            ];
+            
+            if (appId) {
+                candidates.push(origin + '/artifacts/' + appId + '/amandavalverdedesign/culturedecoderapp/culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src);
+                candidates.push(origin + '/artifacts/' + appId + '/' + src);
+                candidates.push(origin + '/artifacts/' + appId + '/images/' + src);
+                candidates.push(origin + '/workspace/' + appId + '/amandavalverdedesign/culturedecoderapp/culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src);
+                candidates.push(origin + '/workspace/' + appId + '/' + src);
+                candidates.push(origin + '/workspace/' + appId + '/images/' + src);
+            }
+            
+            if (referrer) {
+                try {
+                    const refUrl = new URL(referrer);
+                    const refPath = refUrl.pathname;
+                    const pathParts = refPath.split('/');
+                    pathParts.pop(); // Remove page name
+                    candidates.push(refUrl.origin + pathParts.join('/') + '/amandavalverdedesign/culturedecoderapp/culturedecoderapp-6cb5cc72fdc09bfda782df19e4665b1f8ad2ffa2/images/' + src);
+                    candidates.push(refUrl.origin + pathParts.join('/') + '/' + src);
+                } catch (e) {}
+            }
+            
+            return [...new Set(candidates)];
+        }
+
+        function healImage(img) {
+            if (!img || img.getAttribute('data-healed') === 'true') return;
+            
+            const src = img.getAttribute('src');
+            if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('blob:')) return;
+            
+            img.setAttribute('data-healed', 'true');
+            const candidates = getCandidates(src);
+            let currentIdx = 0;
+            
+            function tryNext() {
+                if (currentIdx < candidates.length) {
+                    const nextSrc = candidates[currentIdx++];
+                    img.src = nextSrc;
+                }
+            }
+            
+            img.onerror = () => {
+                tryNext();
+            };
+            
+            tryNext();
+        }
+
+        // Global watcher to parse newly added images instantly
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.tagName === 'IMG') {
+                        healImage(node);
+                    } else if (node.querySelectorAll) {
+                        node.querySelectorAll('img').forEach(healImage);
+                    }
+                });
+            });
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('img').forEach(healImage);
+        });
+    </script>
+</head>
+<body class="bg-softBase text-darkSlate font-sans min-h-screen flex flex-col antialiased selection:bg-flora selection:text-darkSlate relative pb-[88px]">
+
+    <!-- FIXED BOTTOM HORIZONTAL AUDIO DECK PLAYER -->
+    <header id="horizontal-audio-player" class="fixed bottom-0 left-0 w-full z-50 h-[72px] glass-header border-t-[4px] border-darkSlate text-lightCream px-4 md:px-8 flex items-center justify-between shadow-2xl">
+        <!-- Brand/Station Indicator -->
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-citrus border-2 border-darkSlate flex items-center justify-center font-bold text-darkSlate text-lg animate-pulse">
+                ☼
+            </div>
+            <div class="hidden sm:block">
+                <!-- Italics capped at light weight 400 -->
+                <h1 class="font-serif italic font-normal tracking-wide text-lg text-flora leading-none">
+                    Vacation<span class="text-[8px] font-sans not-italic align-super uppercase ml-0.5 text-lightCream">®</span>
+                </h1>
+                <p class="font-sans text-[7px] tracking-[0.2em] text-citrus uppercase leading-none mt-1">FM SYNTHWAVE DECK // 1986</p>
+            </div>
+        </div>
+
+        <!-- Central Tuner Controls -->
+        <div class="flex items-center gap-4 flex-1 max-w-2xl justify-center">
+            <!-- Playback Button -->
+            <button id="radio-toggle-btn" class="bg-coralReef hover:bg-coralReef/90 text-lightCream font-sans font-bold text-[10px] py-1 px-3 border-2 border-darkSlate rounded active:translate-y-0.5 active:shadow-none transition-all flex items-center gap-1.5 whitespace-nowrap">
+                <span id="radio-btn-icon">▶</span> <span id="radio-btn-text">PLAY BEACH TRACKS</span>
+            </button>
+
+            <!-- Channel Select -->
+            <div class="hidden md:flex items-center gap-1.5">
+                <span class="font-sans text-[8px] text-lightCream/60 uppercase font-bold">DECK</span>
+                <select id="stream-channel" class="bg-black/60 text-lightCream font-sans text-[10px] px-2 py-1 border border-lightCream/20 focus:border-citrus outline-none rounded cursor-pointer font-bold">
+                    <option value="https://stream.nightride.fm/chillsynth.mp3">🌴 Chill FM</option>
+                    <option value="https://stream.nightride.fm/nightride.mp3">🕶️ Synth FM</option>
+                    <option value="https://stream.nightride.fm/spacesynth.mp3">🌌 Orbit FM</option>
+                    <option value="synthesizer">🎹 Synth Engine</option>
+                </select>
+            </div>
+
+            <!-- Volume Slider -->
+            <div class="flex items-center gap-2">
+                <span class="text-[8px] font-sans text-lightCream/60 uppercase font-bold">VOL</span>
+                <input type="range" id="radio-volume" min="0" max="1" step="0.05" value="0.5" class="w-16 md:w-24 accent-citrus cursor-pointer h-1 rounded-lg">
+            </div>
+
+            <!-- Status Ticker Box -->
+            <div class="hidden lg:block w-48 overflow-hidden bg-black text-citrus rounded px-2 py-1 text-[9px] font-sans border border-lightCream/10 h-8 flex items-center">
+                <p id="stream-status" class="w-full text-center leading-tight whitespace-nowrap overflow-ellipsis">FM Tuner Ready.</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Stereo Spectrometer Visualizer -->
+        <div class="flex gap-1 h-8 bg-black/40 w-24 md:w-32 rounded border border-lightCream/10 items-end justify-center p-1" id="vu-container">
+            <div class="w-1.5 bg-oceans/30 rounded-t h-2 transition-all"></div>
+            <div class="w-1.5 bg-flora/30 rounded-t h-4 transition-all"></div>
+            <div class="w-1.5 bg-citrus/30 rounded-t h-1 transition-all"></div>
+            <div class="w-1.5 bg-flora/30 rounded-t h-5 transition-all"></div>
+            <div class="w-1.5 bg-oceans/30 rounded-t h-3 transition-all"></div>
+        </div>
+
+        <!-- Dynamic top gradient band -->
+        <div class="absolute top-0 left-0 w-full h-[3.5px] bg-gradient-to-r from-oceans via-flora to-citrus"></div>
+    </header>
+
+    <!-- HERO SECTION WITH UNBLOCKED RETRO TROPICAL RESORT VIDEO -->
+    <div class="relative w-full h-[520px] md:h-[640px] overflow-hidden border-b-[8px] border-darkSlate bg-darkSlate flex items-center justify-center">
+        
+        <!-- Native, unblocked HTML5 loop featuring white sand, clear blue water, and swaying palm trees -->
+        <video 
+            id="hero-video-player"
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            src="https://res.cloudinary.com/demo/video/upload/glide-over-coastal-beach.mp4"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-full h-full object-cover pointer-events-none brightness-95 contrast-105 opacity-80"
+        >
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Dynamic gradient glow -->
+        <div class="absolute inset-0 bg-gradient-to-t from-darkSlate via-transparent to-darkSlate/45 z-20 pointer-events-none"></div>
+
+        <!-- Brand Logo and Corporate Heading Overlay -->
+    <div class="relative z-30 max-w-5xl px-6 text-center flex flex-col items-center justify-center gap-6 pointer-events-none">
+        <img 
+            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/vacation.png" 
+            alt="Vacation® Miami, U.S.A." 
+            class="w-72 md:w-[450px] drop-shadow-[0_4px_12px_rgba(0,0,0,0.65)] hover-float pointer-events-auto"
+        />
+        <div class="max-w-2xl bg-darkSlate/95 border-2 border-flora p-6 md:p-8 rounded-xl shadow-2xl pointer-events-auto mt-4">
+                <span class="font-sans text-[10px] text-flora font-bold tracking-[0.25em] block mb-2">
+                    LIFESTYLE DIAGNOSIS &amp; CHROMATIC ALIGNMENT
+                </span>
+                <!-- Typographical interplay: Upright Semibold (600) instead of italics -->
+                <h2 class="font-garamond-cond font-semibold text-3xl md:text-5xl text-lightCream leading-none mb-3">
+                    The Architecture of Leisure
+                </h2>
+                <p class="text-xs md:text-sm text-lightCream/95 font-light leading-relaxed font-sans">
+                    Welcome to the premium briefing deck. We deconstruct the unapologetically indulgent corporate mechanics and aesthetic maturity behind the **Vacation®** suncare empire.
+                </p>
+                <div class="mt-4 h-[2px] w-24 bg-gradient-to-r from-oceans via-flora to-citrus mx-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HORIZONTAL STORY FEED (WIDESPAN BANDS LAYOUT WITH BLENDED GRADIENTS) -->
+    <main class="w-full flex flex-col">
+        
+        <!-- SECTION 1: Schein's 3 Levels (Bold Oceans Band) -->
+        <section class="w-full bg-gradient-to-b from-oceans via-oceans to-flora py-16 px-6 border-b-0">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Content & Interactive Pool depths -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">
+                            MODULE 01
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Interfacial Bathymetry</span>
+                    </div>
+                    
+                    <!-- Modified padding & weight to fit 25% tighter upright rhythm rules (semibold weight 600) -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Schein's 3 Levels of Culture
+                    </h2>
+                    
+                    <p class="text-sm md:text-base text-darkSlate/90 leading-relaxed font-sans font-medium">
+                        Edgar Schein's framework dictates that corporate alignments are discovered beneath the visual surface. Click on the <strong>Pool Depth Zones</strong> to submerge and examine the brand layers driving Vacation®.
+                    </p>
+
+                    <!-- Interactive Swimming Pool Selector -->
+                    <div class="border-[3px] border-darkSlate rounded-xl overflow-hidden shadow-2xl h-80 flex flex-col bg-gradient-to-b from-oceans via-flora to-darkSlate relative">
+                        <!-- Depth 1 -->
+                        <div onclick="selectPoolDepth('surface')" id="pool-depth-surface" class="group cursor-pointer relative flex-1 border-b-2 border-dashed border-darkSlate/30 hover:bg-softBase/20 transition-all flex flex-col justify-center px-6">
+                            <div class="flex justify-between items-center relative z-10">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-full bg-softBase border-2 border-darkSlate text-xs font-sans font-bold flex items-center justify-center text-darkSlate group-hover:bg-flora group-hover:text-darkSlate group-hover:scale-105 transition-all">01</span>
+                                    <!-- Italic up to 600 weight only (EB Garamond font-normal 400 is italic here) -->
+                                    <h3 class="font-garamond-cond italic font-normal text-xl md:text-2xl text-lightCream group-hover:text-flora transition-all">The Splash Zone: Visible Artifacts</h3>
+                                </div>
+                                <span class="font-sans text-[9px] text-darkSlate bg-softBase border-2 border-darkSlate px-2.5 py-1 rounded font-bold">0 - 3 FT (VISUAL RESORT)</span>
+                            </div>
+                        </div>
+
+                        <!-- Depth 2 -->
+                        <div onclick="selectPoolDepth('middle')" id="pool-depth-middle" class="group cursor-pointer relative flex-1 border-b-2 border-dashed border-darkSlate/30 hover:bg-softBase/20 transition-all flex flex-col justify-center px-6">
+                            <div class="flex justify-between items-center relative z-10">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-full bg-softBase border-2 border-darkSlate text-xs font-sans font-bold flex items-center justify-center text-darkSlate group-hover:bg-flora group-hover:text-darkSlate group-hover:scale-105 transition-all">02</span>
+                                    <h3 class="font-garamond-cond italic font-normal text-xl md:text-2xl text-lightCream group-hover:text-flora transition-all">The Mid-Depth: Espoused Values</h3>
+                                </div>
+                                <span class="font-sans text-[9px] text-darkSlate bg-softBase border-2 border-darkSlate px-2.5 py-1 rounded font-bold">4 - 8 FT (STRATEGIC PARADIGM)</span>
+                            </div>
+                        </div>
+
+                        <!-- Depth 3 -->
+                        <div onclick="selectPoolDepth('deep')" id="pool-depth-deep" class="group cursor-pointer relative flex-1 hover:bg-softBase/20 transition-all flex flex-col justify-center px-6">
+                            <div class="flex justify-between items-center relative z-10">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-full bg-softBase border-2 border-darkSlate text-xs font-sans font-bold flex items-center justify-center text-darkSlate group-hover:bg-flora group-hover:text-darkSlate group-hover:scale-105 transition-all">03</span>
+                                    <h3 class="font-garamond-cond italic font-normal text-xl md:text-2xl text-lightCream group-hover:text-flora transition-all">The Dark Floor: Tacit Assumptions</h3>
+                                </div>
+                                <span class="font-sans text-[9px] text-flora bg-darkSlate border-2 border-flora px-2.5 py-1 rounded font-bold">9+ FT (CORE UNWRITTEN RULES)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Artifacts showcases (incorporating uploaded files with native load) -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <!-- Dynamic Pool Output Display Terminal -->
+                    <div class="bg-lightCream border-2 border-darkSlate p-5 rounded-xl shadow-xl relative overflow-hidden text-darkSlate" id="pool-analysis-display">
+                        <div class="flex items-start gap-4">
+                            <span class="text-3xl animate-bounce">🤿</span>
+                            <div>
+                                <h4 class="font-garamond-cond font-semibold text-2xl">Awaiting Bathymetric Submersion...</h4>
+                                <p class="text-xs font-sans text-darkSlate/70 mt-1 uppercase font-semibold">Click any swimming pool layer level in the graphic to parse administrative logs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Authentic Suncare Product Showcases with verified local asset IDs -->
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-4 flex gap-4 items-center shadow-md">
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/f5ff23148a4a3e6c5371a5445543937c0df1a2c3-837x1270.avif" 
+                            alt="Classic Whip" 
+                            class="w-20 h-auto object-contain hover:scale-110 transition-all"
+                        >
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/73d8f7c58530573bf2424edaf812480918a58aef-755x1690.avif" 
+                            alt="Chardonnay Oil" 
+                            class="w-16 h-auto object-contain hover:scale-110 transition-all"
+                        >
+                        <div class="flex-1 text-darkSlate">
+                            <h4 class="font-garamond-cond font-semibold text-xl leading-tight">Elite Physical Artifacts</h4>
+                            <p class="text-[10px] font-sans text-darkSlate/80 mt-1 font-medium">From classic whipped foam canister setups to decadent Chardonnay grapeseed oil formulas, Vacation® aligns its tactical branding directly to user tactile interactions.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: Goffee & Jones Grid (Bold Flora Band) -->
+        <section class="w-full bg-gradient-to-b from-flora via-flora to-exotic py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-tr from-oceans/10 via-transparent to-flora/10 pointer-events-none"></div>
+            
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                
+                <!-- Left: Coordinates Graphic -->
+                <div class="lg:col-span-5 bg-lightCream text-darkSlate p-6 border-2 border-darkSlate rounded-xl relative shadow-2xl">
+                    <div class="relative w-full aspect-square border-2 border-darkSlate bg-softBase rounded-lg flex flex-wrap overflow-hidden shadow-inner">
+                        <!-- Quadrant NW: Networked -->
+                        <div onclick="selectQuadrant('networked')" id="quad-networked" class="w-1/2 h-1/2 border-r-2 border-b-2 border-dashed border-darkSlate/30 p-3 text-[10px] font-sans flex flex-col justify-between hover:bg-oceans/10 transition-all cursor-pointer font-bold">
+                            <span>NETWORKED</span>
+                            <span class="text-[8px] text-darkSlate/60">High Sociability / Low Solidarity</span>
+                        </div>
+                        
+                        <!-- Quadrant NE: Communal -->
+                        <div onclick="selectQuadrant('communal')" id="quad-communal" class="w-1/2 h-1/2 border-b-2 border-dashed border-darkSlate/30 p-3 text-[10px] font-sans flex flex-col justify-between hover:bg-flora/10 transition-all cursor-pointer relative font-bold">
+                            <span class="text-darkSlate">COMMUNAL</span>
+                            <span class="text-right text-[8px] text-coralReef">High Sociability / High Solidarity</span>
+                            
+                            <!-- Floating Sun Badge Pin -->
+                            <div id="vacation-pin" class="absolute right-[30%] top-[30%] w-8 h-8 bg-flora border-2 border-darkSlate rounded-full flex items-center justify-center shadow-xl cursor-pointer animate-bounce z-10">
+                                <span class="text-base">☀️</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Quadrant SW: Fragmented -->
+                        <div onclick="selectQuadrant('fragmented')" id="quad-fragmented" class="w-1/2 h-1/2 border-r-2 border-dashed border-darkSlate/30 p-3 text-[10px] font-sans flex flex-col justify-between hover:bg-softBase/30 transition-all cursor-pointer font-bold">
+                            <span class="text-[8px] text-darkSlate/60">Low Sociability / Low Solidarity</span>
+                            <span>FRAGMENTED</span>
+                        </div>
+                        
+                        <!-- Quadrant SE: Mercenary -->
+                        <div onclick="selectQuadrant('mercenary')" id="quad-mercenary" class="w-1/2 h-1/2 p-3 text-[10px] font-sans flex flex-col justify-between hover:bg-flora/10 transition-all cursor-pointer font-bold">
+                            <span class="text-right text-[8px] text-darkSlate/60">Low Sociability / High Solidarity</span>
+                            <span>MERCENARY</span>
+                        </div>
+
+                        <!-- Axis Centerlines -->
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div class="w-full h-[2.5px] bg-darkSlate"></div>
+                            <div class="h-full w-[2.5px] bg-darkSlate absolute"></div>
+                        </div>
+                    </div>
+
+                    <!-- Graph Axes helper badges -->
+                    <div class="mt-4 flex flex-wrap justify-between gap-2 text-[8px] font-sans font-bold text-darkSlate">
+                        <span class="bg-lightCream border-2 border-darkSlate px-2 py-0.5 rounded shadow-md">Y: SOCIABILITY</span>
+                        <span class="bg-lightCream border-2 border-darkSlate px-2 py-0.5 rounded shadow-md">X: SOLIDARITY</span>
+                    </div>
+                </div>
+
+                <!-- Right: Content Matrix Descriptor -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">
+                            MODULE 02
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Sociability vs. Solidarity</span>
+                    </div>
+
+                    <!-- Semi-bold Upright (600) title with narrow tracking -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Goffee &amp; Jones Matrix
+                    </h2>
+
+                    <p class="text-sm md:text-base text-darkSlate/90 leading-relaxed font-sans font-medium">
+                        This quadrant benchmarks corporate health along **Sociability** (affective human warmth) and **Solidarity** (task-driven accountability). Click different quadrants on the coordinate deck, or select the interactive pulsing **Vacation Sun** to map where Vacation® stands.
+                    </p>
+
+                    <div id="quadrant-display-terminal" class="bg-softBase text-darkSlate border-2 border-darkSlate p-5 rounded-xl text-sm leading-relaxed shadow-xl">
+                        <p class="font-garamond-cond font-semibold text-xl text-darkSlate leading-snug">Click any zone or the flashing sun coordinate to load organizational indices...</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Design Maturity Diagnosis (Bold Exotic Band) -->
+        <section class="w-full bg-gradient-to-b from-exotic via-exotic to-citrus py-16 px-6 text-darkSlate border-b-0">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Content details -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">
+                            MODULE 03
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Strategic Alignment Dial</span>
+                    </div>
+
+                    <!-- Semi-bold Upright (600) title with narrow tracking -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Design Maturity Level
+                    </h2>
+
+                    <p class="text-sm md:text-base text-darkSlate/90 leading-relaxed font-sans font-medium">
+                        At Vacation®, aesthetics aren't just product styling; they *are* the core business advantage. Explore design maturity calibration using the executive control buttons below.
+                    </p>
+
+                    <!-- Product Image Inclusion -->
+                    <div class="bg-lightCream border-2 border-darkSlate text-darkSlate rounded-xl p-4 flex gap-4 items-center shadow-md">
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/8a3c8237cd0d254915dc195e4a86cca6672787b8-701x1770.avif" 
+                            alt="Orange Gelee" 
+                            class="w-12 h-auto object-contain hover:scale-110 transition-all"
+                        >
+                        <div class="flex-1">
+                            <h4 class="font-garamond-cond font-semibold text-xl leading-tight font-semibold">Orange Gelée Nostalgia</h4>
+                            <p class="text-[10px] font-sans text-darkSlate/80 mt-1 font-medium">By reviving legendary discontinued formulations, design leadership executes directly at **Level 5 Maturity**, converting retro cultural artifacts into highly profitable commercial categories.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Gauge -->
+                <div class="lg:col-span-6 bg-lightCream text-darkSlate rounded-2xl p-6 border-2 border-darkSlate relative overflow-hidden shadow-2xl">
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-44 h-28 overflow-hidden flex flex-col justify-end items-center">
+                            <div class="absolute top-0 w-44 h-44 rounded-full border-[10px] border-darkSlate/10 flex items-center justify-center">
+                                <div class="absolute inset-0 w-full h-full rounded-full border-[10px] border-t-flora border-l-oceans border-r-citrus border-b-transparent"></div>
+                            </div>
+                            
+                            <!-- Moving needle pointer -->
+                            <div class="absolute bottom-0 w-1.5 h-20 bg-citrus origin-bottom rotate-[72deg] rounded transition-all duration-700 ease-out border border-darkSlate shadow-lg" id="maturity-needle"></div>
+                            
+                            <div class="absolute bottom-0 w-6 h-3 bg-citrus rounded-t-full border border-darkSlate"></div>
+                        </div>
+
+                        <!-- Manual recalibration buttons -->
+                        <div class="flex justify-between w-full mt-6 bg-softBase border border-darkSlate/10 p-1.5 rounded text-[8px] font-sans">
+                            <button onclick="setMaturityLevel(1, -72)" class="hover:text-citrus px-1.5 py-0.5 rounded transition font-bold">LVL 1</button>
+                            <button onclick="setMaturityLevel(3, 0)" class="hover:text-citrus px-1.5 py-0.5 rounded transition font-bold">LVL 3</button>
+                            <button onclick="setMaturityLevel(5, 72)" class="text-citrus bg-darkSlate border border-citrus px-1.5 py-0.5 rounded transition font-bold">LVL 5 🔥</button>
+                        </div>
+
+                        <div class="mt-6 space-y-2 text-center">
+                            <span id="maturity-badge" class="font-sans text-[10px] text-oceans font-bold bg-softBase px-2 py-0.5 rounded uppercase">LEVEL 5: SYSTEM AS BRAND STRATEGY</span>
+                            <h3 id="maturity-title" class="font-garamond-cond font-semibold text-2xl text-citrus leading-tight">Aesthetics as Strategic Advantage</h3>
+                            <p id="maturity-desc" class="text-xs text-darkSlate/90 leading-relaxed font-sans max-w-sm mx-auto font-medium">
+                                Packaging, retro soundscape elements, and physical scents guide their global boardroom direction, outperforming competitors on pure narrative focus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: Atmosphere Compliance Deck (Citrus Band) -->
+        <section class="w-full bg-gradient-to-b from-citrus via-citrus to-lush py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+            
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                
+                <!-- Left: Content -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">
+                            COMPLIANCE INDEX
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Continuous Resort Alignment</span>
+                    </div>
+
+                    <!-- Semi-bold Upright (600) title with narrow tracking -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Climate &amp; Atmosphere Index
+                    </h2>
+
+                    <p class="text-sm md:text-base text-darkSlate/90 leading-relaxed font-sans font-medium">
+                        Simulate real-time atmospheric conditions across Vacation® physical offices. Adjust sliders to calculate alignment compliance scores.
+                    </p>
+                </div>
+
+                <!-- Right: Controls & Score -->
+                <div class="lg:col-span-7 bg-softBase text-darkSlate border-2 border-darkSlate rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center shadow-2xl">
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
+                                <span>COCONUT SCENT DISPERSAL</span>
+                                <span id="scent-value" class="text-coralReef font-extrabold font-black">85%</span>
+                            </div>
+                            <input type="range" id="slider-scent" min="0" max="100" value="85" class="w-full accent-darkSlate cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
+                                <span>CABANA RECLINATION (°)</span>
+                                <span id="recline-value" class="text-coralReef font-extrabold font-black">135°</span>
+                            </div>
+                            <input type="range" id="slider-recline" min="90" max="180" value="135" class="w-full accent-darkSlate cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
+                                <span>SYNTHWAVE CHILL TEMPO</span>
+                                <span id="chill-value" class="text-coralReef font-extrabold font-black">90 bpm</span>
+                            </div>
+                            <input type="range" id="slider-chill" min="60" max="140" value="90" class="w-full accent-darkSlate cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Score Card -->
+                    <div class="border-[3px] border-dashed border-darkSlate p-4 rounded-xl text-center bg-lightCream shadow-retro-sm">
+                        <div class="font-sans text-[9px] font-bold text-oceans uppercase tracking-widest">RESORT VERDICT SCORE</div>
+                        <div class="font-garamond-cond font-semibold text-5xl text-coralReef mt-2" id="compliance-index">92%</div>
+                        <div class="font-sans text-[9px] uppercase text-darkSlate mt-1 font-bold font-black" id="compliance-status">OPTIMAL RESORT EQUILIBRIUM</div>
+                        <p class="text-[9px] font-sans text-darkSlate/85 mt-3 leading-relaxed font-bold font-semibold" id="compliance-comment">"Atmosphere matches optimal 1986 relaxation parameters."</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: The Playbook Rules (Lush Band) -->
+        <section class="w-full bg-gradient-to-b from-lush via-lush to-softBase py-16 px-6 border-b-0">
+            <div class="max-w-6xl mx-auto space-y-8">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b-2 border-darkSlate/10 pb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate font-bold">
+                            PLAYBOOK SPEC
+                        </span>
+                        <!-- Semi-bold Upright (600) title with narrow tracking -->
+                        <h2 class="font-garamond-cond font-semibold text-3xl sm:text-4xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                            What is Rewarded, Tolerated &amp; Punished
+                        </h2>
+                    </div>
+                    <span class="text-[10px] font-sans text-darkSlate/50 uppercase font-bold tracking-wider font-black">Operational Code of Conduct</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Reward Column -->
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-[4px] bg-oceans"></div>
+                        <span class="font-sans text-[10px] font-black text-oceans uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">REWARDED</span>
+                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
+                            <li class="flex gap-2">
+                                <span class="text-oceans">⚡</span>
+                                <div><strong>Aesthetic Obsession:</strong> Aligning designs to exact, pixel-perfect 1986 reference guidelines.</div>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-oceans">⚡</span>
+                                <div><strong>Atmospheric Depth:</strong> Enhancing narrative continuity with witty corporate brand assets.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tolerate Column -->
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-[4px] bg-citrus"></div>
+                        <span class="font-sans text-[10px] font-black text-citrus uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">TOLERATED</span>
+                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
+                            <li class="flex gap-2">
+                                <span class="text-citrus">⏳</span>
+                                <div><strong>Fidelity Delays:</strong> Slipping launch dates because vintage font kerning took hours.</div>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-citrus">⏳</span>
+                                <div><strong>Aesthetic Play:</strong> Crafting physical mockups of fictional corporate resort artifacts.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Punish Column -->
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-[4px] bg-coralReef"></div>
+                        <span class="font-sans text-[10px] font-black text-coralReef uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">PUNISHED</span>
+                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
+                            <li class="flex gap-2">
+                                <span class="text-coralReef font-bold">🚨</span>
+                                <div><strong>Modernist Slip:</strong> Deploying standard, sterile clinical UI blocks in design layouts.</div>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-coralReef font-bold">🚨</span>
+                                <div><strong>Narrative Break:</strong> Expressing standard thinking like "It is only a cosmetic lotion company."</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 6: Vacation® Aesthetic Synthesis (Bold Oceans Band) -->
+        <section class="w-full bg-gradient-to-b from-softBase via-softBase to-oceans py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-oceans/5 via-transparent to-flora/10 pointer-events-none"></div>
+            
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                
+                <!-- Left: Interactive Specimen buttons & output -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-coralReef text-lightCream font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">
+                            BRAND ARCHIVE
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest font-black">Official Design Anatomy</span>
+                    </div>
+
+                    <!-- Semi-bold Upright (600) title with narrow tracking -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Vacation® Aesthetic Synthesis
+                    </h2>
+
+                    <p class="text-sm md:text-base text-darkSlate/95 leading-relaxed font-sans font-medium">
+                        The official **Vacation®** design philosophy is a masterclass in nostalgia-led marketing. Click on the core visual components below to see how they translate sensory sunscreen nostalgia into high-converting digital products.
+                    </p>
+
+                    <!-- Column Chips Layout -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div onclick="selectSpecimen('typography')" class="group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-coralReef hover:text-lightCream transition-all duration-200">
+                            <div class="flex justify-between items-center">
+                                <span class="font-garamond-cond font-semibold text-2xl">1. Editorial Typographic Tension</span>
+                                <span class="text-lg">→</span>
+                            </div>
+                        </div>
+
+                        <div onclick="selectSpecimen('corporate')" class="group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-citrus hover:text-darkSlate transition-all duration-200">
+                            <div class="flex justify-between items-center">
+                                <span class="font-garamond-cond font-semibold text-2xl">2. Corporate Satire &amp; Fiction</span>
+                                <span class="text-lg">→</span>
+                            </div>
+                        </div>
+
+                        <div onclick="selectSpecimen('sensory')" class="group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-citrus hover:text-darkSlate transition-all duration-200">
+                            <div class="flex justify-between items-center">
+                                <span class="font-garamond-cond font-semibold text-2xl">3. Physical-Scent Translation</span>
+                                <span class="text-lg">→</span>
+                            </div>
+                        </div>
+
+                        <div onclick="selectSpecimen('frictional')" class="group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-coralReef hover:text-lightCream transition-all duration-200">
+                            <div class="flex justify-between items-center">
+                                <span class="font-garamond-cond font-semibold text-2xl">4. Frictional Micro-Interactions</span>
+                                <span class="text-lg">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Specimen Display Terminal -->
+                    <div id="specimen-output" class="bg-lightCream border-2 border-darkSlate rounded-xl p-5 font-sans text-xs leading-relaxed text-darkSlate relative shadow-2xl">
+                        <div class="absolute top-2 right-2 text-[7px] text-darkSlate/40 font-bold">SPEC-UNIT // 86</div>
+                        <span class="text-coralReef font-bold block mb-1 font-black">★ SELECTION REGISTERED</span>
+                        <p id="specimen-text" class="font-semibold text-darkSlate/80">Click an aesthetic component above to deconstruct official brand packaging, typography system, and interface mechanics.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Gorgeous product showcase layout (incorporating AVIF and JPG files) -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-2xl p-4 flex flex-col items-center justify-center shadow-xl hover:scale-[1.03] transition-all">
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/02ce7c4b8c69a20d1eb7b73c2931fa9c34143f6b-1926x1402.avif" 
+                            alt="Vacation Perfume" 
+                            class="w-32 h-auto object-contain"
+                        >
+                        <p class="font-garamond-cond font-semibold text-lg text-darkSlate mt-2">"Vacation" Eau De Toilette</p>
+                    </div>
+                    <div class="bg-lightCream border-2 border-darkSlate rounded-2xl p-4 flex flex-col items-center justify-center shadow-xl hover:scale-[1.03] transition-all">
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/231a85b05c3dcb86fffacc53aa25324a21498603-1629x1336.avif" 
+                            alt="Product Line" 
+                            class="w-32 h-auto object-contain"
+                        >
+                        <p class="font-garamond-cond font-semibold text-lg text-darkSlate mt-2">Official SPF Collection</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 7: Resort Credentials Badge Generator (AT THE ABSOLUTE BOTTOM) -->
+        <section class="w-full bg-gradient-to-b from-oceans via-softBase to-softBase py-16 px-6 border-b-4 border-darkSlate">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Personal badge control deck -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate font-black">
+                            VIP PORTAL
+                        </span>
+                        <span class="text-[10px] font-sans text-darkSlate/50 uppercase font-black tracking-widest font-black font-bold">Generate &amp; Download Badge</span>
+                    </div>
+
+                    <!-- Semi-bold Upright (600) title with narrow tracking -->
+                    <h2 class="font-garamond-cond font-semibold text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">
+                        Resort Credentials Card
+                    </h2>
+
+                    <p class="text-sm text-darkSlate/90 leading-relaxed font-sans font-medium">
+                        Align yourself with the official corporate satire fiction of **Vacation®**. Customize your VIP employee credentials below, upload your own photo, and select a lifestyle emblem to download your high-fidelity, high-society digital ID card.
+                    </p>
+
+                    <div class="space-y-4 bg-lightCream p-6 rounded-xl border-2 border-darkSlate shadow-md">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block font-sans text-[8px] font-bold uppercase text-darkSlate mb-1">FIRST NAME</label>
+                                <input id="badge-input-first" type="text" value="First Name" class="w-full font-sans text-xs px-3 py-2 border-2 border-darkSlate focus:ring-2 focus:ring-oceans outline-none rounded-lg bg-softBase text-darkSlate font-bold">
+                            </div>
+                            <div>
+                                <label class="block font-sans text-[8px] font-bold uppercase text-darkSlate mb-1">LAST NAME</label>
+                                <input id="badge-input-last" type="text" value="Last Name" class="w-full font-sans text-xs px-3 py-2 border-2 border-darkSlate focus:ring-2 focus:ring-oceans outline-none rounded-lg bg-softBase text-darkSlate font-bold">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block font-sans text-[8px] font-bold uppercase text-darkSlate mb-1 font-black">REPUTATION ASSIGNMENT</label>
+                            <select id="badge-input-role" class="w-full font-sans text-xs px-3 py-2 border-2 border-darkSlate focus:ring-2 focus:ring-oceans outline-none rounded-lg bg-softBase font-bold text-darkSlate cursor-pointer">
+                                <option value="Executive Scent Curator">Executive Scent Curator</option>
+                                <option value="Chief Sunset Director">Chief Sunset Director</option>
+                                <option value="Yacht Deck Lead">Yacht Deck Lead</option>
+                                <option value="Beachfront Strategist">Beachfront Strategist</option>
+                            </select>
+                        </div>
+
+                        <!-- Custom Photo Upload Field -->
+                        <div>
+                            <label class="block font-sans text-[8px] font-bold uppercase text-darkSlate mb-1 font-black">UPLOAD PERSONAL PHOTO</label>
+                            <input id="badge-upload-photo" type="file" accept="image/*" class="w-full font-sans text-xs px-2 py-1.5 border-2 border-darkSlate outline-none rounded-lg bg-softBase text-darkSlate file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-sans file:bg-darkSlate file:text-lightCream file:hover:bg-citrus file:hover:text-darkSlate cursor-pointer font-bold">
+                        </div>
+
+                        <div>
+                            <label class="block font-sans text-[8px] font-bold uppercase text-darkSlate mb-1.5 font-black">RESORT EMBLEM CHOICE</label>
+                            <div class="grid grid-cols-5 gap-2">
+                                <button onclick="changeBadgeAvatar('🧴')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🧴</button>
+                                <button onclick="changeBadgeAvatar('👙')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">👙</button>
+                                <button onclick="changeBadgeAvatar('🍹')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🍹</button>
+                                <button onclick="changeBadgeAvatar('🍸')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🍸</button>
+                                <button onclick="changeBadgeAvatar('🏖️')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🏖️</button>
+                                <button onclick="changeBadgeAvatar('🌴')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🌴</button>
+                                <button onclick="changeBadgeAvatar('🕶️')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🕶️</button>
+                                <button onclick="changeBadgeAvatar('🛥️')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🛥️</button>
+                                <button onclick="changeBadgeAvatar('🍒')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">🍒</button>
+                                <button onclick="changeBadgeAvatar('💋')" class="bg-softBase border-2 border-darkSlate p-1.5 text-lg rounded hover:bg-citrus transition shadow-md">💋</button>
+                            </div>
+                        </div>
+
+                        <button onclick="downloadBadgeImage()" class="w-full bg-citrus hover:bg-citrus/90 text-lightCream font-sans font-bold text-xs py-2.5 px-4 border-2 border-darkSlate shadow-md rounded-lg active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-2 mt-4 font-black">
+                            📥 DOWNLOAD BADGE IMAGE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Generated VIP Card (upright semi-bold weights) -->
+                <div class="lg:col-span-6 flex justify-center">
+                    <div id="badge-card-container" class="p-1.5 bg-lightCream border-2 border-darkSlate rounded-xl shadow-2xl max-w-sm w-full">
+                        <div id="badge-card" class="bg-darkSlate text-lightCream p-6 rounded-lg relative overflow-hidden transition-all duration-300 font-bold">
+                            <!-- Top luxury glow stripe -->
+                            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-oceans via-flora to-citrus"></div>
+                            
+                            <div class="absolute top-3 right-3 w-10 h-10 rounded-full bg-gradient-to-tr from-oceans via-flora to-citrus opacity-80 border-2 border-darkSlate flex items-center justify-center text-[7px] font-sans font-black text-darkSlate select-none animate-spin" style="animation-duration: 25s;">
+                                VACATION
+                            </div>
+                            
+                            <div class="flex items-center gap-4 mt-2">
+                                <div id="badge-avatar" class="w-16 h-16 bg-softBase border-2 border-citrus rounded flex items-center justify-center text-3xl shadow-inner text-darkSlate bg-cover bg-center">
+                                    🌴
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="text-[7px] font-sans text-citrus font-bold tracking-widest uppercase">VIP MEMBER</div>
+                                    <!-- Interplay between standard and bold weights under 600 instead of heavy italics -->
+                                    <h4 id="badge-name" class="font-garamond-cond font-semibold text-lg text-lightCream leading-none mt-0.5 font-semibold">FIRST NAME LAST NAME</h4>
+                                    <p id="badge-role" class="font-sans text-[8px] text-oceans mt-1 uppercase tracking-tight font-bold">EXECUTIVE SCENT CURATOR</p>
+                                    
+                                    <div class="mt-2 flex gap-1">
+                                        <span class="text-[6px] font-sans bg-citrus text-darkSlate px-1.5 py-0.5 rounded font-bold uppercase">1986 CREDENTIAL</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-t border-dashed border-lightCream/20 flex justify-between items-center">
+                                <span class="font-sans text-[6px] text-lightCream/60">VACATION® DESIGN ALLIANCE</span>
+                                <div class="h-4 w-16 flex gap-0.5 items-end justify-end opacity-90 bg-white p-0.5 rounded">
+                                    <div class="w-1.5 h-full bg-darkSlate"></div>
+                                    <div class="w-[1px] h-full bg-darkSlate"></div>
+                                    <div class="w-1 h-full bg-darkSlate"></div>
+                                    <div class="w-2 h-full bg-darkSlate"></div>
+                                    <div class="w-1.5 h-full bg-darkSlate"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t-[3px] border-darkSlate bg-lightCream p-8 text-center text-xs font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-6 mt-auto font-bold">
+        <div class="flex flex-wrap justify-center gap-6 text-darkSlate font-extrabold uppercase tracking-widest text-[9px] font-black">
+            <span class="hover:text-citrus cursor-pointer">1986 Brand Manual</span>
+            <span>•</span>
+            <span class="hover:text-citrus cursor-pointer">Poolside Alignment Protocols</span>
+            <span>•</span>
+            <span class="hover:text-citrus cursor-pointer">Aesthetic Auditing Desk</span>
+        </div>
+        <div class="max-w-2xl text-center text-[9px] text-darkSlate/60 leading-relaxed font-bold">
+            VACATION® Audits conducted under strict resort-grade chromatic compliance. Layout built utilizing premium palettes and high-contrast typographic layouts. All corporate rights reserved &copy; 1986-2026.
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT SYSTEM & SYNTHESIZER ENGINE -->
+    <script>
+        let audioCtx = null;
+        let audioStream = null;
+        let isPlaying = false;
+        let isSynthMode = false;
+        let synthInterval = null;
+        let synthStep = 0;
+        let streamTimeout = null;
+        
+        const radioBtn = document.getElementById('radio-toggle-btn');
+        const radioBtnIcon = document.getElementById('radio-btn-icon');
+        const radioBtnText = document.getElementById('radio-btn-text');
+        const streamStatus = document.getElementById('stream-status');
+        const streamChannel = document.getElementById('stream-channel');
+        const radioVolume = document.getElementById('radio-volume');
+        const vuContainer = document.getElementById('vu-container');
+
+        // Dynamic visualizer bars animation matching official colors
+        let visualizerTimer = null;
+        function animateVisuals(active) {
+            if (visualizerTimer) clearInterval(visualizerTimer);
+            if (!active) {
+                Array.from(vuContainer.children).forEach(bar => {
+                    bar.style.height = '4px';
+                    bar.style.backgroundColor = '#9EC6AA';
+                    bar.style.opacity = '0.3';
+                });
+                return;
+            }
+            visualizerTimer = setInterval(() => {
+                Array.from(vuContainer.children).forEach((bar, index) => {
+                    const height = Math.floor(Math.random() * 26) + 4;
+                    bar.style.height = `${height}px`;
+                    bar.style.opacity = '1';
+                    const colors = ['#9EC6AA', '#F5CAE8', '#F49306', '#E63A26'];
+                    bar.style.backgroundColor = colors[index % colors.length];
+                });
+            }, 100);
+        }
+
+        // Initialize Audio context on user action
+        function initAudioCtx() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Programmatic synth engine step sequence for classic 80s arpeggiations
+        function playProgrammaticStep() {
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            
+            // Step sequencer
+            if (synthStep % 2 === 0) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'sawtooth';
+                const roots = [55.00, 48.99, 43.65, 32.70]; // A1, G1, F1, C1
+                const activeFreq = roots[Math.floor(synthStep / 8) % roots.length];
+                osc.frequency.setValueAtTime(activeFreq, now);
+
+                gain.gain.setValueAtTime(parseFloat(radioVolume.value) * 0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, now);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.32);
+            }
+
+            // Chords sequence
+            if (synthStep % 8 === 0) {
+                const chords = [
+                    [110.00, 146.83, 164.81, 220.00], // Am7 shape
+                    [110.00, 130.81, 164.81, 196.00], // C Maj shape
+                    [87.31, 130.81, 174.61, 261.63],   // F Maj
+                    [98.00, 146.83, 196.00, 246.94]    // G Maj
+                ];
+                const activeChord = chords[Math.floor(synthStep / 8) % chords.length];
+                
+                activeChord.forEach((freq, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + (idx * 0.05));
+
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(parseFloat(radioVolume.value) * 0.06, now + 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 2.4);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 2.5);
+                });
+            }
+
+            synthStep++;
+        }
+
+        function toggleSunsetAudio() {
+            initAudioCtx();
+
+            if (!isPlaying) {
+                const selectedSource = streamChannel.value;
+
+                if (selectedSource === 'synthesizer') {
+                    isSynthMode = true;
+                    isPlaying = true;
+                    radioBtnIcon.innerText = '⏸';
+                    radioBtnText.innerText = 'MUTE DECK';
+                    streamStatus.innerText = 'Synthesizing local poolside waves...';
+                    
+                    synthInterval = setInterval(playProgrammaticStep, 350); 
+                    animateVisuals(true);
+                } else {
+                    isSynthMode = false;
+                    streamStatus.innerText = 'Tuning in transmitter...';
+                    
+                    if (!audioStream) {
+                        audioStream = new Audio();
+                    }
+                    
+                    audioStream.removeAttribute('crossorigin');
+                    audioStream.src = selectedSource;
+                    audioStream.volume = parseFloat(radioVolume.value);
+                    
+                    if (streamTimeout) clearTimeout(streamTimeout);
+                    streamTimeout = setTimeout(() => {
+                        if (!isSynthMode && audioStream.paused) {
+                            console.warn("Live stream timed out. Swapping to backup local synthesizer.");
+                            streamStatus.innerText = 'Signal delayed. Booting local Synth Engine...';
+                            streamChannel.value = 'synthesizer';
+                            isPlaying = false;
+                            if (audioStream) audioStream.pause();
+                            toggleSunsetAudio();
+                        }
+                    }, 2500);
+                    
+                    audioStream.play()
+                        .then(() => {
+                            if (streamTimeout) clearTimeout(streamTimeout);
+                            isPlaying = true;
+                            radioBtnIcon.innerText = '⏸';
+                            radioBtnText.innerText = 'MUTE DECK';
+                            const activeText = streamChannel.options[streamChannel.selectedIndex].text;
+                            streamStatus.innerText = `Active: ${activeText}`;
+                            animateVisuals(true);
+                        })
+                        .catch((error) => {
+                            if (streamTimeout) clearTimeout(streamTimeout);
+                            console.warn("CORS or stream load block detected. Falling back to Synth Engine: ", error);
+                            streamStatus.innerText = 'Transmitter blocked. Booting Synth Engine...';
+                            streamChannel.value = 'synthesizer';
+                            isPlaying = false;
+                            toggleSunsetAudio();
+                        });
+                }
+            } else {
+                isPlaying = false;
+                radioBtnIcon.innerText = '▶';
+                radioBtnText.innerText = 'PLAY BEACH TRACKS';
+                streamStatus.innerText = 'Audio paused.';
+                animateVisuals(false);
+
+                if (isSynthMode) {
+                    clearInterval(synthInterval);
+                } else if (audioStream) {
+                    audioStream.pause();
+                }
+            }
+        }
+
+        radioBtn.addEventListener('click', toggleSunsetAudio);
+
+        radioVolume.addEventListener('input', (e) => {
+            const vol = parseFloat(e.target.value);
+            if (audioStream) audioStream.volume = vol;
+        });
+
+        streamChannel.addEventListener('change', () => {
+            if (isPlaying) {
+                isPlaying = false;
+                if (isSynthMode) clearInterval(synthInterval);
+                if (audioStream) audioStream.pause();
+                toggleSunsetAudio();
+            }
+        });
+
+        // Interactive Aesthetic Synthesis Specs
+        const officialSpecs = {
+            typography: {
+                title: "EDITORIAL TYPOGRAPHIC TENSION",
+                text: "The official Vacation® web experience relies heavily on extreme contrast: pairing large, luxury-editorial serif typefaces (similar to ITC Garamond or Instrument Serif) with clinical, high-speed, 1980s corporate monospaced typewriter scripts. This makes the brand feel both incredibly prestigious and humorously industrial at the exact same moment."
+            },
+            corporate: {
+                title: "THE BOARDROOM RETREAT FICTION",
+                text: "Unlike clinical beauty brands, Vacation® constructs an entirely fictional 1980s corporate empire. Visitors aren't just consumers; they are 'hired' as Honorary Vice Presidents with downloadable badges, fax portals, and memo cards. This corporate theater transforms sunscreen purchase into a playful sense of belonging."
+            },
+            sensory: {
+                title: "TRANSLATING SCENT INTO PIXELS",
+                text: "How do you sell the 'world's best smelling sunscreen' online? The brand utilizes bright, high-saturation, nostalgic vacation photos of pool decks, retro swimsuits, and neon towels. By overstimulating visual pathways, they prompt the brain's sensory cortex to recall the nostalgic fragrance of coconut, banana, and pool water."
+            },
+            frictional: {
+                title: "CHARMING TACTILE FRICTION",
+                text: "Modern web design prioritizes instantaneous loading and seamless scrolling. The official brand rejects this in favor of 'charming friction'—deliberate loading spinners, analog knobs that clicking sounds when clicked, and 3D product cans that rattle like physical aerosol canisters when grabbed. This creates visceral physical realism in a digital landscape."
+            }
+        };
+
+        function selectSpecimen(specId) {
+            const data = officialSpecs[specId];
+            const outputBox = document.getElementById('specimen-output');
+            outputBox.innerHTML = `
+                <div class="absolute top-2 right-2 text-[7px] text-darkSlate/40 font-bold">SPEC-UNIT // 86</div>
+                <span class="text-coralReef font-bold block mb-1 font-black">★ ${data.title}</span>
+                <p class="text-darkSlate/90 font-sans text-[10px] sm:text-[11px] leading-relaxed mt-2 font-semibold">${data.text}</p>
+            `;
+            outputBox.classList.add('ring-2', 'ring-oceans');
+            setTimeout(() => { outputBox.classList.remove('ring-2', 'ring-oceans'); }, 300);
+        }
+
+        // Schein's 3 Levels Data Module
+        const poolData = {
+            surface: {
+                title: "THE SPLASH ZONE: ARTIFACTS",
+                desc: "Every corporate touchpoint—from whipping foam sunscreen to custom hotel invoices—screams retro luxury. Job titles are highly playful ('Executive Poolside DJ'), and workspaces feature heavy coconut scent dispersion to maintain visual fidelity.",
+                depth: "0-3 Feet Depth"
+            },
+            middle: {
+                title: "THE SHALLOW END: ESPOUSED VALUES",
+                desc: "Values celebrate care-free play, visual aesthetics, and sensory nostalgia. Their focus claims that sunscreen shouldn't look or smell clinical, but rather evoke feelings of premium leisure.",
+                depth: "4-8 Feet Depth"
+            },
+            deep: {
+                title: "THE DARK FLOOR: TACIT ASSUMPTIONS",
+                desc: "An obsessive dedication to extreme design control hides beneath their fun brand posture. In order for brand systems to seem effortlessly fun, employees must verify alignments systematically, valuing total narrative continuity over standard output metrics.",
+                depth: "9+ Feet Depth"
+            }
+        };
+
+        function selectPoolDepth(depthId) {
+            const target = poolData[depthId];
+            const output = document.getElementById('pool-analysis-display');
+            
+            ['pool-depth-surface', 'pool-depth-middle', 'pool-depth-deep'].forEach(id => {
+                document.getElementById(id).classList.remove('bg-softBase/20', 'border-l-4', 'border-citrus');
+            });
+            document.getElementById(`pool-depth-${depthId}`).classList.add('bg-softBase/20', 'border-l-4', 'border-citrus');
+
+            output.innerHTML = `
+                <div class="flex items-start gap-4">
+                    <span class="text-3xl">🤿</span>
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <h4 class="font-garamond-cond font-semibold text-2xl text-darkSlate">${target.title}</h4>
+                            <span class="bg-citrus text-lightCream font-sans text-[8px] px-2 py-0.5 rounded font-black uppercase border border-darkSlate">${target.depth}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-darkSlate/90 leading-relaxed mb-3 font-sans font-semibold">${target.desc}</p>
+                        <div class="text-[9px] font-sans text-darkSlate bg-lightCream p-2 border border-dashed border-darkSlate/30 rounded font-bold">
+                            REPUTATION VERDICT: Aesthetic discipline is observed at this level.
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Goffee & Jones Data Module
+        const gridData = {
+            networked: {
+                title: "THE NETWORKED COORDINATE",
+                comment: "High Sociability / Low Solidarity",
+                desc: "Teams enjoy strong personal friendships but suffer from poor strategic direction, finding it difficult to deploy unified product systems on time."
+            },
+            communal: {
+                title: "THE COMMUNAL CORNERSTONE (VACATION® ALIGNED)",
+                comment: "High Sociability / High Solidarity",
+                desc: "Vacation® operates uniquely here. High personal friendship (listening to yacht rock, pool parties) pairs with razor-sharp task alignment (meticulous 1986 aesthetic compliance). Newcomers must fit in instantly or face subtle exile."
+            },
+            fragmented: {
+                title: "THE FRAGMENTED COORDINATE",
+                comment: "Low Sociability / Low Solidarity",
+                desc: "Siloed departments working in isolation with zero alignment, resulting in generic visual choices."
+            },
+            mercenary: {
+                title: "THE MERCENARY COORDINATE",
+                comment: "Low Sociability / High Solidarity",
+                desc: "Highly transactional with focus solely on metrics and speeds. Friendships are dismissed in favor of clinical, standard board procedures."
+            }
+        };
+
+        function selectQuadrant(quadId) {
+            const data = gridData[quadId];
+            const terminal = document.getElementById('quadrant-display-terminal');
+
+            ['quad-networked', 'quad-communal', 'quad-fragmented', 'quad-mercenary'].forEach(id => {
+                document.getElementById(id).classList.remove('bg-citrus/20');
+            });
+            document.getElementById(`quad-${quadId}`).classList.add('bg-citrus/20');
+
+            terminal.innerHTML = `
+                <div class="space-y-2">
+                    <p class="font-sans text-[8px] text-citrus font-black uppercase tracking-wider">${data.comment}</p>
+                    <h4 class="font-garamond-cond font-semibold text-2xl text-darkSlate leading-none">${data.title}</h4>
+                    <p class="text-xs text-darkSlate/90 leading-relaxed font-sans font-semibold">${data.desc}</p>
+                    <div class="mt-3 bg-lightCream border border-darkSlate p-2 rounded-lg text-[10px] font-sans text-darkSlate/80 font-bold">
+                        <strong>DIAGNOSTIC ADVISORY:</strong> Solidarity measures remain extremely stable across visual departments.
+                    </div>
+                </div>
+            `;
+        }
+
+        selectQuadrant('communal');
+
+        // Design Maturity Gauge Scale Module
+        const maturityScales = {
+            1: {
+                title: "Level 1: Design as Production Polish",
+                badge: "LEVEL 1: VISUAL DECORATIVE",
+                desc: "Design is considered cosmetic, serving only to style pre-built features and align brand icons with corporate spreadsheets.",
+                deg: -72
+            },
+            3: {
+                title: "Level 3: Design as Codified Process",
+                badge: "LEVEL 3: SYSTEM INTEGRATED",
+                desc: "Early design collaborations standardise visual styles, though core strategies remain strictly finance-driven.",
+                deg: 0
+            },
+            5: {
+                title: "Level 5: Design as Unified Business Strategy",
+                badge: "LEVEL 5: BRAND SYSTEM AS MODEL",
+                desc: "At Vacation®, brand elements define the entire business offering. Visual aesthetics, physical scents, and high-fidelity nostalgia dictate the investment models.",
+                deg: 72
+            }
+        };
+
+        function setMaturityLevel(level, rotationDeg) {
+            const needle = document.getElementById('maturity-needle');
+            const data = maturityScales[level];
+            
+            needle.style.transform = `rotate(${rotationDeg}deg)`;
+
+            document.getElementById('maturity-badge').innerText = data.badge;
+            document.getElementById('maturity-title').innerText = data.title;
+            document.getElementById('maturity-desc').innerText = data.desc;
+        }
+
+        // Atmosphere Index Computations
+        const sliderScent = document.getElementById('slider-scent');
+        const sliderRecline = document.getElementById('slider-recline');
+        const sliderChill = document.getElementById('slider-chill');
+
+        const scentValue = document.getElementById('scent-value');
+        const reclineValue = document.getElementById('recline-value');
+        const chillValue = document.getElementById('chill-value');
+
+        const complianceIndex = document.getElementById('compliance-index');
+        const complianceStatus = document.getElementById('compliance-status');
+        const complianceComment = document.getElementById('compliance-comment');
+
+        function updateLeisureCompliance() {
+            const scentVal = parseInt(sliderScent.value);
+            const reclineVal = parseInt(sliderRecline.value);
+            const chillVal = parseInt(sliderChill.value);
+
+            scentValue.innerText = `${scentVal}%`;
+            reclineValue.innerText = `${reclineVal}°`;
+            chillValue.innerText = `${chillVal} bpm`;
+
+            const scentDeviation = Math.abs(scentVal - 85);
+            const reclineDeviation = Math.abs(reclineVal - 135);
+            const chillDeviation = Math.abs(chillVal - 90);
+
+            const totalDeviation = scentDeviation + reclineDeviation + chillDeviation;
+            const score = Math.max(10, Math.min(100, 100 - Math.round(totalDeviation * 0.4)));
+
+            complianceIndex.innerText = `${score}%`;
+
+            if (score > 90) {
+                complianceStatus.innerText = "OPTIMAL RESORT EQUILIBRIUM";
+                complianceStatus.className = "font-sans text-[9px] uppercase text-tealAccent mt-1 font-bold font-black";
+                complianceComment.innerText = `"Atmosphere coordinates are aligned perfectly. Scent dispersal and beach frequencies are functioning beautifully."`;
+            } else if (score > 70) {
+                complianceStatus.innerText = "ATMOSPHERIC DRIFT DETECTED";
+                complianceStatus.className = "font-sans text-[9px] uppercase text-peachFuzz mt-1 font-bold font-black";
+                complianceComment.innerText = `"Compliance is slipping. Adjust the lounger angle or synth frequencies to realign the vibe."`;
+            } else {
+                complianceStatus.innerText = "CRITICAL NARRATIVE BREAK";
+                complianceStatus.className = "font-sans text-[9px] uppercase text-darkSlate mt-1 font-bold font-black";
+                complianceComment.innerText = `"Clinical vibes detected. Re-initialize high-society Synthwave FM decks immediately."`;
+            }
+        }
+
+        sliderScent.addEventListener('input', updateLeisureCompliance);
+        sliderRecline.addEventListener('input', updateLeisureCompliance);
+        sliderChill.addEventListener('input', updateLeisureCompliance);
+
+        // ID Badge Credentials Generation Engine
+        const badgeInputFirst = document.getElementById('badge-input-first');
+        const badgeInputLast = document.getElementById('badge-input-last');
+        const badgeRoleInput = document.getElementById('badge-input-role');
+        const badgeDisplayName = document.getElementById('badge-name');
+        const badgeDisplayRole = document.getElementById('badge-role');
+        const badgeDisplayAvatar = document.getElementById('badge-avatar');
+        const badgeUploadPhoto = document.getElementById('badge-upload-photo');
+
+        function updateBadgeName() {
+            const first = badgeInputFirst.value.trim().toUpperCase() || "FIRST";
+            const last = badgeInputLast.value.trim().toUpperCase() || "LAST";
+            badgeDisplayName.innerText = `${first} ${last}`;
+        }
+
+        badgeInputFirst.addEventListener('input', updateBadgeName);
+        badgeInputLast.addEventListener('input', updateBadgeName);
+
+        badgeRoleInput.addEventListener('change', (e) => {
+            badgeDisplayRole.innerText = e.target.value.toUpperCase();
+        });
+
+        // Toggle avatar to direct uploaded image
+        badgeUploadPhoto.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    badgeDisplayAvatar.innerText = '';
+                    badgeDisplayAvatar.style.backgroundImage = `url(${event.target.result})`;
+                    badgeDisplayAvatar.style.backgroundSize = 'cover';
+                    badgeDisplayAvatar.style.backgroundPosition = 'center';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Change badge avatar emoji selection
+        function changeBadgeAvatar(emoji) {
+            badgeDisplayAvatar.style.backgroundImage = 'none';
+            badgeDisplayAvatar.innerText = emoji;
+            badgeDisplayAvatar.classList.add('scale-110');
+            setTimeout(() => {
+                badgeDisplayAvatar.classList.remove('scale-110');
+            }, 150);
+        }
+
+        // Generate customized badge with high clarity utilizing HTML2canvas
+        // Using standard document.execCommand('copy') compatible patterns for sandboxed outputs
+        function downloadBadgeImage() {
+            const badgeElement = document.getElementById('badge-card');
+            
+            html2canvas(badgeElement, {
+                useCORS: true,
+                backgroundColor: null,
+                scale: 3, // High physical output print clarity
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                const firstName = badgeInputFirst.value.trim() || 'First';
+                const lastName = badgeInputLast.value.trim() || 'Last';
+                link.download = `Vacation-Resort-ID-${firstName}-${lastName}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(error => {
+                console.error("HTML2Canvas print alignment failure: ", error);
+            });
+        }
+
+        // Auto-play trigger helper on any click to resolve aggressive browser blocking
+        document.body.addEventListener('click', () => {
+            const videoEl = document.getElementById('hero-video-player');
+            if (videoEl) {
+                videoEl.play().catch(e => console.log("Standard HTML5 video play bypass active."));
+            }
+        }, { once: false });
+
+        // Initial setup routines
+        updateLeisureCompliance();
+    </script>
+</body>
+</html>
