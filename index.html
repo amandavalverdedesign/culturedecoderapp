@@ -22,6 +22,7 @@
                         lush: '#F1D46C',
                         flora: '#FBCEEA',
                         oceans: '#ABCFDF',
+                        lavender: '#DBD4FE',
                         exotic: '#F5A9B8',
                         softBase: '#FBF6F3',
                         coralReef: '#E63A26',
@@ -71,6 +72,22 @@
         }
         @keyframes subtleFloat { 0% { transform: translateY(0px); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0px); } }
         .hover-float { animation: subtleFloat 3s ease-in-out infinite; }
+        @keyframes heroOverlayReveal {
+            0% {
+                clip-path: inset(0 100% 0 0);
+                opacity: 0;
+            }
+            18% {
+                opacity: 1;
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+            }
+        }
+        .hero-overlay-reveal {
+            animation: heroOverlayReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 250ms both;
+        }
         .product-float {
             filter: drop-shadow(0 18px 18px rgba(28, 25, 23, 0.18));
         }
@@ -168,10 +185,11 @@
             background: linear-gradient(
                 to bottom,
                 #FFFFFF 0%,
-                #FFFFFF 22%,
-                #FBFDFE 42%,
-                #F3F8FA 60%,
-                #E7F1F5 77%,
+                #FFFFFF 52%,
+                #FDFEFE 64%,
+                #F8FBFC 75%,
+                #EFF6F8 85%,
+                #E5F0F4 93%,
                 #D9E9EF 100%
             );
         }
@@ -179,12 +197,93 @@
             background: linear-gradient(
                 to bottom,
                 #D9E9EF 0%,
-                #CEE2E9 10%,
-                #BED8E2 22%,
-                #ABCFDF 38%,
-                #ABCFDF 66%,
+                #D1E5EC 8%,
+                #C5DDE6 16%,
+                #B8D5E1 24%,
+                #ABCFDF 34%,
+                #ABCFDF 70%,
+                #C5CFE2 80%,
+                #E1CEE6 91%,
                 #FBCEEA 100%
             );
+        }
+        .section-module-two {
+            background: linear-gradient(to bottom, #FBCEEA 0%, #FBCEEA 70%, #F9C3DB 80%, #F7B5C9 91%, #F5A9B8 100%);
+        }
+        .section-module-three {
+            background: linear-gradient(to bottom, #F5A9B8 0%, #F5A9B8 70%, #EDB8D0 80%, #E4C6E7 91%, #DBD4FE 100%);
+        }
+        .section-evidence {
+            background: linear-gradient(
+                to bottom,
+                #DBD4FE 0%,
+                #DBD4FE 76%,
+                #DED4EC 82%,
+                #E2D4DA 87%,
+                #E7D4C6 92%,
+                #ECD49E 96%,
+                #F1D46C 100%
+            );
+        }
+        .section-playbook {
+            background: linear-gradient(to bottom, #F1D46C 0%, #F1D46C 70%, #F4DF99 80%, #F8EBC8 91%, #FBF6F3 100%);
+        }
+        .section-aesthetic {
+            background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 70%, #E6E9EC 80%, #C9DCE5 91%, #ABCFDF 100%);
+        }
+        .section-designer {
+            background: linear-gradient(to bottom, #ABCFDF 0%, #ABCFDF 70%, #C9DCE5 80%, #E6E9EC 91%, #FBF6F3 100%);
+        }
+        .section-badge {
+            background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 70%, #F8EBC8 80%, #F4DF99 91%, #F1D46C 100%);
+        }
+        .section-appendix {
+            background: linear-gradient(to bottom, #F1D46C 0%, #F1D46C 70%, #F4DF99 80%, #F8EBC8 91%, #FBF6F3 100%);
+        }
+        .section-vault {
+            background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 72%, #F5EBF5 83%, #EADFF9 92%, #DBD4FE 100%);
+        }
+        .vault-tv-link img {
+            transform: translateY(0) rotate(-0.4deg);
+            transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 900ms ease;
+            filter: drop-shadow(0 24px 28px rgba(28, 25, 23, 0.16));
+        }
+        .vault-tv-link:hover img,
+        .vault-tv-link:focus-visible img {
+            transform: translateY(-12px) rotate(0.4deg) scale(1.015);
+            filter: drop-shadow(0 34px 34px rgba(28, 25, 23, 0.22));
+        }
+        .archive-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ABCFDF 18%, #FBCEEA 50%, #FC8C5C 82%, transparent);
+        }
+        .archive-channel-image {
+            transition: opacity 260ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1), filter 520ms ease;
+        }
+        .archive-channel-image.is-tuning {
+            opacity: 0;
+            transform: scale(0.985);
+            filter: saturate(0.25) contrast(1.35);
+        }
+        .archive-channel-button[aria-pressed="true"] {
+            background: #1C1917;
+            color: #FBF6F3;
+            box-shadow: 0 4px 0 rgba(252, 140, 92, 0.75);
+        }
+        .evidence-lens-button[aria-pressed="true"],
+        .designer-lens-button[aria-pressed="true"] {
+            background: #DBD4FE;
+            color: #1C1917;
+            box-shadow: 0 5px 0 rgba(28, 25, 23, 0.18);
+        }
+        .source-link {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+        .atmosphere-score-ring {
+            background: conic-gradient(#FC8C5C calc(var(--score) * 1%), rgba(251, 246, 243, 0.75) 0);
+            transition: background 400ms ease;
         }
         @media (min-width: 768px) {
             #badge-card-container {
@@ -362,7 +461,9 @@
             </div>
         </div>
         <div class="relative z-30 max-w-5xl px-6 text-center flex flex-col items-center justify-center gap-6 pointer-events-none">
-            <img src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/vacation.png" alt="Vacation® Miami, U.S.A." class="w-72 md:w-[450px] drop-shadow-[0_4px_12px_rgba(0,0,0,0.65)] hover-float pointer-events-auto">
+            <div class="hero-overlay-reveal">
+                <img src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/vacation.png" alt="Vacation® Miami, U.S.A." class="w-72 md:w-[450px] drop-shadow-[0_4px_12px_rgba(0,0,0,0.65)] hover-float pointer-events-auto">
+            </div>
         </div>
     </div>
 
@@ -403,7 +504,7 @@
                             <div id="pool-panel-surface" class="pool-panel hidden px-6 pb-6" role="region" aria-labelledby="pool-depth-surface">
                                 <div class="bg-lightCream/80 border-2 border-darkSlate rounded-lg p-4 flex gap-4 items-start">
                                     <span class="text-3xl animate-bounce" aria-hidden="true">🤿</span>
-                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-oceans">Surface reading</span><p class="page-paragraph text-darkSlate mt-1">Every corporate touchpoint, from whipped sunscreen canisters to custom hotel invoices, makes retro luxury visible and immediately legible.</p></div>
+                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-oceans">Surface reading</span><p class="page-paragraph text-darkSlate mt-1">Every corporate touchpoint, from whipped sunscreen canisters to honorary employee credentials, makes retro luxury visible and immediately legible.</p><p class="font-sans text-[8px] font-bold mt-3">Evidence: <a class="source-link" href="https://www.vacation.inc/products/classic-whip-spf-30" target="_blank" rel="noopener">Classic Whip product system</a> · <a class="source-link" href="https://www.vacation.inc/about-us" target="_blank" rel="noopener">Honorary employee program</a></p></div>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +521,7 @@
                             <div id="pool-panel-middle" class="pool-panel hidden px-6 pb-6" role="region" aria-labelledby="pool-depth-middle">
                                 <div class="bg-lightCream/80 border-2 border-darkSlate rounded-lg p-4 flex gap-4 items-start">
                                     <span class="text-3xl animate-bounce" aria-hidden="true">🤿</span>
-                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-citrus">Mid-depth reading</span><p class="page-paragraph text-darkSlate mt-1">The stated values celebrate carefree play, aesthetic precision, sensory nostalgia, and the belief that pleasure deserves serious operational support.</p></div>
+                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-citrus">Mid-depth reading</span><p class="page-paragraph text-darkSlate mt-1">The stated values join creativity and fun with attention to detail, accountability, humility, growth, and operational excellence. Leisure is the promise; disciplined execution is the employee standard.</p><p class="font-sans text-[8px] font-bold mt-3">Evidence: <a class="source-link" href="https://job-boards.greenhouse.io/vacationinc/jobs/5005493007" target="_blank" rel="noopener">Vacation employment profile</a> · <a class="source-link" href="https://www.vacation.inc/about-us" target="_blank" rel="noopener">Official brand principles</a></p></div>
                                 </div>
                             </div>
                         </div>
@@ -437,7 +538,7 @@
                             <div id="pool-panel-deep" class="pool-panel hidden px-6 pb-6" role="region" aria-labelledby="pool-depth-deep">
                                 <div class="bg-lightCream text-darkSlate border-2 border-lightCream rounded-lg p-4 flex gap-4 items-start">
                                     <span class="text-3xl animate-bounce" aria-hidden="true">🤿</span>
-                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-exotic">Deep-floor reading</span><p class="page-paragraph mt-1">Beneath the easygoing posture sits an uncompromising assumption: delight only feels effortless when every detail is intensely controlled.</p></div>
+                                    <div><span class="font-sans text-[9px] font-black uppercase tracking-widest text-exotic">Deep-floor reading</span><p class="page-paragraph mt-1">The strongest supported inference is that fun must perform. Orange Gelée drew a 15,000-person waitlist and produced roughly two to three times Vacation's typical advertising return, while investors describe creative marketing as a competitive advantage. Leisure is the customer promise; public evidence does not establish that it describes employees' working pace.</p><p class="font-sans text-[8px] font-bold mt-3">Inference from: <a class="source-link" href="https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/" target="_blank" rel="noopener">Orange Gelée performance</a> · <a class="source-link" href="https://beautymatter.com/articles/vacation-closes-an-oversubscribed-6-million-series-a" target="_blank" rel="noopener">investor thesis</a></p></div>
                                 </div>
                             </div>
                         </div>
@@ -464,10 +565,27 @@
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-flora via-flora to-exotic py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-                <div class="lg:col-span-5 bg-lightCream text-darkSlate p-6 border-2 border-darkSlate rounded-xl relative shadow-2xl">
-                    <div class="relative w-full aspect-square border-2 border-darkSlate bg-softBase rounded-lg flex flex-wrap overflow-hidden shadow-inner">
+        <section class="section-module-two w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+                <div class="lg:col-span-5 space-y-6 text-left">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-flora text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">MODULE 02</span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Sociability vs. Solidarity</span>
+                    </div>
+                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">Goffee &amp; Jones Matrix</h2>
+                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 leading-relaxed font-medium">
+                        This quadrant benchmarks corporate health along <span class="font-bold">Sociability</span> (affective human warmth) and <span class="font-bold">Solidarity</span> (task-driven accountability).
+                    </p>
+                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 leading-relaxed font-medium">
+                        Select a quadrant or the pulsing <span class="font-bold">Vacation Sun</span> to compare organizational patterns and locate Vacation® within the framework.
+                    </p>
+                    <p class="page-paragraph text-xs text-darkSlate/75 leading-relaxed">
+                        Our placement is a triangulated estimate, not an employee survey: public participation signals support high sociability, while funding, national retail expansion, ROI measurement, and sales targets support high organizational solidarity.
+                    </p>
+                </div>
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="bg-lightCream text-darkSlate p-6 border-2 border-darkSlate rounded-xl relative shadow-2xl">
+                    <div class="relative w-full max-w-[420px] mx-auto aspect-square border-2 border-darkSlate bg-softBase rounded-lg flex flex-wrap overflow-hidden shadow-inner">
                         <div onclick="selectQuadrant('networked')" id="quad-networked" class="matrix-quadrant w-1/2 h-1/2 border-r-2 border-b-2 border-solid border-darkSlate/25 p-3 text-[10px] font-sans flex flex-col justify-between hover:bg-oceans hover:shadow-inner transition-all cursor-pointer font-bold">
                             <span>NETWORKED</span>
                             <span class="text-[8px] text-darkSlate/60">High Sociability / Low Solidarity</span>
@@ -492,16 +610,7 @@
                             <div class="h-full w-[2.5px] bg-darkSlate absolute"></div>
                         </div>
                     </div>
-                </div>
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="bg-flora text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">MODULE 02</span>
-                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Sociability vs. Solidarity</span>
                     </div>
-                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">Goffee &amp; Jones Matrix</h2>
-                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 leading-relaxed font-medium">
-                        This quadrant benchmarks corporate health along <span class="font-bold">Sociability</span> (affective human warmth) and <span class="font-bold">Solidarity</span> (task-driven accountability). Click different quadrants on the coordinate deck, or select the interactive pulsing <span class="font-bold">Vacation Sun</span> to map where Vacation® stands.
-                    </p>
                     <div id="quadrant-display-terminal" class="bg-softBase text-darkSlate border-2 border-darkSlate p-5 rounded-xl text-sm leading-relaxed shadow-xl min-h-[238px]">
                         <p class="font-garamond-cond font-semibold text-xl text-darkSlate leading-snug">Click any zone or the flashing sun coordinate to load organizational indices...</p>
                     </div>
@@ -509,11 +618,11 @@
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-exotic via-exotic to-citrus py-16 px-6 text-darkSlate border-b-0">
+        <section class="section-module-three w-full py-16 px-6 text-darkSlate border-b-0">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 space-y-6">
                     <div class="flex items-center gap-3">
-                        <span class="bg-exotic text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">MODULE 03</span>
+                        <span class="bg-lavender text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">MODULE 03</span>
                         <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Strategic Alignment Dial</span>
                     </div>
                     <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">Design Maturity Level</h2>
@@ -524,7 +633,7 @@
                         <img src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/8a3c8237cd0d254915dc195e4a86cca6672787b8-701x1770.avif" alt="Orange Gelee" class="w-12 h-auto object-contain hover:scale-110 transition-all">
                         <div class="flex-1">
                             <h4 class="font-garamond-cond font-semibold text-xl leading-tight font-semibold">Orange Gelée Nostalgia</h4>
-                            <p class="page-paragraph text-[10px] text-darkSlate/80 mt-1 font-normal">By reviving legendary discontinued formulations, design leadership executes directly at <span class="font-semibold">Level 5 Maturity</span>, converting retro cultural artifacts into highly profitable commercial categories.</p>
+                            <p class="page-paragraph text-[10px] text-darkSlate/80 mt-1 font-normal">Orange Gelée's revival turned fan participation and archival storytelling into Vacation's strongest-performing product launch at the time. This supports <span class="font-semibold">Level 4 maturity</span>: design shapes market opportunities. Level 5 remains unverified without internal evidence of distributed design authority and research operations.</p>
                         </div>
                     </div>
                 </div>
@@ -541,22 +650,26 @@
                                 </defs>
                                 <path d="M 20 96 A 76 76 0 0 1 172 96" fill="none" stroke="url(#maturity-gauge-gradient)" stroke-width="14" stroke-linecap="round"></path>
                             </svg>
-                            <button type="button" onclick="setMaturityLevel(1, -72)" aria-label="Select blue Level 1 design maturity" class="absolute left-0 top-7 w-16 h-16 cursor-pointer focus:outline-none"></button>
-                            <button type="button" onclick="setMaturityLevel(3, 0)" aria-label="Select pink Level 3 design maturity" class="absolute left-1/2 top-0 -translate-x-1/2 w-16 h-16 cursor-pointer focus:outline-none"></button>
-                            <button type="button" onclick="setMaturityLevel(5, 72)" aria-label="Select orange Level 5 design maturity" class="absolute right-0 top-7 w-16 h-16 cursor-pointer focus:outline-none"></button>
-                            <div class="absolute bottom-1 w-1.5 h-[72px] bg-lush origin-bottom rotate-[72deg] rounded-full transition-all duration-700 ease-out shadow-[0_2px_8px_rgba(28,25,23,0.18)]" id="maturity-needle"></div>
+                            <button type="button" onclick="setMaturityLevel(1, -72)" aria-label="Select Level 1 design maturity" class="absolute left-0 top-10 w-10 h-12 cursor-pointer focus:outline-none"></button>
+                            <button type="button" onclick="setMaturityLevel(2, -36)" aria-label="Select Level 2 design maturity" class="absolute left-[20%] top-2 w-10 h-12 cursor-pointer focus:outline-none"></button>
+                            <button type="button" onclick="setMaturityLevel(3, 0)" aria-label="Select Level 3 design maturity" class="absolute left-1/2 -translate-x-1/2 -top-1 w-10 h-12 cursor-pointer focus:outline-none"></button>
+                            <button type="button" onclick="setMaturityLevel(4, 36)" aria-label="Select Level 4 design maturity" class="absolute right-[20%] top-2 w-10 h-12 cursor-pointer focus:outline-none"></button>
+                            <button type="button" onclick="setMaturityLevel(5, 72)" aria-label="Select Level 5 design maturity" class="absolute right-0 top-10 w-10 h-12 cursor-pointer focus:outline-none"></button>
+                            <div class="absolute bottom-1 w-1.5 h-[72px] bg-lush origin-bottom rotate-[36deg] rounded-full transition-all duration-700 ease-out shadow-[0_2px_8px_rgba(28,25,23,0.18)]" id="maturity-needle"></div>
                             <div class="absolute bottom-0 w-6 h-3 bg-lush rounded-t-full shadow-sm"></div>
                         </div>
                         <div class="flex justify-between w-full mt-6 bg-softBase border border-darkSlate/10 p-1.5 rounded text-[8px] font-sans">
                             <button id="maturity-button-1" onclick="setMaturityLevel(1, -72)" class="maturity-button px-2 py-1 rounded transition font-bold">LVL 1</button>
+                            <button id="maturity-button-2" onclick="setMaturityLevel(2, -36)" class="maturity-button px-2 py-1 rounded transition font-bold">LVL 2</button>
                             <button id="maturity-button-3" onclick="setMaturityLevel(3, 0)" class="maturity-button px-2 py-1 rounded transition font-bold">LVL 3</button>
+                            <button id="maturity-button-4" onclick="setMaturityLevel(4, 36)" class="maturity-button px-2 py-1 rounded transition font-bold">LVL 4</button>
                             <button id="maturity-button-5" onclick="setMaturityLevel(5, 72)" class="maturity-button px-2 py-1 rounded transition font-bold">LVL 5 🔥</button>
                         </div>
                         <div class="mt-6 space-y-2 text-center">
-                            <span id="maturity-badge" class="font-sans text-[10px] text-oceans font-bold bg-softBase px-2 py-0.5 rounded uppercase">LEVEL 5: SYSTEM AS BRAND STRATEGY</span>
-                            <h3 id="maturity-title" class="font-garamond-cond font-semibold text-2xl text-citrus leading-tight">Aesthetics as Strategic Advantage</h3>
+                            <span id="maturity-badge" class="font-sans text-[10px] text-oceans font-bold bg-softBase px-2 py-0.5 rounded uppercase">LEVEL 4: DESIGN AS BUSINESS CAPABILITY</span>
+                            <h3 id="maturity-title" class="font-garamond-cond font-semibold text-2xl text-citrus leading-tight">Design Guides the Resort Roadmap</h3>
                             <p id="maturity-desc" class="text-xs text-darkSlate/90 leading-relaxed font-sans max-w-sm mx-auto font-bold">
-                                Packaging, retro soundscape elements, and physical scents guide their global boardroom direction, outperforming competitors on pure narrative focus.
+                                Public evidence shows design shaping products, customer journeys, and market opportunities. It does not yet prove that design directs the entire enterprise.
                             </p>
                         </div>
                         <div id="maturity-details" class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full"></div>
@@ -565,53 +678,91 @@
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-citrus via-citrus to-lush py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">COMPLIANCE INDEX</span>
-                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Continuous Resort Alignment</span>
+        <section class="section-evidence w-full pt-16 pb-40 px-6 text-darkSlate">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                    <div class="lg:col-span-5 space-y-5">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">EVIDENCE DECK</span>
+                            <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Claims, Signals &amp; Counter-Signals</span>
+                        </div>
+                        <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl leading-tight">What the Analysis Rests On</h2>
+                        <p class="page-paragraph text-sm md:text-base text-darkSlate/90">Select a lens to see how public evidence supports each framework. Interpretive claims are labeled as inferences, and contradictory evidence is retained rather than polished away.</p>
+                        <div class="flex flex-wrap gap-2 font-sans text-[8px] font-black uppercase tracking-wider" aria-label="Research confidence key">
+                            <span class="bg-lightCream border border-darkSlate/25 rounded-full px-3 py-1">Documented signal</span>
+                            <span class="bg-lavender border border-darkSlate/25 rounded-full px-3 py-1">Supported inference</span>
+                            <span class="bg-flora border border-darkSlate/25 rounded-full px-3 py-1">Research boundary</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3" aria-label="Evidence framework filters">
+                            <button type="button" onclick="selectEvidenceLens('schein')" class="evidence-lens-button border-2 border-darkSlate rounded-lg px-3 py-3 font-sans text-[10px] font-black transition" aria-pressed="true">SCHEIN DEPTHS</button>
+                            <button type="button" onclick="selectEvidenceLens('matrix')" class="evidence-lens-button border-2 border-darkSlate rounded-lg px-3 py-3 font-sans text-[10px] font-black transition" aria-pressed="false">CULTURE GRID</button>
+                            <button type="button" onclick="selectEvidenceLens('maturity')" class="evidence-lens-button border-2 border-darkSlate rounded-lg px-3 py-3 font-sans text-[10px] font-black transition" aria-pressed="false">DESIGN MATURITY</button>
+                            <button type="button" onclick="selectEvidenceLens('tension')" class="evidence-lens-button border-2 border-darkSlate rounded-lg px-3 py-3 font-sans text-[10px] font-black transition" aria-pressed="false">COUNTER-SIGNALS</button>
+                        </div>
                     </div>
-                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">Climate &amp; Atmosphere Index</h2>
-                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 leading-relaxed font-medium">
-                        Simulate real-time atmospheric conditions across Vacation® physical offices. Adjust sliders to calculate alignment compliance scores.
-                    </p>
+                    <div class="lg:col-span-7">
+                        <div id="evidence-lens-output" class="bg-softBase border-2 border-darkSlate rounded-2xl p-6 shadow-2xl min-h-[390px]" aria-live="polite"></div>
+                    </div>
                 </div>
-                <div class="lg:col-span-7 bg-softBase text-darkSlate border-2 border-darkSlate rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center shadow-2xl">
-                    <div class="space-y-4">
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <a href="https://www.vacation.inc/about-us" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-flora transition"><span class="font-sans text-[8px] font-black block">01 · OFFICIAL</span><span class="font-garamond-cond text-lg">About &amp; Values</span></a>
+                    <a href="https://job-boards.greenhouse.io/vacationinc/jobs/5005493007" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-oceans transition"><span class="font-sans text-[8px] font-black block">02 · JOB POSTING</span><span class="font-garamond-cond text-lg">Employee Expectations</span></a>
+                    <a href="https://www.wsj.com/articles/how-three-friends-built-a-multimillion-dollar-brand-by-making-sunscreen-fun-again-3ee42983" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-citrus transition"><span class="font-sans text-[8px] font-black block">03 · BUSINESS PRESS</span><span class="font-garamond-cond text-lg">Growth Strategy</span></a>
+                    <a href="https://www.washingtonpost.com/style/of-interest/2025/08/19/vacation-sunscreen/" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-lavender transition"><span class="font-sans text-[8px] font-black block">04 · CULTURE PRESS</span><span class="font-garamond-cond text-lg">Borrowed Nostalgia</span></a>
+                    <a href="https://nypost.com/shopping/vacation-sunscreen-review/" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-oceans transition"><span class="font-sans text-[8px] font-black block">05 · FOUNDER INTERVIEW</span><span class="font-garamond-cond text-lg">Brand Mission</span></a>
+                    <a href="https://www.bonappetit.com/story/vacation-sunscreen-whipped-cream" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-citrus transition"><span class="font-sans text-[8px] font-black block">06 · PRODUCT PRESS</span><span class="font-garamond-cond text-lg">Experience Evidence</span></a>
+                    <a href="https://www.byrdie.com/face-by-vacation-launches-8624227" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-flora transition"><span class="font-sans text-[8px] font-black block">07 · CATEGORY PRESS</span><span class="font-garamond-cond text-lg">Portfolio Extension</span></a>
+                    <a href="https://www.allure.com/story/fda-warning-letters-vacation-supergoop-foam-sunscreen" target="_blank" rel="noopener" class="bg-lightCream border border-darkSlate/25 rounded-lg p-3 hover:bg-lavender transition"><span class="font-sans text-[8px] font-black block">08 · COUNTER-EVIDENCE</span><span class="font-garamond-cond text-lg">Innovation Risk</span></a>
+                </div>
+                <div class="mt-8 bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-5 md:p-6">
+                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-5">
                         <div>
-                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
-                                <span>COCONUT SCENT DISPERSAL</span>
-                                <span id="scent-value" class="text-coralReef font-extrabold font-black">85%</span>
+                            <span class="font-sans text-[9px] font-black uppercase tracking-widest text-coralReef">Supplemental Research Register</span>
+                            <h3 class="font-garamond-cond text-2xl mt-1">Additional Sources, Ranked by Evidentiary Weight</h3>
+                        </div>
+                        <span class="font-sans text-[8px] font-bold text-darkSlate/55">LIVE LINKS · REVIEWED JUNE 2026</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div>
+                            <span class="font-sans text-[8px] font-black bg-citrus border border-darkSlate rounded-full px-3 py-1 inline-block">TIER A · INDEPENDENT REPORTING</span>
+                            <div class="mt-3 space-y-2 font-sans text-[9px] font-bold leading-relaxed">
+                                <a class="source-link block" href="https://www.beautyindependent.com/vacation-hires-investment-bank-minority-stake-deal/" target="_blank" rel="noopener">Beauty Independent · market position and minority-stake process ↗</a>
+                                <a class="source-link block" href="https://www.lowenstein.com/news-insights/firm-news/lowenstein-sandler-represents-sunscreen-brand-vacation-in-series-a-funding-round" target="_blank" rel="noopener">Lowenstein Sandler · funding, Ulta expansion and retail target ↗</a>
+                                <a class="source-link block" href="https://beautymatter.com/articles/vacation-closes-an-oversubscribed-6-million-series-a" target="_blank" rel="noopener">BeautyMatter · investor thesis and Series A ↗</a>
+                                <a class="source-link block" href="https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/" target="_blank" rel="noopener">Glossy · Orange Gelée co-creation and ROI ↗</a>
+                                <a class="source-link block" href="https://www.glossy.co/beauty/how-vacation-is-using-fragrance-to-sell-sunscreen/" target="_blank" rel="noopener">Glossy · fragrance-led SPF strategy ↗</a>
+                                <a class="source-link block" href="https://youtu.be/fv2Dkrf7aXo" target="_blank" rel="noopener">Inc. · founder interview and brand-world strategy ↗</a>
+                                <a class="source-link block" href="https://fashionista.com/2025/03/vacation-sun-care-brand" target="_blank" rel="noopener">Fashionista · origin and category mission ↗</a>
                             </div>
-                            <input type="range" id="slider-scent" min="0" max="100" value="85" class="w-full accent-darkSlate cursor-pointer">
                         </div>
                         <div>
-                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
-                                <span>CABANA RECLINATION (°)</span>
-                                <span id="recline-value" class="text-coralReef font-extrabold font-black">135°</span>
+                            <span class="font-sans text-[8px] font-black bg-oceans border border-darkSlate rounded-full px-3 py-1 inline-block">TIER B · COMPANY-OWNED</span>
+                            <div class="mt-3 space-y-2 font-sans text-[9px] font-bold leading-relaxed">
+                                <a class="source-link block" href="https://www.vacation.inc/about-us" target="_blank" rel="noopener">Vacation · stated brand principles and corporate fiction ↗</a>
+                                <a class="source-link block" href="https://www.vacation.inc/" target="_blank" rel="noopener">Vacation · current brand world and customer rituals ↗</a>
+                                <a class="source-link block" href="https://boards.greenhouse.io/vacationinc" target="_blank" rel="noopener">Vacation careers · current public openings and Talent Network ↗</a>
+                                <a class="source-link block" href="https://www.linkedin.com/company/vacation-inc/insights/" target="_blank" rel="noopener">LinkedIn · member-gated company and workforce signals ↗</a>
                             </div>
-                            <input type="range" id="slider-recline" min="90" max="180" value="135" class="w-full accent-darkSlate cursor-pointer">
+                            <p class="font-sans text-[8px] text-darkSlate/55 mt-3 leading-relaxed">Best for espoused values and observable hiring behavior; not independent confirmation of employee experience.</p>
                         </div>
                         <div>
-                            <div class="flex justify-between items-center mb-1 font-sans text-[10px] font-bold text-darkSlate">
-                                <span>SYNTHWAVE CHILL TEMPO</span>
-                                <span id="chill-value" class="text-coralReef font-extrabold font-black">90 bpm</span>
+                            <span class="font-sans text-[8px] font-black bg-flora border border-darkSlate rounded-full px-3 py-1 inline-block">TIER C · COMMUNITY VOICE</span>
+                            <div class="mt-3 space-y-2 font-sans text-[9px] font-bold leading-relaxed">
+                                <a class="source-link block" href="https://www.reddit.com/r/fragrance/comments/1ml4saa/i_tried_vacation_incs_fragrance_collection_a/" target="_blank" rel="noopener">Reddit r/fragrance · enthusiast product experience ↗</a>
+                                <a class="source-link block" href="https://www.reddit.com/r/FemFragLab/comments/1kshsq0/do_not_sleep_on_vacation_by_vacation_inc/" target="_blank" rel="noopener">Reddit r/FemFragLab · community advocacy ↗</a>
                             </div>
-                            <input type="range" id="slider-chill" min="60" max="140" value="90" class="w-full accent-darkSlate cursor-pointer">
+                            <p class="font-sans text-[8px] text-darkSlate/55 mt-3 leading-relaxed">Useful for reception and language patterns only. These accounts do not establish organizational culture.</p>
                         </div>
                     </div>
-                    <div class="border-[3px] border-dashed border-darkSlate p-4 rounded-xl text-center bg-lightCream shadow-retro-sm">
-                        <div class="font-sans text-[9px] font-bold text-oceans uppercase tracking-widest">RESORT VERDICT SCORE</div>
-                        <div class="font-garamond-cond font-semibold text-5xl text-coralReef mt-2" id="compliance-index">92%</div>
-                        <div class="font-sans text-[9px] uppercase text-darkSlate mt-1 font-bold font-black" id="compliance-status">OPTIMAL RESORT EQUILIBRIUM</div>
-                        <p class="text-[9px] font-sans text-darkSlate/85 mt-3 leading-relaxed font-bold font-bold" id="compliance-comment">"Atmosphere matches optimal 1986 relaxation parameters."</p>
-                    </div>
+                </div>
+                <div class="mt-6 bg-flora/45 border border-darkSlate/25 rounded-xl p-5 flex flex-col md:flex-row md:items-start gap-3 md:gap-6">
+                    <span class="font-sans text-[9px] font-black uppercase tracking-widest shrink-0">Research Boundary</span>
+                    <p class="page-paragraph text-sm text-darkSlate/90">This analysis can describe Vacation®'s public brand culture, business behavior, and documented hiring expectations. Direct employee testimony remains scarce, so claims about pace, autonomy, process maturity, or everyday working conditions remain hypotheses to test through interviews, substantive employee reviews, or internal observation.</p>
                 </div>
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-lush via-lush to-softBase py-16 px-6 border-b-0">
+        <section class="section-playbook w-full py-16 px-6 border-b-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="border-b-2 border-darkSlate/10 pb-6">
                     <div class="flex items-center gap-3 mb-5">
@@ -619,44 +770,44 @@
                         <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Operational Code of Conduct</span>
                     </div>
                     <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight mb-3">What is Rewarded, Tolerated &amp; Punished</h2>
-                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 max-w-3xl">The organization protects its fantasy through unmistakable behavioral signals. These are the choices that earn a pool chair, receive a polite warning, or trigger immediate revocation of cabana privileges.</p>
+                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 max-w-3xl">These are supported inferences from public launches, hiring language, founder interviews, business reporting, and regulatory counter-evidence. They describe likely cultural signals, not verified personnel policy.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-oceans"></div>
                         <span class="font-sans text-[10px] font-black text-oceans uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">REWARDED</span>
                         <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Aesthetic Obsession:</span> Aligning designs to exact, pixel-perfect 1986 reference guidelines.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Atmospheric Depth:</span> Enhancing narrative continuity with witty corporate brand assets.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Sensory Proof:</span> Making fragrance, texture, sound, and color do measurable commercial work.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Committed Play:</span> Treating the joke with enough rigor that customers can fully enter the world.</div></li>
+                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Creativity That Converts:</span> Orange Gelée's story generated a 15,000-person waitlist and roughly 2–3× typical ad ROI.</div></li>
+                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">World-Building With Continuity:</span> Extending one fictional institution across product, media, retail, scent, and customer participation.</div></li>
+                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Sensory Category Expansion:</span> Using fragrance and product format to make SPF emotionally distinctive and commercially legible.</div></li>
+                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Cross-Functional Execution:</span> Pairing inventive concepts with detail, accountability, compliance, and growth ownership.</div></li>
                         </ul>
                     </div>
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-citrus"></div>
                         <span class="font-sans text-[10px] font-black text-citrus uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">TOLERATED</span>
                         <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Fidelity Delays:</span> Slipping launch dates because vintage font kerning took hours.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Aesthetic Play:</span> Crafting physical mockups of fictional corporate resort artifacts.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Useful Excess:</span> Adding one more delightful detail when it strengthens recall and ritual.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Polished Debate:</span> Challenging an idea vigorously, provided the critique arrives with a better poolside option.</div></li>
+                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Useful Complexity:</span> Unusual formats and elaborate campaigns appear acceptable when they create measurable distinction.</div></li>
+                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Founder-Centered Authorship:</span> A singular creative point of view protects coherence, while potentially limiting distributed ownership.</div></li>
+                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Startup Ambiguity:</span> A small public hiring footprint suggests broad roles, but the actual internal process remains unknown.</div></li>
+                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Category Stretching:</span> The culture explores surprising formats, provided efficacy and regulatory requirements remain intact.</div></li>
                         </ul>
                     </div>
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-coralReef"></div>
                         <span class="font-sans text-[10px] font-black text-coralReef uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">PUNISHED</span>
                         <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Modernist Slip:</span> Deploying standard, sterile clinical UI blocks in design layouts.</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Narrative Break:</span> Expressing standard thinking like "It is only a cosmetic lotion company."</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Generic Luxury:</span> Replacing a specific cultural point of view with anonymous beige prestige.</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Empty Spectacle:</span> Shipping nostalgia that attracts attention but fails to clarify product value.</div></li>
+                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Generic Category Work:</span> Sterile wellness conventions weaken the specific fictional world that differentiates Vacation.</div></li>
+                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Creativity Without Return:</span> Novelty that cannot build memory, participation, retail relevance, or measurable performance loses its strategic case.</div></li>
+                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Regulatory Blind Spots:</span> A delightful format that obscures compliant use or category rules creates trust and business risk.</div></li>
+                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Fragmented Execution:</span> Product, packaging, retail, and digital work that no longer feels like one system erodes the moat.</div></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-softBase via-softBase to-oceans py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+        <section class="section-aesthetic w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-oceans/5 via-transparent to-flora/10 pointer-events-none"></div>
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
                 <div class="lg:col-span-7 space-y-6">
@@ -666,7 +817,7 @@
                     </div>
                     <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl text-darkSlate leading-tight pt-3 pb-3 mb-5">Vacation® Aesthetic Synthesis</h2>
                     <p class="page-paragraph text-sm md:text-base text-darkSlate/95 leading-relaxed font-medium">
-                        The official Vacation® design philosophy is a masterclass in nostalgia-led marketing. Click on the core visual components below to see how they translate sensory sunscreen nostalgia into high-converting digital products.
+                        Vacation® demonstrates how nostalgia-led design can become a commercially distinctive system. Click the core visual components below to see how sensory sunscreen nostalgia travels across product, retail, media, and digital experience.
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div onclick="selectSpecimen('typography')" id="specimen-button-typography" class="specimen-button group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-coralReef hover:text-lightCream transition-all duration-200">
@@ -678,7 +829,7 @@
                         <div onclick="selectSpecimen('sensory')" id="specimen-button-sensory" class="specimen-button group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-oceans hover:text-darkSlate transition-all duration-200">
                             <div class="flex justify-between items-center"><span class="font-garamond-cond font-semibold text-2xl">3. Physical-Scent Translation</span><span class="text-lg">→</span></div>
                         </div>
-                        <div onclick="selectSpecimen('frictional')" id="specimen-button-frictional" class="specimen-button group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-flora hover:text-darkSlate transition-all duration-200">
+                        <div onclick="selectSpecimen('frictional')" id="specimen-button-frictional" class="specimen-button group cursor-pointer border-2 border-darkSlate rounded-xl p-4 bg-lightCream/10 hover:bg-lavender hover:text-darkSlate transition-all duration-200">
                             <div class="flex justify-between items-center"><span class="font-garamond-cond font-semibold text-2xl">4. Frictional Micro-Interactions</span><span class="text-lg">→</span></div>
                         </div>
                     </div>
@@ -701,7 +852,28 @@
             </div>
         </section>
 
-        <section class="w-full bg-gradient-to-b from-oceans via-softBase to-softBase py-16 px-6">
+        <section class="section-designer w-full py-16 px-6 text-darkSlate">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="font-sans text-[10px] font-black tracking-[0.22em] uppercase text-coralReef">Cross-Framework Synthesis</span>
+                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl mt-3">What This Culture Means for Designers</h2>
+                    <p class="page-paragraph text-sm md:text-base mt-4">Vacation® is best understood as a communal-leaning, founder-directed brand with strong Level 4 design evidence. Its apparent ease is produced by disciplined detail and measured creative performance; internal process maturity remains an open research question.</p>
+                </div>
+                <div class="mt-8 flex flex-wrap justify-center gap-3" aria-label="Designer guidance filters">
+                    <button type="button" onclick="selectDesignerLens('join')" class="designer-lens-button border-2 border-darkSlate rounded-full px-5 py-2 font-sans text-[10px] font-black transition" aria-pressed="true">JOINING THE TEAM</button>
+                    <button type="button" onclick="selectDesignerLens('critique')" class="designer-lens-button border-2 border-darkSlate rounded-full px-5 py-2 font-sans text-[10px] font-black transition" aria-pressed="false">RUNNING CRITIQUE</button>
+                    <button type="button" onclick="selectDesignerLens('ship')" class="designer-lens-button border-2 border-darkSlate rounded-full px-5 py-2 font-sans text-[10px] font-black transition" aria-pressed="false">SHIPPING WORK</button>
+                </div>
+                <div id="designer-lens-output" class="mt-6 bg-lightCream border-2 border-darkSlate rounded-2xl p-6 md:p-8 shadow-2xl" aria-live="polite"></div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="bg-softBase/80 border-2 border-darkSlate rounded-xl p-5"><span class="font-sans text-[9px] font-black text-oceans">CORE ADVANTAGE</span><h3 class="font-garamond-cond text-2xl mt-2">A coherent world, not a style layer</h3><p class="page-paragraph text-xs mt-2">Product format, scent, copy, commerce, and organizational theater reinforce one memory structure.</p></div>
+                    <div class="bg-softBase/80 border-2 border-darkSlate rounded-xl p-5"><span class="font-sans text-[9px] font-black text-coralReef">CORE RISK</span><h3 class="font-garamond-cond text-2xl mt-2">Coherence depends on concentrated authorship</h3><p class="page-paragraph text-xs mt-2">Founder-led creative direction protects a singular voice, but creates key-person and succession risk as the company scales.</p></div>
+                    <div class="bg-softBase/80 border-2 border-darkSlate rounded-xl p-5"><span class="font-sans text-[9px] font-black text-citrus">DESIGN MANDATE</span><h3 class="font-garamond-cond text-2xl mt-2">Deliver huge leverage within clear fences</h3><p class="page-paragraph text-xs mt-2">Bring craft, broad ownership, and measurable outcomes; verify autonomy, process support, and brand decision rights before assuming them.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-badge w-full py-16 px-6">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 space-y-6">
                     <div class="flex items-center gap-3">
@@ -796,9 +968,146 @@
                 </div>
             </div>
         </section>
+
+        <section class="section-appendix w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="max-w-3xl mb-10">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">INTERACTIVE APPENDIX</span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Continuous Resort Alignment</span>
+                    </div>
+                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl leading-tight">Climate &amp; Atmosphere Index</h2>
+                    <p class="page-paragraph text-sm md:text-base text-darkSlate/90 mt-4">A playful culture simulator rather than research evidence. Adjust the conditions to see how scent, posture, and tempo combine into a fictional resort-atmosphere outcome.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-5 bg-softBase border-2 border-darkSlate rounded-2xl p-6 shadow-xl space-y-7">
+                        <div>
+                            <div class="flex justify-between items-center mb-2 font-sans text-[10px] font-bold">
+                                <span>COCONUT SCENT DISPERSAL</span>
+                                <span id="scent-value" class="text-coralReef font-black">85%</span>
+                            </div>
+                            <input type="range" id="slider-scent" min="0" max="100" value="85" class="w-full accent-citrus cursor-pointer">
+                            <div class="flex justify-between font-sans text-[7px] text-darkSlate/55 mt-1"><span>CLINICAL</span><span>TROPICAL SATURATION</span></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 font-sans text-[10px] font-bold">
+                                <span>CABANA RECLINATION</span>
+                                <span id="recline-value" class="text-coralReef font-black">135°</span>
+                            </div>
+                            <input type="range" id="slider-recline" min="90" max="180" value="135" class="w-full accent-flora cursor-pointer">
+                            <div class="flex justify-between font-sans text-[7px] text-darkSlate/55 mt-1"><span>BOARDROOM</span><span>FULL HORIZONTAL</span></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 font-sans text-[10px] font-bold">
+                                <span>SYNTHWAVE CHILL TEMPO</span>
+                                <span id="chill-value" class="text-coralReef font-black">90 bpm</span>
+                            </div>
+                            <input type="range" id="slider-chill" min="60" max="140" value="90" class="w-full accent-oceans cursor-pointer">
+                            <div class="flex justify-between font-sans text-[7px] text-darkSlate/55 mt-1"><span>POOL DRIFT</span><span>POWER LUNCH</span></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 bg-lavender text-darkSlate border-2 border-darkSlate rounded-2xl p-6 md:p-8 shadow-2xl overflow-hidden relative">
+                        <div class="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-oceans via-flora to-citrus"></div>
+                        <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-7 items-center">
+                            <div class="flex justify-center">
+                                <div id="atmosphere-score-ring" class="atmosphere-score-ring w-40 h-40 rounded-full p-3 shadow-xl" style="--score:92">
+                                    <div class="w-full h-full rounded-full bg-lightCream border border-darkSlate/15 flex flex-col items-center justify-center">
+                                        <span class="font-sans text-[8px] font-black tracking-widest text-coralReef">ALIGNMENT</span>
+                                        <span id="compliance-index" class="font-garamond-cond text-5xl leading-none mt-1">92</span>
+                                        <span class="font-sans text-[9px] text-darkSlate/55">OUT OF 100</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="font-sans text-[8px] text-coralReef font-black tracking-widest">LIVE RESORT READOUT</span>
+                                <h3 id="compliance-status" class="font-garamond-cond text-3xl leading-tight mt-2">Optimal Resort Equilibrium</h3>
+                                <p id="compliance-comment" class="page-paragraph text-sm text-darkSlate/75 mt-3">The atmosphere balances sensorial presence, executive repose, and productive rhythm.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                            <div class="bg-lightCream/65 border border-darkSlate/10 rounded-lg p-3">
+                                <div class="flex justify-between font-sans text-[8px] font-bold"><span>SCENT</span><span id="scent-score">96</span></div>
+                                <div class="h-2 bg-darkSlate/10 rounded-full mt-2 overflow-hidden"><div id="scent-score-bar" class="h-full bg-citrus rounded-full transition-all duration-500" style="width:96%"></div></div>
+                            </div>
+                            <div class="bg-lightCream/65 border border-darkSlate/10 rounded-lg p-3">
+                                <div class="flex justify-between font-sans text-[8px] font-bold"><span>REPOSE</span><span id="recline-score">100</span></div>
+                                <div class="h-2 bg-darkSlate/10 rounded-full mt-2 overflow-hidden"><div id="recline-score-bar" class="h-full bg-exotic rounded-full transition-all duration-500" style="width:100%"></div></div>
+                            </div>
+                            <div class="bg-lightCream/65 border border-darkSlate/10 rounded-lg p-3">
+                                <div class="flex justify-between font-sans text-[8px] font-bold"><span>RHYTHM</span><span id="chill-score">100</span></div>
+                                <div class="h-2 bg-darkSlate/10 rounded-full mt-2 overflow-hidden"><div id="chill-score-bar" class="h-full bg-oceans rounded-full transition-all duration-500" style="width:100%"></div></div>
+                            </div>
+                        </div>
+                        <div id="atmosphere-directive" class="mt-6 border-t border-darkSlate/15 pt-4 font-sans text-[9px] text-darkSlate/65">Directive: maintain current settings and proceed to the nearest chaise.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-vault w-full py-16 md:py-24 px-6 text-darkSlate relative overflow-hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto">
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <span class="bg-oceans text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">FIELD ARCHIVE</span>
+                        <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Interactive Cultural Artifacts</span>
+                    </div>
+                    <h2 class="font-garamond-cond font-light text-4xl sm:text-5xl leading-tight mt-5">Tune Into the Vacation® Archives</h2>
+                    <p class="page-paragraph text-sm md:text-base text-darkSlate/85 mt-4">Change the channel to preview each interactive broadcast, then select the television screen to open the tuned experience.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto mt-10">
+                    <div class="relative z-20 flex flex-wrap items-center justify-center gap-3 mb-4" aria-label="Field Archive channel controls">
+                        <button type="button" id="archive-channel-previous" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-oceans focus:outline-none focus:ring-4 focus:ring-oceans/40 transition" aria-label="Previous archive channel">←</button>
+                        <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="0" aria-pressed="true">CH 01 · PRODUCT VAULT</button>
+                        <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="1" aria-pressed="false">CH 02 · THE CLIPPER</button>
+                        <button type="button" id="archive-channel-next" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-flora focus:outline-none focus:ring-4 focus:ring-flora/40 transition" aria-label="Next archive channel">→</button>
+                    </div>
+                    <div class="text-center mb-1">
+                        <span id="archive-channel-status" class="font-sans text-[9px] font-black uppercase tracking-[0.2em]" aria-live="polite">Channel 01 · Product Vault</span>
+                    </div>
+                    <a id="archive-channel-link" href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="vault-tv-link relative z-0 block rounded-3xl focus:outline-none focus:ring-4 focus:ring-oceans/60" aria-label="Open the interactive Vacation Product Vault in a new tab">
+                        <img id="archive-channel-image" src="assets/old-tv-mockup.png" alt="Blue vintage television displaying the Vacation Product Vault pixel-art catalogue" class="archive-channel-image w-full h-auto object-contain">
+                    </a>
+                    <p id="archive-channel-caption" class="font-sans text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-center text-darkSlate/55 mt-3">Now broadcasting: artifacts you can hold</p>
+                </div>
+
+                <div class="archive-divider my-14 md:my-16" aria-hidden="true"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+                    <div class="bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 01</span>
+                            <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Artifacts You Can Hold</span>
+                        </div>
+                        <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Enter the Product Vault</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
+                            Continue the investigation through a pixel-art archive of twelve real Vacation® products. Select an artifact to uncover how sunscreen, fragrance, candles, and resort accessories translate protection into indulgence, then visit each product in the official store.
+                        </p>
+                        <a href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-citrus text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-oceans/50 transition">
+                            OPEN THE PRODUCT VAULT
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                    <div class="bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-flora text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 02</span>
+                            <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Complimentary Content · Est. 1986</span>
+                        </div>
+                        <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Make The Vacation Clipper</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
+                            Build a printable 1986-style coupon with custom copy, color, typography, draggable pixel stickers, and optional aged film grain. Beneath the maker, six real Vacation® advertisements reveal how discounts, fan co-creation, Poolsuite FM, honorary employment, and FACE all remain inside one meticulously controlled brand fiction.
+                        </p>
+                        <a href="https://amandavalverdedesign.github.io/culturedecoderapp/the-vacation-clipper.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-flora text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-flora/50 transition">
+                            OPEN THE VACATION CLIPPER
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-gradient-to-b from-softBase to-lightCream p-8 text-center text-xs font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-6 mt-auto font-bold">
+    <footer class="bg-gradient-to-b from-lavender to-lightCream p-8 text-center text-xs font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-6 mt-auto font-bold">
         <div class="flex flex-wrap justify-center gap-6 text-darkSlate font-extrabold uppercase tracking-widest text-[9px] font-black">
             <span class="hover:text-citrus cursor-pointer">1986 Brand Manual</span>
             <span>•</span>
@@ -825,8 +1134,70 @@
         const streamChannel = document.getElementById('stream-channel');
         const streamStatus = document.getElementById('stream-status');
         const tunerDisplay = document.getElementById('tuner-display');
+        const archiveChannelImage = document.getElementById('archive-channel-image');
+        const archiveChannelLink = document.getElementById('archive-channel-link');
+        const archiveChannelStatus = document.getElementById('archive-channel-status');
+        const archiveChannelCaption = document.getElementById('archive-channel-caption');
+        const archiveChannelButtons = document.querySelectorAll('.archive-channel-button');
+        const archiveChannels = [
+            {
+                image: 'assets/old-tv-mockup.png',
+                alt: 'Blue vintage television displaying the Vacation Product Vault pixel-art catalogue',
+                url: 'https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html',
+                label: 'Channel 01 · Product Vault',
+                caption: 'Now broadcasting: artifacts you can hold',
+                aria: 'Open the interactive Vacation Product Vault in a new tab'
+            },
+            {
+                image: 'assets/vacation-clipper-tv-mockup.png',
+                alt: 'Blue vintage television displaying The Vacation Clipper custom coupon maker',
+                url: 'https://amandavalverdedesign.github.io/culturedecoderapp/the-vacation-clipper.html',
+                label: 'Channel 02 · The Vacation Clipper',
+                caption: 'Now broadcasting: the in-house advertising desk',
+                aria: 'Open The Vacation Clipper interactive coupon maker in a new tab'
+            }
+        ];
+        let activeArchiveChannel = 0;
+        let archiveTuneTimer = null;
         let heroAudioHideTimer = null;
         const heroTopThreshold = 8;
+
+        archiveChannels.forEach(channel => {
+            const image = new Image();
+            image.src = channel.image;
+        });
+
+        function tuneArchiveChannel(channelIndex) {
+            activeArchiveChannel = (channelIndex + archiveChannels.length) % archiveChannels.length;
+            const channel = archiveChannels[activeArchiveChannel];
+            clearTimeout(archiveTuneTimer);
+            archiveChannelImage.classList.add('is-tuning');
+            archiveChannelStatus.textContent = 'Tuning...';
+            archiveChannelButtons.forEach((button, index) => {
+                button.setAttribute('aria-pressed', String(index === activeArchiveChannel));
+            });
+            archiveTuneTimer = setTimeout(() => {
+                archiveChannelImage.src = channel.image;
+                archiveChannelImage.alt = channel.alt;
+                archiveChannelLink.href = channel.url;
+                archiveChannelLink.setAttribute('aria-label', channel.aria);
+                archiveChannelStatus.textContent = channel.label;
+                archiveChannelCaption.textContent = channel.caption;
+                archiveChannelImage.classList.remove('is-tuning');
+            }, 240);
+        }
+
+        archiveChannelButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tuneArchiveChannel(Number(button.dataset.archiveChannel));
+            });
+        });
+        document.getElementById('archive-channel-previous').addEventListener('click', () => {
+            tuneArchiveChannel(activeArchiveChannel - 1);
+        });
+        document.getElementById('archive-channel-next').addEventListener('click', () => {
+            tuneArchiveChannel(activeArchiveChannel + 1);
+        });
 
         function hideHeroAudioControls() {
             heroAudioControls.classList.add('opacity-0', 'pointer-events-none');
@@ -982,6 +1353,194 @@
         updateTunerDisplay('ready');
 
         // Utility functions
+        function updateAtmosphereIndex() {
+            const scent = Number(document.getElementById('slider-scent').value);
+            const recline = Number(document.getElementById('slider-recline').value);
+            const chill = Number(document.getElementById('slider-chill').value);
+            const clamp = value => Math.max(0, Math.min(100, Math.round(value)));
+            const scentScore = clamp(100 - Math.abs(scent - 82) * 1.35);
+            const reclineScore = clamp(100 - Math.abs(recline - 135) * 1.65);
+            const chillScore = clamp(100 - Math.abs(chill - 90) * 1.6);
+            const total = Math.round(scentScore * 0.34 + reclineScore * 0.33 + chillScore * 0.33);
+
+            document.getElementById('scent-value').textContent = `${scent}%`;
+            document.getElementById('recline-value').textContent = `${recline}°`;
+            document.getElementById('chill-value').textContent = `${chill} bpm`;
+            document.getElementById('compliance-index').textContent = total;
+            document.getElementById('atmosphere-score-ring').style.setProperty('--score', total);
+
+            [
+                ['scent', scentScore],
+                ['recline', reclineScore],
+                ['chill', chillScore]
+            ].forEach(([id, score]) => {
+                document.getElementById(`${id}-score`).textContent = score;
+                document.getElementById(`${id}-score-bar`).style.width = `${score}%`;
+            });
+
+            let status;
+            let comment;
+            let directive;
+            if (total >= 90) {
+                status = 'Optimal Resort Equilibrium';
+                comment = 'The atmosphere balances sensorial presence, executive repose, and productive rhythm.';
+                directive = 'Directive: maintain current settings and proceed to the nearest chaise.';
+            } else if (total >= 75) {
+                status = 'Premium Leisure Alignment';
+                comment = 'The resort is persuasive, though one atmospheric signal is beginning to overpower the whole.';
+                directive = 'Directive: tune the lowest-performing condition toward the center of its ideal range.';
+            } else if (total >= 55) {
+                status = 'Mixed Cabana Conditions';
+                comment = 'The component parts are present, but the experience feels assembled rather than orchestrated.';
+                directive = 'Directive: reduce extremes and restore balance before admitting executive guests.';
+            } else {
+                status = 'Atmospheric Brand Drift';
+                comment = 'The setting no longer supports the intended leisure fantasy or a credible working rhythm.';
+                directive = 'Directive: initiate a full resort reset and recalibrate all three environmental signals.';
+            }
+            document.getElementById('compliance-status').textContent = status;
+            document.getElementById('compliance-comment').textContent = comment;
+            document.getElementById('atmosphere-directive').textContent = directive;
+        }
+
+        ['slider-scent', 'slider-recline', 'slider-chill'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateAtmosphereIndex);
+        });
+
+        function selectEvidenceLens(lensId) {
+            const lenses = {
+                schein: {
+                    eyebrow: 'SCHEIN · THREE DEPTHS',
+                    color: '#ABCFDF',
+                    status: 'DOCUMENTED SIGNALS + SUPPORTED INFERENCE',
+                    title: 'The surface performs leisure; the deeper evidence shows disciplined commercial intent.',
+                    summary: 'Artifacts advertise effortless pleasure. Official language values leisure and sensorial transport. Independent reporting shows that playful launches are co-created, measured, and expected to outperform. Hiring language adds detail, accountability, proactivity, humility, and growth discipline, but does not prove employees experience a leisurely pace.',
+                    findings: [
+                        ['Artifacts', 'Whipped-cream dispensing, scent architecture, retro commerce, and honorary credentials turn sunscreen into organizational theater.'],
+                        ['Espoused values', 'Vacation pairs modern protection with pleasure and participation, while public hiring language emphasizes creativity, accountability, and execution.'],
+                        ['Tacit assumption', 'Supported inference: fun is a discipline. Orange Gelée paired fan co-creation and nostalgia with a 15,000-person waitlist and roughly 2–3× typical ad ROI.']
+                    ],
+                    sources: [
+                        ['Official About page', 'https://www.vacation.inc/about-us'],
+                        ['Current careers page', 'https://boards.greenhouse.io/vacationinc'],
+                        ['Orange Gelée reporting', 'https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/']
+                    ]
+                },
+                matrix: {
+                    eyebrow: 'GOFFEE & JONES · CULTURE GRID',
+                    color: '#FBCEEA',
+                    status: 'ANALYTICAL ESTIMATE · NOT AN EMPLOYEE SURVEY',
+                    title: 'The strongest public evidence supports a communal culture, with a useful mercenary undertow.',
+                    summary: 'Shared language, humor, fan participation, and a common mission indicate high sociability. A $6 million Series A, national retail expansion, a stated $20 million retail-sales target at the time of the raise, ROI measurement, and cross-functional accountability indicate high organizational solidarity. The placement remains an external estimate.',
+                    findings: [
+                        ['Why communal', 'The “big tent,” honorary-employee ritual, fan co-creation, and consistent mission build genuine participation around a shared world.'],
+                        ['Solidarity evidence', 'Capital raising, retail-door expansion, sales targets, and measured campaign returns show a results-oriented organization beneath the breezy voice.'],
+                        ['Scaling risk', 'Supported inference: investor pressure and national retail growth could pull a warm communal culture toward a more target-dominant mercenary pattern.']
+                    ],
+                    sources: [
+                        ['Funding and retail expansion', 'https://www.lowenstein.com/news-insights/firm-news/lowenstein-sandler-represents-sunscreen-brand-vacation-in-series-a-funding-round'],
+                        ['Fan co-creation and ROI', 'https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/'],
+                        ['Minority-stake process', 'https://www.beautyindependent.com/vacation-hires-investment-bank-minority-stake-deal/']
+                    ]
+                },
+                maturity: {
+                    eyebrow: 'DESIGN MATURITY · STRATEGIC LEVEL',
+                    color: '#FC8C5C',
+                    status: 'LEVEL 4 SUPPORTED · LEVEL 5 UNVERIFIED',
+                    title: 'Public evidence supports Level 4: design operates as a business capability.',
+                    summary: 'The brand system existed before the founders settled on sunscreen, and product concepts extend a coherent mythology across scent, packaging, interfaces, and retail. Orange Gelée converted archival storytelling into exceptional performance, and fragrance functions as a marketing system for SPF. That supports Level 4 strategic influence; confirming Level 5 requires internal organizational evidence.',
+                    findings: [
+                        ['Strategic proof', 'Investors identify the founders’ creative marketing as an “unfair advantage,” while design-led launches produce measurable growth.'],
+                        ['System proof', 'Classic Whip, Orange Gelée, fragrance, face care, retail, and content express one sensorial strategy through different formats.'],
+                        ['Research boundary', 'A founder-led brand can be highly mature creatively while still having unverified research operations, design systems, and distributed design authority.']
+                    ],
+                    sources: [
+                        ['Investor thesis', 'https://beautymatter.com/articles/vacation-closes-an-oversubscribed-6-million-series-a'],
+                        ['Orange Gelée performance', 'https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/'],
+                        ['Fragrance strategy', 'https://www.glossy.co/beauty/how-vacation-is-using-fragrance-to-sell-sunscreen/']
+                    ]
+                },
+                tension: {
+                    eyebrow: 'COUNTER-SIGNALS · ANALYTICAL CHECK',
+                    color: '#DBD4FE',
+                    status: 'DOCUMENTED COUNTER-SIGNAL + INTERPRETATION',
+                    title: 'The same appetite for memorable innovation that powers the brand can create credibility and compliance pressure.',
+                    summary: 'Classic Whip demonstrates the upside of radical format innovation: press, virality, ritual, and shelf distinction. Regulatory scrutiny of foam-format sunscreens demonstrates the downside: the metaphor can outpace the category rules.',
+                    findings: [
+                        ['Creative tension', 'The organization needs “wild” ideas, but it also needs early legal, regulatory, manufacturing, and safety participation.'],
+                        ['Trust tension', 'Kitsch can attract attention while prompting consumers to question efficacy; clinical proof must stay visible inside the fantasy.'],
+                        ['Designer implication', 'The best concept is not merely on-brand. It survives comprehension, dosage, accessibility, compliance, and scale reviews without losing delight.']
+                    ],
+                    sources: [
+                        ['Regulatory coverage', 'https://www.allure.com/story/fda-warning-letters-vacation-supergoop-foam-sunscreen'],
+                        ['Official efficacy details', 'https://www.vacation.inc/products/classic-whip-spf-30'],
+                        ['Cultural context', 'https://www.washingtonpost.com/style/of-interest/2025/08/19/vacation-sunscreen/']
+                    ]
+                }
+            };
+            const data = lenses[lensId];
+            document.querySelectorAll('.evidence-lens-button').forEach((button, index) => {
+                const ids = ['schein', 'matrix', 'maturity', 'tension'];
+                button.setAttribute('aria-pressed', String(ids[index] === lensId));
+            });
+            document.getElementById('evidence-lens-output').innerHTML = `
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="font-sans text-[9px] font-black tracking-widest" style="color:${data.color}">${data.eyebrow}</span>
+                    <span class="font-sans text-[8px] font-black tracking-wider bg-lightCream border border-darkSlate/20 rounded-full px-3 py-1">${data.status}</span>
+                </div>
+                <h3 class="font-garamond-cond font-semibold text-3xl leading-tight mt-2">${data.title}</h3>
+                <p class="page-paragraph text-sm mt-3 text-darkSlate/85">${data.summary}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+                    ${data.findings.map(([label, text]) => `<div class="bg-lightCream border border-darkSlate/20 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">${label}</span><p class="font-sans text-[10px] leading-relaxed mt-2">${text}</p></div>`).join('')}
+                </div>
+                <div class="mt-5 pt-4 border-t border-darkSlate/20 flex flex-wrap gap-x-4 gap-y-2">
+                    ${data.sources.map(([label, url]) => `<a class="source-link font-sans text-[9px] font-bold" href="${url}" target="_blank" rel="noopener">${label} ↗</a>`).join('')}
+                </div>`;
+        }
+
+        function selectDesignerLens(lensId) {
+            const lenses = {
+                join: {
+                    color: '#ABCFDF',
+                    title: 'Expect high leverage inside a strongly authored world.',
+                    lead: 'The evidence favors self-starting generalists who can extend a precise brand universe and connect craft to growth. The lean public careers footprint suggests broad ownership, but candidates should verify team structure, pace, mentorship, and decision rights directly rather than infer them.',
+                    doList: ['Show how delight improved comprehension, conversion, participation, or ritual', 'Demonstrate broad execution without losing detail', 'Ask who owns research, systems, critique, and final creative decisions'],
+                    avoidList: ['Confusing a leisure aesthetic with a relaxed operating tempo', 'Assuming founder-led means either chaotic or oppressive without asking', 'Presenting moodboards without an execution and measurement model']
+                },
+                critique: {
+                    color: '#DBD4FE',
+                    title: 'Critique the work as a steward of the fiction and the business.',
+                    lead: 'A communal-leaning culture can generate commitment, but strong founder authorship and brand belonging may narrow disagreement. Frame critique around shared standards, customer evidence, product efficacy, and the commercial job the design must do.',
+                    doList: ['Name which brand principle a choice strengthens', 'Separate “I dislike it” from an observable risk', 'Invite regulatory and operational voices before the concept hardens'],
+                    avoidList: ['Protecting a clever idea because everyone enjoyed making it', 'Using “not on-brand” as an unexamined veto', 'Waiting until launch review to surface feasibility']
+                },
+                ship: {
+                    color: '#FC8C5C',
+                    title: 'Ship a complete experience, not an isolated artifact.',
+                    lead: 'High-maturity work connects packaging, sensory cues, interface behavior, copy, retail context, compliance, and measurement. Orange Gelée shows the upside of participation and narrative; regulatory scrutiny shows why trust and category rules must remain visible.',
+                    doList: ['Test recognition, usage clarity, accessibility, and recall', 'Document the system so channel teams can extend it', 'Measure both emotional response and business performance'],
+                    avoidList: ['Optimizing one photogenic touchpoint while the journey fragments', 'Letting novelty obscure dosage or efficacy information', 'Scaling the range without protecting distinctive principles']
+                }
+            };
+            const data = lenses[lensId];
+            document.querySelectorAll('.designer-lens-button').forEach((button, index) => {
+                const ids = ['join', 'critique', 'ship'];
+                button.setAttribute('aria-pressed', String(ids[index] === lensId));
+            });
+            document.getElementById('designer-lens-output').innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <div class="lg:col-span-5">
+                        <span class="inline-block w-12 h-2 rounded-full mb-4" style="background:${data.color}"></span>
+                        <h3 class="font-garamond-cond font-semibold text-3xl leading-tight">${data.title}</h3>
+                        <p class="page-paragraph text-sm mt-3 text-darkSlate/85">${data.lead}</p>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-oceans/25 border border-darkSlate/20 rounded-xl p-4"><span class="font-sans text-[9px] font-black">DESIGNER MOVES</span>${data.doList.map(item => `<p class="font-sans text-[10px] leading-relaxed mt-3">◆ ${item}</p>`).join('')}</div>
+                        <div class="bg-flora/35 border border-darkSlate/20 rounded-xl p-4"><span class="font-sans text-[9px] font-black">CABANA HAZARDS</span>${data.avoidList.map(item => `<p class="font-sans text-[10px] leading-relaxed mt-3">× ${item}</p>`).join('')}</div>
+                    </div>
+                </div>`;
+        }
+
         function selectPoolDepth(depthId) {
             const selectedButton = document.getElementById(`pool-depth-${depthId}`);
             const shouldOpen = selectedButton.getAttribute('aria-expanded') !== 'true';
@@ -1004,7 +1563,7 @@
                     signal: 'Warm introductions, informal influence, fast gossip, and uneven follow-through.',
                     risk: 'Popular ideas receive oxygen while difficult operational decisions linger near the towel station.',
                     move: 'Translate social trust into named owners, visible deadlines, and post-launch learning rituals.',
-                    scores: ['Sociability 88', 'Solidarity 42', 'Brand fit 68']
+                    scores: ['Sociability: High', 'Solidarity: Low', 'Illustrative pattern']
                 },
                 communal: {
                     label: 'COMMUNAL CULTURE',
@@ -1013,7 +1572,7 @@
                     signal: 'Teams share the joke, protect the details, and still know exactly what commercial outcome the work must produce.',
                     risk: 'Belonging can become orthodoxy; the brand world may grow so beloved that dissent feels like poor resort etiquette.',
                     move: 'Preserve candor through structured critique, customer evidence, and rotating ownership of the brand mythology.',
-                    scores: ['Sociability 94', 'Solidarity 91', 'Brand fit 97']
+                    scores: ['Sociability: High', 'Solidarity: High', 'Confidence: Moderate']
                 },
                 fragmented: {
                     label: 'FRAGMENTED CULTURE',
@@ -1022,7 +1581,7 @@
                     signal: 'Strong specialists, private standards, limited ritual, and inconsistent cross-channel storytelling.',
                     risk: 'Product, packaging, retail, and digital teams optimize locally while the total brand experience loses continuity.',
                     move: 'Build shared creative principles, common review moments, and a single definition of unmistakably Vacation®.',
-                    scores: ['Sociability 34', 'Solidarity 29', 'Brand fit 41']
+                    scores: ['Sociability: Low', 'Solidarity: Low', 'Illustrative pattern']
                 },
                 mercenary: {
                     label: 'MERCENARY CULTURE',
@@ -1031,7 +1590,7 @@
                     signal: 'Sharp scorecards, decisive launches, performance language, and little patience for atmospheric wandering.',
                     risk: 'Efficiency can bleach out the emotional texture that makes the product memorable and worth a premium.',
                     move: 'Keep commercial rigor, then add protected time and criteria for sensory storytelling and playful experimentation.',
-                    scores: ['Sociability 38', 'Solidarity 92', 'Brand fit 63']
+                    scores: ['Sociability: Low', 'Solidarity: High', 'Illustrative pattern']
                 }
             };
             const data = quadrants[quadId];
@@ -1063,16 +1622,17 @@
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                     <span class="font-sans text-[10px] font-black tracking-widest px-3 py-1 rounded-full border border-darkSlate bg-flora">VACATION® OPERATING POINT</span>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="font-sans text-[8px] font-bold bg-lightCream border border-darkSlate/20 rounded px-2 py-1">Communal, with creative tension</span>
-                        <span class="font-sans text-[8px] font-bold bg-lightCream border border-darkSlate/20 rounded px-2 py-1">Confidence: High</span>
+                        <span class="font-sans text-[8px] font-bold bg-lightCream border border-darkSlate/20 rounded px-2 py-1">Communal, with scaling tension</span>
+                        <span class="font-sans text-[8px] font-bold bg-lightCream border border-darkSlate/20 rounded px-2 py-1">Confidence: Moderate</span>
                     </div>
                 </div>
-                <p class="page-paragraph text-darkSlate/90 mb-4">The bouncing sun marks Vacation® near the high-sociability, high-solidarity corner, but not at its absolute edge. That slight distance is useful: the organization needs enough internal friction to test whether a delightful idea also protects product credibility and commercial focus.</p>
+                <p class="page-paragraph text-darkSlate/90 mb-4">The bouncing sun marks Vacation® in the communal quadrant based on public participation rituals and documented commercial discipline. This is not a measured employee result. Funding, national retail expansion, sales targets, and a possible minority-stake transaction could strengthen solidarity while testing whether warmth and creative participation survive scale.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="bg-oceans/25 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Why it works</span><p class="font-sans text-[10px] leading-relaxed mt-1">A shared fictional world gives teams social energy and a common standard for making decisions.</p></div>
-                    <div class="bg-flora/40 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Watch the sunshine</span><p class="font-sans text-[10px] leading-relaxed mt-1">Strong belonging can make weak ideas feel protected if critique is mistaken for disloyalty.</p></div>
-                    <div class="bg-lush/35 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Resort directive</span><p class="font-sans text-[10px] leading-relaxed mt-1">Keep the warmth, then reward evidence-based dissent before every major launch.</p></div>
-                </div>`;
+                    <div class="bg-oceans/25 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Sociability signal</span><p class="font-sans text-[10px] leading-relaxed mt-1">Honorary employees, a “big tent,” and superfan co-creation turn customers into active participants.</p></div>
+                    <div class="bg-flora/40 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Solidarity signal</span><p class="font-sans text-[10px] leading-relaxed mt-1">Capital, retail-door growth, sales targets, and campaign ROI reveal explicit performance discipline.</p></div>
+                    <div class="bg-lush/35 border border-darkSlate/15 rounded-lg p-3"><span class="font-sans text-[8px] font-black uppercase tracking-widest">Scaling question</span><p class="font-sans text-[10px] leading-relaxed mt-1">Can warmth and evidence-based dissent survive stronger investor and national-retail demands?</p></div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-darkSlate/15 flex flex-wrap gap-3"><a class="source-link font-sans text-[8px] font-bold" href="https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/" target="_blank" rel="noopener">Participation and ROI ↗</a><a class="source-link font-sans text-[8px] font-bold" href="https://www.lowenstein.com/news-insights/firm-news/lowenstein-sandler-represents-sunscreen-brand-vacation-in-series-a-funding-round" target="_blank" rel="noopener">Funding and retail targets ↗</a><a class="source-link font-sans text-[8px] font-bold" href="https://www.beautyindependent.com/vacation-hires-investment-bank-minority-stake-deal/" target="_blank" rel="noopener">Scaling context ↗</a></div>`;
         }
         function setMaturityLevel(level, rot) {
             const levels = {
@@ -1085,6 +1645,15 @@
                     evidence: ['Visual choices vary by channel', 'Creative success is judged by taste alone'],
                     next: ['Invite design into product definition', 'Document a small set of brand principles']
                 },
+                2: {
+                    badge: 'LEVEL 2: DESIGN AS REPEATABLE PRACTICE',
+                    title: 'A Recognizable Look Begins to Form',
+                    description: 'Design moves beyond isolated decoration into recurring patterns, templates, and production habits. The brand becomes more consistent, but design still responds to briefs rather than shaping them.',
+                    color: '#AFCFDE',
+                    buttonColor: '#C8DFE8',
+                    evidence: ['Core visual elements repeat across touchpoints', 'Design quality depends on individual project leadership'],
+                    next: ['Create shared experience standards', 'Bring design into planning before execution begins']
+                },
                 3: {
                     badge: 'LEVEL 3: DESIGN AS INTEGRATED PROCESS',
                     title: 'The Resort Begins Operating as One',
@@ -1094,13 +1663,22 @@
                     evidence: ['Cross-functional reviews happen early', 'Customer insight shapes experience choices'],
                     next: ['Connect design metrics to growth', 'Give creative leadership strategic authority']
                 },
+                4: {
+                    badge: 'LEVEL 4: DESIGN AS BUSINESS CAPABILITY',
+                    title: 'Design Guides the Resort Roadmap',
+                    description: 'Design leaders help define products, customer journeys, and market opportunities. Research and brand principles influence investment decisions, though the system may not yet direct the entire enterprise.',
+                    color: '#F6AD9E',
+                    buttonColor: '#F7B8A8',
+                    evidence: ['Orange Gelée paired fan co-creation with exceptional product and campaign performance', 'Fragrance operates as a sensory marketing system for the SPF portfolio'],
+                    next: ['Verify who owns research, systems, and final design decisions', 'Distribute creative authority without diluting the brand world']
+                },
                 5: {
                     badge: 'LEVEL 5: SYSTEM AS BRAND STRATEGY',
                     title: 'Aesthetics as Strategic Advantage',
                     description: 'Packaging, retro soundscapes, service rituals, product texture, and scent operate as one commercial system. The world itself becomes a defensible business asset.',
                     color: '#FC8C5C',
                     buttonColor: '#FC8C5C',
-                    evidence: ['New products extend a recognizable mythology', 'Sensory distinction supports pricing power'],
+                    evidence: ['Brand system preceded the sunscreen category choice', 'New products extend a recognizable mythology'],
                     next: ['Protect specificity as the line expands', 'Measure memory, affinity, and repeat ritual']
                 }
             };
@@ -1156,7 +1734,7 @@
                     guardrail: 'Anchor every atmospheric cue to honest performance and concrete formulation information.'
                 },
                 frictional: {
-                    title: 'CHARMING TACTILE FRICTION', color: '#FBCEEA',
+                    title: 'CHARMING TACTILE FRICTION', color: '#DBD4FE',
                     text: 'Small moments of participation make the world feel handled rather than passively viewed. Controls, reveals, credentials, and playful delays turn navigation into a brand behavior.',
                     application: 'Use friction where it adds discovery, identity, or delight; keep purchasing and essential product information direct.',
                     effect: 'Extends dwell time, improves memory, and converts interaction into an ownable signature.',
@@ -1188,8 +1766,11 @@
                 </div>`;
         }
         selectQuadrant('communal');
-        setMaturityLevel(5, 72);
+        setMaturityLevel(4, 36);
+        selectEvidenceLens('schein');
+        selectDesignerLens('join');
         selectSpecimen('typography');
+        updateAtmosphereIndex();
         let selectedBadgeEmblem = '🌴';
         let badgeHasCustomPhoto = false;
         let badgePhotoZoom = 100;
