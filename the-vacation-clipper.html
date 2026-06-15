@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>📰 The Vacation Clipper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --cream:#f5ecd6; --cream-2:#ece0c0; --cream-3:#e4d6ad;
+    --ink:#1f2742; --ink-soft:#5b6076;
+    --orange:#f0531c; --orange-d:#c33f10;
+    --teal:#129a9a; --teal-d:#0a6e6e;
+    --yellow:#fbc232; --red:#e23b2e;
+    --line:#1f2742; --chrome:#e4d6ad;
+    --bevel-lt:#fffaf0; --bevel-dk:#b59b6a;
+    --shadow:rgba(31,39,66,.40);
+    --read-mult:1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{font-family:'VT323',monospace;color:var(--ink);min-height:100%;padding:26px 12px 70px;
+    background:linear-gradient(180deg,#0c7e7e 0%, #14a0a0 20%, #1bb0ab 33%, var(--orange) 70%, #ff9b4d 86%, #ffe0a8 100%);background-attachment:fixed;}
+  .panel{width:600px;max-width:96vw;margin:0 auto;background:var(--cream);border:2px solid var(--line);box-shadow:5px 5px 0 var(--shadow);}
+  .titlebar{height:26px;display:flex;align-items:center;background:var(--chrome);border-bottom:2px solid var(--line);background-image:repeating-linear-gradient(180deg,var(--line) 0 1px,transparent 1px 3px);font-family:'Silkscreen',monospace;font-size:10px;padding:0 6px;color:var(--ink);}
+  .titlebar .tt{background:var(--cream);padding:1px 8px;border:1.5px solid var(--line);}
+  .winbody{padding:16px 18px 20px;font-size:calc(19px * var(--read-mult));line-height:1.32;}
+  .winbody h2{font-family:'Silkscreen',monospace;font-size:calc(13px * var(--read-mult));margin:.2em 0 .5em;line-height:1.5;color:var(--orange-d);}
+  .winbody p{margin:.5em 0;}
+  .winbody a{color:var(--teal-d);}
+  .src{font-size:calc(15px * var(--read-mult));color:var(--ink-soft);}
+  .btn{font-family:'Silkscreen',monospace;font-size:10px;cursor:pointer;padding:7px 11px;background:var(--cream-2);color:var(--ink);border:2px solid var(--line);box-shadow:inset 1px 1px 0 var(--bevel-lt),inset -1px -1px 0 var(--bevel-dk),2px 2px 0 var(--shadow);text-decoration:none;display:inline-block;}
+  .btn.go{background:var(--orange);color:#fff;} .btn.teal{background:var(--teal);color:#fff;}
+  .credit{width:600px;max-width:96vw;margin:12px auto 0;font-family:'Silkscreen',monospace;font-size:8px;color:#fff;text-shadow:1px 1px 0 #000;opacity:.85;line-height:1.6;}
+  /* THE VACATION CLIPPER */
+  .clipper{background:#f4ead0;color:#241a0f;padding:14px 16px;}
+  .clip-mast{text-align:center;font-family:'Silkscreen',monospace;border-top:3px double #241a0f;border-bottom:3px double #241a0f;padding:7px 0;margin-bottom:12px;}
+  .clip-mast .t{font-size:calc(15px * var(--read-mult));letter-spacing:1px;line-height:1.4;}
+  .clip-mast .sub{font-size:calc(10px * var(--read-mult));display:flex;justify-content:space-between;font-family:'VT323',monospace;margin-top:6px;}
+  .coupons{column-count:2;column-gap:12px;}
+  .coupon{break-inside:avoid;border:2px dashed #241a0f;padding:10px;margin:0 0 12px;background:#fbf4e0;position:relative;}
+  .coupon .sc{position:absolute;top:-10px;left:8px;background:#f4ead0;font-size:calc(14px * var(--read-mult));padding:0 2px;}
+  .coupon h4{font-family:'Silkscreen',monospace;font-size:calc(9px * var(--read-mult));margin:3px 0 5px;line-height:1.5;}
+  .coupon p{font-size:calc(15px * var(--read-mult));margin:.15em 0;font-family:'VT323',monospace;}
+  .coupon .burst{display:inline-block;background:#e23b2e;color:#fff;font-family:'Silkscreen',monospace;font-size:calc(9px * var(--read-mult));padding:3px 6px;transform:rotate(-3deg);margin:4px 0;}
+  .coupon a.clip-link{font-family:'Silkscreen',monospace;font-size:calc(8px * var(--read-mult));color:#0a6e6e;text-decoration:none;border-bottom:1px solid #0a6e6e;}
+  .coupon .read{font-family:'VT323',monospace;font-size:calc(14px * var(--read-mult));color:#6a5640;font-style:italic;border-top:1px dotted #b59b6a;margin-top:7px;padding-top:5px;line-height:1.35;}
+  .clip-foot{text-align:center;font-family:'VT323',monospace;font-size:calc(15px * var(--read-mult));margin-top:4px;border-top:2px solid #241a0f;padding-top:6px;}
+  @media (max-width:680px){.coupons{column-count:1;}}
+
+  /* COUPON MAKER */
+  .maker{background:#fbf4e0;border:2px solid #241a0f;padding:12px;margin:0 0 14px;}
+  .maker h4{font-family:'Silkscreen',monospace;font-size:calc(10px * var(--read-mult));margin:0 0 8px;color:#c33f10;}
+  .cvwrap{text-align:center;margin-bottom:10px;}
+  #couponCanvas{max-width:100%;height:auto;border:2px solid #241a0f;background:#fff;box-shadow:3px 3px 0 rgba(36,26,15,.3);touch-action:none;cursor:grab;}
+  .mrow{margin:8px 0;}
+  .mrow>label{font-family:'Silkscreen',monospace;font-size:calc(8px * var(--read-mult));color:#241a0f;display:block;margin-bottom:4px;}
+  .mk-input{width:100%;font-family:'VT323',monospace;font-size:calc(18px * var(--read-mult));padding:5px 7px;border:2px solid #241a0f;background:#fff;color:#241a0f;}
+  .chips{display:flex;flex-wrap:wrap;gap:5px;}
+  .chip{font-family:'Silkscreen',monospace;font-size:calc(8px * var(--read-mult));cursor:pointer;padding:6px 7px;border:2px solid #241a0f;background:#fff;color:#241a0f;}
+  .chip.on{background:#241a0f;color:#fbf4e0;}
+  .chip:disabled{opacity:.4;cursor:default;}
+  .selrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .mk-sel{font-family:'VT323',monospace;font-size:calc(16px * var(--read-mult));color:#241a0f;}
+  .mk-range{width:100%;accent-color:#f0531c;}
+  .mk-range:disabled{opacity:.4;}
+  .sw{width:28px;height:22px;cursor:pointer;border:2px solid #241a0f;padding:0;}
+  .sw.on{outline:2px solid #f0531c;outline-offset:1px;}
+  .mbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .clip-sec{font-family:'Silkscreen',monospace;font-size:calc(9px * var(--read-mult));color:#241a0f;text-align:center;border-top:2px solid #241a0f;border-bottom:2px solid #241a0f;padding:6px 4px;margin:4px 0 12px;line-height:1.6;}
+
+</style>
+</head>
+<body>
+<div class="panel">
+  <div class="titlebar"><div class="tt">📰 The Vacation Clipper</div></div>
+    <div class="winbody" style="padding:0;">
+      <div class="clipper">
+        <div class="clip-mast">
+          <div class="t">The Vacation Clipper</div>
+          <div class="sub"><span>EST. 1986</span><span>MIAMI, U.S.A.</span><span>COMPLIMENTARY CONTENT</span></div>
+        </div>
+
+        <div class="maker">
+          <h4>✂ Make Your Own Clipper Coupon</h4>
+          <div class="cvwrap"><canvas id="couponCanvas" width="720" height="460" aria-label="Coupon preview"></canvas></div>
+          <div class="mrow"><label>Headline</label><input class="mk-input" id="mkHead" maxlength="24" value="GREETINGS FROM PARADISE"></div>
+          <div class="mrow"><label>Offer badge</label><input class="mk-input" id="mkBurst" maxlength="16" value="50% OFF FUN"></div>
+          <div class="mrow"><label>Small print</label><input class="mk-input" id="mkSub" maxlength="44" value="Redeemable at any pool, anytime, 1986 onward."></div>
+          <div class="mrow"><label>Color scheme</label><div class="chips" id="mkSchemes"></div></div>
+          <div class="mrow"><label>Font (your typed text)</label><div class="chips" id="mkFonts"></div></div>
+          <div class="mrow"><label>Stickers — tap to add · drag on coupon · double-tap to remove</label><div class="chips" id="mkIcons"></div>
+            <div class="chips" style="margin-top:6px;"><button class="chip" id="mkUndo">↺ UNDO</button><button class="chip" id="mkClear">✕ CLEAR</button></div>
+          </div>
+          <div class="mrow"><label>Selected sticker</label><div class="selrow"><span class="mk-sel" id="mkSelName">— tap a sticker to edit —</span><button class="chip" id="mkDel">🗑 REMOVE</button></div></div>
+          <div class="mrow"><label>Sticker size</label><input class="mk-range" id="mkSize" type="range" min="3" max="15" step="0.5" value="6"></div>
+          <div class="mrow"><label>Sticker rotation</label><input class="mk-range" id="mkRot" type="range" min="0" max="360" step="5" value="0"></div>
+          <div class="mrow"><label>Text layer (vs stickers)</label><div class="chips"><button class="chip" id="mkHeadLayer">HEADLINE: TOP</button><button class="chip" id="mkBurstLayer">OFFER: TOP</button><button class="chip" id="mkSubLayer">PRINT: TOP</button></div></div>
+          <div class="mrow"><label>Aged film grain</label><div class="chips"><button class="chip" id="mkGrain">GRAIN: OFF</button></div></div>
+          <div class="mbtns">
+            <button class="btn go" id="mkDownload">📥 Download sticker (PNG)</button>
+            <button class="btn" id="mkPrint">🖨 Print</button>
+          </div>
+          <p class="src" style="font-size:13px;margin-top:8px;color:#6a5640;">Tip: download the PNG and print on sticker paper. "Aged film grain" gives it the found-in-a-1986-drawer look.</p>
+        </div>
+
+        <div class="clip-sec">▼ THE REAL CLIPPER — Vacation's actual in-house ads (each links to the real page)</div>
+
+        <div class="coupons">
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>NEW PATRON BONUS</h4>
+            <p>Join the mailing list and receive</p>
+            <div class="burst">10% OFF 1ST ORDER</div>
+            <p>Leisure, now subsidised.</p>
+            <a class="clip-link" href="https://www.vacation.inc/" target="_blank" rel="noopener">CLIP COUPON ▸</a>
+            <div class="read">Read: even the discount stays in character — every touchpoint lives inside the 1986 world.</div>
+          </div>
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>WORLD'S BEST-SMELLING SUNSCREEN</h4>
+            <p>The signature scent, starting at</p>
+            <div class="burst">FROM $15</div>
+            <p>Paradise, priced for everyone.</p>
+            <a class="clip-link" href="https://www.vacation.inc/collections/suncare" target="_blank" rel="noopener">SHOP SUNCARE ▸</a>
+            <div class="read">Read: masstige pricing = the "big tent." A luxury feeling at mass access.</div>
+          </div>
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>ORANGE GELÉE® REVIVAL PROJECT</h4>
+            <p>A 1925 classic, reborn with 11 superfans.</p>
+            <div class="burst">NOSTALGIA, RESTORED</div>
+            <a class="clip-link" href="https://orangegelee.com/" target="_blank" rel="noopener">READ THE STORY ▸</a>
+            <div class="read">Read: world-building as strategy — fans are invited to co-author the myth.</div>
+          </div>
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>SUNSCREEN WITH ITS OWN RADIO STATION</h4>
+            <p>Every bottle tunes to Poolsuite FM.</p>
+            <div class="burst">FREE AMENITY</div>
+            <a class="clip-link" href="https://poolsuite.net/" target="_blank" rel="noopener">TUNE IN ▸</a>
+            <div class="read">Read: the product is a portal to a lifestyle, not a lotion.</div>
+          </div>
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>SHOW THE WORLD YOU MEAN BUSINESS</h4>
+            <p>Claim your honorary staff role: staff-only merch, a LinkedIn title, an eggshell business card set in Garamond.</p>
+            <div class="burst">STAFF ONLY</div>
+            <a class="clip-link" href="https://vacation.inc/business" target="_blank" rel="noopener">CLAIM ROLE ▸</a>
+            <div class="read">Read: customers recruited as "employees" — inclusivity that doubles as a marketing engine.</div>
+          </div>
+          <div class="coupon"><span class="sc">✂</span>
+            <h4>FACE by VACATION®</h4>
+            <p>Daily defense — beach to boardroom.</p>
+            <div class="burst">EVERYDAY RITUAL</div>
+            <a class="clip-link" href="https://www.vacation.inc/collections/all?category=suncare&filters=face" target="_blank" rel="noopener">SEE THE LINE ▸</a>
+            <div class="read">Read: extending the world from poolside to office — leisure as everyday identity.</div>
+          </div>
+        </div>
+        <div class="clip-foot">▸ See a spot for your ad? Consult our Executive Advertising Associates. ◂</div>
+      </div>
+    </div>
+</div>
+<div class="credit">▸ THE VACATION CLIPPER — standalone module. Make a coupon: type, recolor, add/drag/resize/rotate pixel stickers, age it, download. Real ads below link out.</div>
+<script>
+  /* COUPON MAKER */
+  (function(){
+    var cv=document.getElementById('couponCanvas'); if(!cv) return;
+    var ctx=cv.getContext('2d');
+    var SCHEMES=[
+      {n:"NEWS",  paper:"#f4ead0", ink:"#241a0f", acc:"#e23b2e"},
+      {n:"CORAL", paper:"#fff1e2", ink:"#c33f10", acc:"#129a9a"},
+      {n:"TEAL",  paper:"#e6f6f4", ink:"#0a4a4a", acc:"#f0531c"},
+      {n:"SUN",   paper:"#fff6d8", ink:"#7a4a00", acc:"#f0531c"},
+      {n:"NOIR",  paper:"#1f2742", ink:"#f5ecd6", acc:"#fbc232"},
+      {n:"CANDY", paper:"#ffe6ef", ink:"#9b2257", acc:"#129a9a"}
+    ];
+    var FONTS=[
+      {n:"PIXEL",     css:"'Silkscreen', monospace", w:"700"},
+      {n:"TERMINAL",  css:"'VT323', monospace", w:"400"},
+      {n:"NEWSPAPER", css:"'EB Garamond', Garamond, serif", w:"600"},
+      {n:"TYPEWRITER",css:"'Courier New', monospace", w:"700"},
+      {n:"HEAVY",     css:"Arial, sans-serif", w:"900"}
+    ];
+    var ICONS={
+      SUN:[[6,6,4,4,'#fbc232'],[7,2,2,2,'#f0531c'],[7,12,2,2,'#f0531c'],[2,7,2,2,'#f0531c'],[12,7,2,2,'#f0531c'],[3,3,2,2,'#f7a23a'],[11,3,2,2,'#f7a23a'],[3,11,2,2,'#f7a23a'],[11,11,2,2,'#f7a23a']],
+      PALM:[[7,8,2,7,'#7a4a1e'],[3,6,4,2,'#2e9c4a'],[9,6,4,2,'#2e9c4a'],[5,4,3,2,'#39b357'],[8,4,3,2,'#39b357'],[7,3,2,2,'#2e9c4a'],[6,7,1,1,'#6b3a14'],[9,7,1,1,'#6b3a14']],
+      DRINK:[[4,3,8,1,'#f0531c'],[5,4,6,1,'#f0531c'],[6,5,4,1,'#f0531c'],[7,6,2,2,'#129a9a'],[7,8,2,3,'#129a9a'],[5,11,6,1,'#1f2742'],[10,2,2,2,'#e23b2e']],
+      SHADES:[[3,6,4,3,'#0e9c9c'],[9,6,4,3,'#0e9c9c'],[7,7,2,1,'#1f2742'],[1,5,2,1,'#1f2742'],[13,5,2,1,'#1f2742']],
+      STAR:[[7,2,2,12,'#fbc232'],[2,7,12,2,'#fbc232'],[4,4,2,2,'#f7a23a'],[10,4,2,2,'#f7a23a'],[4,10,2,2,'#f7a23a'],[10,10,2,2,'#f7a23a']],
+      WHIP:[[8,2,5,2,'#1f2742'],[9,2,3,1,'#129a9a'],[9,4,3,1,'#1f2742'],[6,5,9,11,'#1f2742'],[7,6,7,9,'#efe2c4'],[7,9,7,3,'#f0531c']],
+      TUBE:[[7,2,5,2,'#1f2742'],[8,2,3,1,'#f4ead0'],[6,4,7,12,'#1f2742'],[7,5,5,10,'#f0531c'],[8,8,3,3,'#f4ead0']],
+      PERFUME:[[9,2,3,2,'#1f2742'],[7,4,7,1,'#1f2742'],[5,5,11,10,'#1f2742'],[6,6,9,8,'#e0a64a'],[7,10,7,3,'#f4ead0']],
+      OIL:[[9,1,3,2,'#1f2742'],[10,3,2,4,'#e8c04a'],[7,7,8,9,'#1f2742'],[8,8,6,7,'#e8c04a'],[8,11,6,2,'#f4ead0']],
+      SPRITZ:[[5,3,3,1,'#1f2742'],[8,2,6,2,'#1f2742'],[9,2,3,1,'#0e9c9c'],[6,5,9,11,'#1f2742'],[7,6,7,9,'#2bb3b3'],[7,10,7,3,'#f4ead0']],
+      STICK:[[6,2,9,4,'#1f2742'],[7,2,7,2,'#f0531c'],[6,6,9,9,'#1f2742'],[7,7,7,7,'#fbc232'],[7,10,7,2,'#f4ead0']],
+      CANDLE:[[10,1,2,2,'#fbc232'],[11,2,1,1,'#f0531c'],[6,5,11,11,'#1f2742'],[7,6,9,9,'#20242e'],[8,9,7,3,'#f4ead0']],
+      PINE:[[11,1,2,2,'#1f2742'],[9,3,6,2,'#2e9c4a'],[7,5,10,2,'#39b357'],[6,7,12,2,'#2e9c4a'],[7,9,10,2,'#39b357'],[10,11,4,4,'#7a4a1e']],
+      MINERAL:[[5,2,14,3,'#1f2742'],[6,2,12,1,'#2bb3b3'],[4,5,16,11,'#1f2742'],[5,6,14,9,'#d3e8e2'],[5,10,14,3,'#f4ead0']],
+      COCONUT:[[10,2,4,2,'#1f2742'],[8,5,8,1,'#1f2742'],[6,7,12,9,'#1f2742'],[7,8,10,7,'#e6b25a'],[7,11,10,3,'#f4ead0']],
+      LIP:[[9,2,6,5,'#1f2742'],[10,3,4,3,'#f0531c'],[9,7,6,9,'#1f2742'],[10,8,4,7,'#f4ead0'],[10,11,4,2,'#f0531c']],
+      GIFT:[[4,5,16,3,'#1f2742'],[5,5,14,2,'#f0531c'],[4,8,16,8,'#1f2742'],[5,9,14,6,'#efe2c4'],[11,5,2,11,'#129a9a']]
+    };
+    var ICONKEYS=Object.keys(ICONS);
+    var placed=[{key:'SUN',cx:96,cy:120,scale:6,rot:0},{key:'PALM',cx:624,cy:120,scale:6,rot:0}], drag=null, sel=-1;
+    var state={ scheme:0, font:0, grain:false, headLayer:'top', burstLayer:'top', subLayer:'top' };
+
+    function setFont(size,fi){ var f=FONTS[fi]; ctx.font=f.w+" "+size+"px "+f.css; }
+    function fitText(text,maxW,start,min,fi){ var s=start; setFont(s,fi); while(ctx.measureText(text).width>maxW && s>min){ s-=2; setFont(s,fi);} return s; }
+    function drawIcon(key,ox,oy,scale,color){ var r=ICONS[key]; for(var i=0;i<r.length;i++){ ctx.fillStyle=r[i][4]||color; ctx.fillRect(Math.round(ox+r[i][0]*scale), Math.round(oy+r[i][1]*scale), Math.ceil(r[i][2]*scale), Math.ceil(r[i][3]*scale)); } }
+    function dashRect(x,y,w,h,col){ ctx.save(); ctx.strokeStyle=col; ctx.lineWidth=3; ctx.setLineDash([10,7]); ctx.strokeRect(x,y,w,h); ctx.restore(); }
+
+    function drawHead(sc,W){ var t=(document.getElementById('mkHead').value||"").toUpperCase(); if(!t.replace(/\s/g,''))return; var hs=fitText(t,W-90,64,22,state.font); ctx.fillStyle=sc.ink; setFont(hs,state.font); ctx.textAlign="center"; ctx.textBaseline="alphabetic"; ctx.fillText(t,W/2,252); }
+    function drawBurst(sc,W){ var t=(document.getElementById('mkBurst').value||"").toUpperCase(); if(!t)return; ctx.save(); ctx.translate(W/2,300); ctx.rotate(-0.05); var bs=fitText(t,320,28,14,0); setFont(bs,0); var bw=ctx.measureText(t).width+34; ctx.fillStyle=sc.acc; ctx.fillRect(-bw/2,-24,bw,40); ctx.fillStyle=sc.paper; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(t,0,-3); ctx.restore(); }
+    function drawSub(sc,W){ var t=document.getElementById('mkSub').value||""; if(!t)return; var ss=fitText(t,W-110,22,12,state.font); ctx.fillStyle=sc.ink; setFont(ss,state.font); ctx.textAlign="center"; ctx.textBaseline="alphabetic"; ctx.fillText(t,W/2,362); }
+    function drawStickers(sc){ placed.forEach(function(it,idx){ var dim=16*it.scale; ctx.save(); ctx.translate(it.cx,it.cy); ctx.rotate((it.rot||0)*Math.PI/180); drawIcon(it.key,-dim/2,-dim/2,it.scale,sc.ink); ctx.restore();
+      if(idx===sel){ var hd=dim*0.72+5; ctx.save(); ctx.strokeStyle=sc.acc; ctx.lineWidth=2; ctx.setLineDash([6,4]); ctx.strokeRect(it.cx-hd,it.cy-hd,hd*2,hd*2); ctx.restore(); } }); }
+
+    function redraw(){
+      var sc=SCHEMES[state.scheme], W=cv.width, H=cv.height;
+      ctx.fillStyle=sc.paper; ctx.fillRect(0,0,W,H);
+      dashRect(20,20,W-40,H-40,sc.ink);
+      ctx.fillStyle=sc.ink; ctx.textAlign="center"; ctx.textBaseline="alphabetic";
+      setFont(15,0); ctx.fillText("THE VACATION CLIPPER  *  EST. 1986", W/2, 58);
+      setFont(13,0); ctx.fillText("CLIP & SAVE  *  COMPLIMENTARY CONTENT", W/2, H-40);
+      if(state.headLayer==='behind') drawHead(sc,W);
+      if(state.burstLayer==='behind') drawBurst(sc,W);
+      if(state.subLayer==='behind') drawSub(sc,W);
+      drawStickers(sc);
+      if(state.headLayer==='top') drawHead(sc,W);
+      if(state.burstLayer==='top') drawBurst(sc,W);
+      if(state.subLayer==='top') drawSub(sc,W);
+      if(state.grain) drawGrain(sc);
+    }
+    function drawGrain(sc){
+      var W=cv.width,H=cv.height;
+      for(var i=0;i<2600;i++){ var x=Math.random()*W, y=Math.random()*H, a=Math.random()*0.18;
+        ctx.fillStyle=(Math.random()<0.5?"rgba(0,0,0,"+a+")":"rgba(255,255,255,"+(a*0.8)+")");
+        ctx.fillRect(x,y,Math.random()<0.2?2:1,1); }
+      ctx.strokeStyle="rgba(0,0,0,0.07)"; ctx.lineWidth=1;
+      for(var s=0;s<6;s++){ var yy=Math.random()*H; ctx.beginPath(); ctx.moveTo(0,yy); ctx.lineTo(W,yy+(Math.random()*8-4)); ctx.stroke(); }
+      var g=ctx.createRadialGradient(W/2,H/2,H*0.3,W/2,H/2,H*0.78);
+      g.addColorStop(0,"rgba(0,0,0,0)"); g.addColorStop(1,"rgba(40,26,15,0.22)");
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    }
+
+    var schEl=document.getElementById('mkSchemes');
+    SCHEMES.forEach(function(s,i){ var b=document.createElement('button'); b.className='sw'+(i===0?' on':''); b.title=s.n;
+      b.style.background='linear-gradient(135deg,'+s.paper+' 58%,'+s.acc+' 58%)';
+      b.addEventListener('click',function(){ state.scheme=i; schEl.querySelectorAll('.sw').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); redraw(); });
+      schEl.appendChild(b); });
+    var fEl=document.getElementById('mkFonts');
+    FONTS.forEach(function(f,i){ var b=document.createElement('button'); b.className='chip'+(i===0?' on':''); b.textContent=f.n;
+      b.addEventListener('click',function(){ state.font=i; fEl.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); redraw(); });
+      fEl.appendChild(b); });
+    var iEl=document.getElementById('mkIcons');
+    var iconEmoji={SUN:"☀",PALM:"🌴",DRINK:"🍹",SHADES:"🕶",STAR:"✦",WHIP:"🧴",TUBE:"🧴",PERFUME:"🧴",OIL:"🍾",SPRITZ:"💨",STICK:"💄",CANDLE:"🕯",PINE:"🌲",MINERAL:"🧴",COCONUT:"🥥",LIP:"💋",GIFT:"🎁"};
+    ICONKEYS.forEach(function(k){ var b=document.createElement('button'); b.className='chip'; b.textContent=(iconEmoji[k]||"■")+" "+k;
+      b.addEventListener('click',function(){ placed.push({key:k, cx:280+Math.random()*160, cy:135+Math.random()*90, scale:6, rot:0}); sel=placed.length-1; refreshSel(); redraw(); });
+      iEl.appendChild(b); });
+
+    var selName=document.getElementById('mkSelName'), szR=document.getElementById('mkSize'), rtR=document.getElementById('mkRot'), delB=document.getElementById('mkDel');
+    function refreshSel(){ var has=sel>=0 && placed[sel];
+      selName.textContent = has ? ('▣ '+placed[sel].key) : '— tap a sticker to edit —';
+      szR.disabled=!has; rtR.disabled=!has; delB.disabled=!has;
+      if(has){ szR.value=placed[sel].scale; rtR.value=placed[sel].rot||0; } }
+    szR.addEventListener('input',function(){ if(sel>=0){ placed[sel].scale=parseFloat(szR.value); redraw(); } });
+    rtR.addEventListener('input',function(){ if(sel>=0){ placed[sel].rot=parseFloat(rtR.value); redraw(); } });
+    delB.addEventListener('click',function(){ if(sel>=0){ placed.splice(sel,1); sel=-1; refreshSel(); redraw(); } });
+
+    function layerBtn(id,key,label){ var b=document.getElementById(id);
+      function upd(){ b.textContent=label+": "+(state[key]==='top'?'TOP':'BEHIND'); b.classList.toggle('on', state[key]==='behind'); }
+      b.addEventListener('click',function(){ state[key]=(state[key]==='top'?'behind':'top'); upd(); redraw(); }); upd(); }
+    layerBtn('mkHeadLayer','headLayer','HEADLINE'); layerBtn('mkBurstLayer','burstLayer','OFFER'); layerBtn('mkSubLayer','subLayer','PRINT');
+
+    function mpos(e){ var r=cv.getBoundingClientRect(); return { x:(e.clientX-r.left)*(cv.width/r.width), y:(e.clientY-r.top)*(cv.height/r.height) }; }
+    function mhit(x,y){ for(var i=placed.length-1;i>=0;i--){ var it=placed[i]; var rad=8*it.scale, dx=x-it.cx, dy=y-it.cy; if(dx*dx+dy*dy<=rad*rad) return i; } return -1; }
+    cv.addEventListener('pointerdown',function(e){ var p=mpos(e); var idx=mhit(p.x,p.y);
+      if(idx<0){ if(sel!==-1){ sel=-1; refreshSel(); redraw(); } return; }
+      var it=placed.splice(idx,1)[0]; placed.push(it); sel=placed.length-1; drag={dx:p.x-it.cx,dy:p.y-it.cy}; cv.style.cursor='grabbing'; try{cv.setPointerCapture(e.pointerId);}catch(_){} refreshSel(); redraw(); });
+    cv.addEventListener('pointermove',function(e){ if(!drag)return; e.preventDefault(); var p=mpos(e); var it=placed[sel]; it.cx=Math.max(30,Math.min(cv.width-30,p.x-drag.dx)); it.cy=Math.max(30,Math.min(cv.height-30,p.y-drag.dy)); redraw(); });
+    function mEnd(){ if(drag){drag=null; cv.style.cursor='grab'; redraw();} }
+    cv.addEventListener('pointerup',mEnd); cv.addEventListener('pointercancel',mEnd);
+    cv.addEventListener('dblclick',function(e){ var p=mpos(e); var idx=mhit(p.x,p.y); if(idx>=0){ placed.splice(idx,1); if(sel===idx) sel=-1; else if(sel>idx) sel--; refreshSel(); redraw(); } });
+    document.getElementById('mkUndo').addEventListener('click',function(){ placed.pop(); if(sel>=placed.length) sel=-1; refreshSel(); redraw(); });
+    document.getElementById('mkClear').addEventListener('click',function(){ placed=[]; sel=-1; refreshSel(); redraw(); });
+    refreshSel();
+    var gB=document.getElementById('mkGrain');
+    gB.addEventListener('click',function(){ state.grain=!state.grain; gB.classList.toggle('on',state.grain); gB.textContent="GRAIN: "+(state.grain?"ON":"OFF"); redraw(); });
+    ['mkHead','mkBurst','mkSub'].forEach(function(id){ document.getElementById(id).addEventListener('input',redraw); });
+    document.getElementById('mkDownload').addEventListener('click',function(){ var a=document.createElement('a'); a.download='vacation-clipper-coupon.png'; a.href=cv.toDataURL('image/png'); a.click(); });
+    document.getElementById('mkPrint').addEventListener('click',function(){ var w=window.open(''); if(!w)return; w.document.write('<img src="'+cv.toDataURL('image/png')+'" style="max-width:100%" onload="window.print()">'); });
+
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(redraw); }
+    redraw();
+  })();
+
+
+</script>
+</body>
+</html>
