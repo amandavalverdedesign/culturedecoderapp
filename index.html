@@ -232,16 +232,25 @@
             background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 70%, #E6E9EC 80%, #C9DCE5 91%, #ABCFDF 100%);
         }
         .section-designer {
-            background: linear-gradient(to bottom, #ABCFDF 0%, #ABCFDF 70%, #C9DCE5 80%, #E6E9EC 91%, #FBF6F3 100%);
+            background: linear-gradient(to bottom, #ABCFDF 0%, #ABCFDF 70%, #C5CFE2 80%, #E1CEE6 91%, #FBCEEA 100%);
         }
         .section-badge {
-            background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 70%, #F8EBC8 80%, #F4DF99 91%, #F1D46C 100%);
+            background: linear-gradient(to bottom, #FBCEEA 0%, #FBCEEA 70%, #EDB8D0 80%, #E4C6E7 91%, #DBD4FE 100%);
         }
         .section-appendix {
-            background: linear-gradient(to bottom, #F1D46C 0%, #F1D46C 70%, #F4DF99 80%, #F8EBC8 91%, #FBF6F3 100%);
+            background: linear-gradient(
+                to bottom,
+                #DBD4FE 0%,
+                #DBD4FE 76%,
+                #DED4EC 82%,
+                #E2D4DA 87%,
+                #E7D4C6 92%,
+                #ECD49E 96%,
+                #F1D46C 100%
+            );
         }
         .section-vault {
-            background: linear-gradient(to bottom, #FBF6F3 0%, #FBF6F3 72%, #F5EBF5 83%, #EADFF9 92%, #DBD4FE 100%);
+            background: linear-gradient(to bottom, #F1D46C 0%, #F1D46C 70%, #F4DF99 80%, #F8EBC8 91%, #FBF6F3 100%);
         }
         .vault-tv-link img {
             transform: translateY(0) rotate(-0.4deg);
@@ -269,6 +278,16 @@
             background: #1C1917;
             color: #FBF6F3;
             box-shadow: 0 4px 0 rgba(252, 140, 92, 0.75);
+        }
+        .archive-card {
+            transition: opacity 360ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .archive-card[hidden] {
+            display: none;
+        }
+        .archive-card.is-tuning {
+            opacity: 0;
+            transform: translateY(8px);
         }
         .evidence-lens-button[aria-pressed="true"],
         .designer-lens-button[aria-pressed="true"] {
@@ -400,6 +419,55 @@
         .badge-name-input:focus::placeholder {
             color: transparent;
         }
+        html {
+            scroll-behavior: smooth;
+        }
+        section[id],
+        footer[id] {
+            scroll-margin-top: 2.75rem;
+        }
+        #field-archive {
+            scroll-margin-top: 0.9rem;
+        }
+        .hero-section-menu-panel {
+            backdrop-filter: blur(12px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+            background: var(--hero-menu-panel-bg, rgba(255, 255, 255, 0.12));
+            border-color: var(--hero-menu-border, rgba(255, 255, 255, 0.5));
+            color: var(--hero-menu-fg, #FFFFFF);
+        }
+        .hero-section-menu-link {
+            font-family: 'ITC Garamond Std Light Condensed', serif;
+            font-weight: 300;
+            font-stretch: condensed;
+            letter-spacing: -0.03em;
+        }
+        #hero-section-menu {
+            top: 20px;
+            left: 20px;
+            transition: opacity 300ms ease;
+            --hero-menu-fg: #FFFFFF;
+            --hero-menu-border: #FFFFFF;
+            --hero-menu-bg: rgba(255, 255, 255, 0.08);
+            --hero-menu-panel-bg: rgba(255, 255, 255, 0.12);
+        }
+        #hero-section-menu-toggle {
+            color: var(--hero-menu-fg, #FFFFFF);
+            border-color: var(--hero-menu-border, rgba(255, 255, 255, 0.7));
+            background: transparent;
+            transition: color 260ms ease, border-color 260ms ease, background-color 260ms ease, box-shadow 260ms ease;
+        }
+        #hero-section-menu-toggle:hover,
+        #hero-section-menu-toggle:focus-visible {
+            background: color-mix(in srgb, var(--hero-menu-fg, #FFFFFF) 12%, transparent);
+        }
+        #hero-section-menu-panel .hero-section-menu-link {
+            color: inherit;
+        }
+        #hero-section-menu-panel .hero-section-menu-link:hover,
+        #hero-section-menu-panel .hero-section-menu-link:focus-visible {
+            color: var(--hero-menu-accent, #FBCEEA);
+        }
     </style>
 </head>
 <body class="bg-softBase text-darkSlate font-sans min-h-screen flex flex-col antialiased selection:bg-flora selection:text-darkSlate relative">
@@ -443,8 +511,30 @@
         <div class="absolute top-0 left-0 w-full h-[3.5px] bg-gradient-to-r from-oceans via-flora to-citrus"></div>
     </header>
 
-    <div class="relative w-full h-screen overflow-hidden bg-darkSlate flex items-center justify-center">
+    <div id="hero-viewport" class="relative w-full h-screen overflow-hidden bg-darkSlate flex items-center justify-center">
         <video id="hero-video-player" autoplay loop muted playsinline src="https://culturedecoderapp.vercel.app/videos/miamimemory_under25mb.mp4" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-full h-full object-cover pointer-events-none brightness-95 contrast-105 opacity-80"></video>
+        <div id="hero-section-menu" class="fixed z-40 opacity-0 pointer-events-none">
+            <div class="relative">
+                <button id="hero-section-menu-toggle" type="button" aria-label="Open site sections menu" aria-expanded="false" class="w-11 h-11 rounded-full border-2 flex items-center justify-center text-[2rem] leading-none focus:outline-none focus:ring-2 focus:ring-white/70 font-garamond-cond">+</button>
+                <div id="hero-section-menu-panel" class="hero-section-menu-panel hidden absolute top-14 left-0 min-w-[250px] rounded-2xl border px-4 py-4">
+                    <p class="font-sans text-[9px] uppercase tracking-[0.22em] opacity-70 mb-3 font-black">Site Sections</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="#architecture-of-leisure" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">The Architecture of Leisure</a>
+                        <a href="#scheins-levels" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Schein's 3 Levels of Culture</a>
+                        <a href="#goffee-jones" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Goffee &amp; Jones Matrix</a>
+                        <a href="#design-maturity" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Design Maturity Level</a>
+                        <a href="#evidence-deck" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">What the Analysis Rests On</a>
+                        <a href="#playbook-spec" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Playbook Spec</a>
+                        <a href="#aesthetic-synthesis" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Vacation Aesthetic Synthesis</a>
+                        <a href="#designer-synthesis" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">What This Culture Means for Designers</a>
+                        <a href="#welcome-aboard" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Welcome Aboard, Baby</a>
+                        <a href="#climate-index" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Climate &amp; Atmosphere Index</a>
+                        <a href="#field-archive" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Tune Into the Vacation Archives</a>
+                        <a href="#contributors-footer" class="hero-section-menu-link text-xl leading-none hover:text-flora transition-colors">Research &amp; Design Contributors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="hero-audio-controls" class="fixed left-1/2 bottom-[25px] z-40 -translate-x-1/2 flex flex-col items-center gap-3 opacity-0 pointer-events-none transition-opacity duration-300">
             <div class="flex items-center gap-2" aria-label="Select hero video">
                 <button type="button" class="hero-video-dot w-2.5 h-2.5 rounded-full border border-white bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/70" data-video-index="0" aria-label="Play hero video 1" aria-pressed="true"></button>
@@ -467,7 +557,7 @@
         </div>
     </div>
 
-    <section class="architecture-intro w-full pt-16 pb-6 px-6">
+    <section id="architecture-of-leisure" class="architecture-intro w-full pt-16 pb-6 px-6">
         <div class="max-w-2xl mx-auto text-center">
             <span class="font-sans text-[10px] text-citrus font-bold tracking-[0.25em] block mb-2 uppercase">Lifestyle Diagnosis &amp; Chromatic Alignment</span>
             <h2 class="font-garamond-cond font-light text-3xl md:text-5xl text-darkSlate leading-none mb-3">The Architecture of Leisure</h2>
@@ -479,7 +569,7 @@
     </section>
 
     <main class="w-full flex flex-col">
-        <section class="culture-intro-section w-full pt-6 pb-16 px-6 border-b-0">
+        <section id="scheins-levels" class="culture-intro-section w-full pt-6 pb-16 px-6 border-b-0">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-6">
                     <div class="flex items-center gap-3">
@@ -565,7 +655,7 @@
             </div>
         </section>
 
-        <section class="section-module-two w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+        <section id="goffee-jones" class="section-module-two w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
                 <div class="lg:col-span-5 space-y-6 text-left">
                     <div class="flex items-center gap-3">
@@ -618,7 +708,7 @@
             </div>
         </section>
 
-        <section class="section-module-three w-full py-16 px-6 text-darkSlate border-b-0">
+        <section id="design-maturity" class="section-module-three w-full py-16 px-6 text-darkSlate border-b-0">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 space-y-6">
                     <div class="flex items-center gap-3">
@@ -678,7 +768,7 @@
             </div>
         </section>
 
-        <section class="section-evidence w-full pt-16 pb-40 px-6 text-darkSlate">
+        <section id="evidence-deck" class="section-evidence w-full pt-16 pb-16 px-6 text-darkSlate">
             <div class="max-w-6xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                     <div class="lg:col-span-5 space-y-5">
@@ -762,7 +852,7 @@
             </div>
         </section>
 
-        <section class="section-playbook w-full py-16 px-6 border-b-0">
+        <section id="playbook-spec" class="section-playbook w-full py-16 px-6 border-b-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="border-b-2 border-darkSlate/10 pb-6">
                     <div class="flex items-center gap-3 mb-5">
@@ -775,39 +865,39 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-oceans"></div>
-                        <span class="font-sans text-[10px] font-black text-oceans uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">REWARDED</span>
-                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Creativity That Converts:</span> Orange Gelée's story generated a 15,000-person waitlist and roughly 2–3× typical ad ROI.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">World-Building With Continuity:</span> Extending one fictional institution across product, media, retail, scent, and customer participation.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Sensory Category Expansion:</span> Using fragrance and product format to make SPF emotionally distinctive and commercially legible.</div></li>
-                            <li class="flex gap-2"><span>⚡</span><div><span class="font-bold">Cross-Functional Execution:</span> Pairing inventive concepts with detail, accountability, compliance, and growth ownership.</div></li>
+                        <span class="font-garamond-cond text-2xl text-oceans block mb-4 border-b-2 border-darkSlate/10 pb-2">Rewarded</span>
+                        <ul class="space-y-4 text-darkSlate">
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⚡</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Creativity That Converts</span><br>Orange Gelée's story generated a 15,000-person waitlist and roughly 2–3× typical ad ROI.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⚡</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">World-Building With Continuity</span><br>Extending one fictional institution across product, media, retail, scent, and customer participation.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⚡</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Sensory Category Expansion</span><br>Using fragrance and product format to make SPF emotionally distinctive and commercially legible.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⚡</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Cross-Functional Execution</span><br>Pairing inventive concepts with detail, accountability, compliance, and growth ownership.</div></li>
                         </ul>
                     </div>
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-citrus"></div>
-                        <span class="font-sans text-[10px] font-black text-citrus uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">TOLERATED</span>
-                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Useful Complexity:</span> Unusual formats and elaborate campaigns appear acceptable when they create measurable distinction.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Founder-Centered Authorship:</span> A singular creative point of view protects coherence, while potentially limiting distributed ownership.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Startup Ambiguity:</span> A small public hiring footprint suggests broad roles, but the actual internal process remains unknown.</div></li>
-                            <li class="flex gap-2"><span>⏳</span><div><span class="font-bold">Category Stretching:</span> The culture explores surprising formats, provided efficacy and regulatory requirements remain intact.</div></li>
+                        <span class="font-garamond-cond text-2xl text-citrus block mb-4 border-b-2 border-darkSlate/10 pb-2">Tolerated</span>
+                        <ul class="space-y-4 text-darkSlate">
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⏳</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Useful Complexity</span><br>Unusual formats and elaborate campaigns appear acceptable when they create measurable distinction.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⏳</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Founder-Centered Authorship</span><br>A singular creative point of view protects coherence, while potentially limiting distributed ownership.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⏳</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Startup Ambiguity</span><br>A small public hiring footprint suggests broad roles, but the actual internal process remains unknown.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">⏳</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Category Stretching</span><br>The culture explores surprising formats, provided efficacy and regulatory requirements remain intact.</div></li>
                         </ul>
                     </div>
                     <div class="bg-lightCream border-2 border-darkSlate rounded-xl p-6 shadow-md hover:shadow-xl transition relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-[4px] bg-coralReef"></div>
-                        <span class="font-sans text-[10px] font-black text-coralReef uppercase tracking-widest block mb-4 border-b-2 border-darkSlate/10 pb-1">PUNISHED</span>
-                        <ul class="space-y-4 font-sans text-xs text-darkSlate font-semibold">
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Generic Category Work:</span> Sterile wellness conventions weaken the specific fictional world that differentiates Vacation.</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Creativity Without Return:</span> Novelty that cannot build memory, participation, retail relevance, or measurable performance loses its strategic case.</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Regulatory Blind Spots:</span> A delightful format that obscures compliant use or category rules creates trust and business risk.</div></li>
-                            <li class="flex gap-2"><span>🚨</span><div><span class="font-bold">Fragmented Execution:</span> Product, packaging, retail, and digital work that no longer feels like one system erodes the moat.</div></li>
+                        <span class="font-garamond-cond text-2xl text-coralReef block mb-4 border-b-2 border-darkSlate/10 pb-2">Punished</span>
+                        <ul class="space-y-4 text-darkSlate">
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">🚨</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Generic Category Work</span><br>Sterile wellness conventions weaken the specific fictional world that differentiates Vacation.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">🚨</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Creativity Without Return</span><br>Novelty that cannot build memory, participation, retail relevance, or measurable performance loses its strategic case.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">🚨</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Regulatory Blind Spots</span><br>A delightful format that obscures compliant use or category rules creates trust and business risk.</div></li>
+                            <li class="flex gap-2 items-start"><span class="text-base leading-none pt-1">🚨</span><div class="page-paragraph text-[1.02rem] leading-relaxed font-normal"><span class="font-sans text-[10px] font-black uppercase tracking-[0.16em] text-darkSlate">Fragmented Execution</span><br>Product, packaging, retail, and digital work that no longer feels like one system erodes the moat.</div></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-aesthetic w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+        <section id="aesthetic-synthesis" class="section-aesthetic w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-oceans/5 via-transparent to-flora/10 pointer-events-none"></div>
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
                 <div class="lg:col-span-7 space-y-6">
@@ -852,7 +942,7 @@
             </div>
         </section>
 
-        <section class="section-designer w-full py-16 px-6 text-darkSlate">
+        <section id="designer-synthesis" class="section-designer w-full py-16 px-6 text-darkSlate">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center max-w-3xl mx-auto">
                     <span class="font-sans text-[10px] font-black tracking-[0.22em] uppercase text-coralReef">Cross-Framework Synthesis</span>
@@ -873,7 +963,7 @@
             </div>
         </section>
 
-        <section class="section-badge w-full py-16 px-6">
+        <section id="welcome-aboard" class="section-badge w-full py-16 px-6">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 space-y-6">
                     <div class="flex items-center gap-3">
@@ -969,7 +1059,7 @@
             </div>
         </section>
 
-        <section class="section-appendix w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
+        <section id="climate-index" class="section-appendix w-full py-16 px-6 text-darkSlate border-b-0 relative overflow-hidden">
             <div class="max-w-6xl mx-auto">
                 <div class="max-w-3xl mb-10">
                     <div class="flex items-center gap-3 mb-5">
@@ -1044,7 +1134,7 @@
             </div>
         </section>
 
-        <section class="section-vault w-full py-16 md:py-24 px-6 text-darkSlate relative overflow-hidden">
+        <section id="field-archive" class="section-vault w-full py-16 md:py-24 px-6 text-darkSlate relative overflow-hidden">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center max-w-3xl mx-auto">
                     <div class="flex flex-wrap items-center justify-center gap-3">
@@ -1055,73 +1145,76 @@
                     <p class="page-paragraph text-sm md:text-base text-darkSlate/85 mt-4">Change the channel to preview each interactive broadcast, then select the television screen to open the tuned experience.</p>
                 </div>
 
-                <div class="max-w-4xl mx-auto mt-10">
-                    <div class="relative z-20 flex flex-wrap items-center justify-center gap-3 mb-4" aria-label="Field Archive channel controls">
-                        <button type="button" id="archive-channel-previous" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-oceans focus:outline-none focus:ring-4 focus:ring-oceans/40 transition" aria-label="Previous archive channel">←</button>
-                        <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="0" aria-pressed="true">CH 01 · PRODUCT VAULT</button>
-                        <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="1" aria-pressed="false">CH 02 · THE CLIPPER</button>
-                        <button type="button" id="archive-channel-next" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-flora focus:outline-none focus:ring-4 focus:ring-flora/40 transition" aria-label="Next archive channel">→</button>
-                    </div>
-                    <div class="text-center mb-1">
-                        <span id="archive-channel-status" class="font-sans text-[9px] font-black uppercase tracking-[0.2em]" aria-live="polite">Channel 01 · Product Vault</span>
-                    </div>
-                    <a id="archive-channel-link" href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="vault-tv-link relative z-0 block rounded-3xl focus:outline-none focus:ring-4 focus:ring-oceans/60" aria-label="Open the interactive Vacation Product Vault in a new tab">
-                        <img id="archive-channel-image" src="assets/old-tv-mockup.png" alt="Blue vintage television displaying the Vacation Product Vault pixel-art catalogue" class="archive-channel-image w-full h-auto object-contain">
-                    </a>
-                    <p id="archive-channel-caption" class="font-sans text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-center text-darkSlate/55 mt-3">Now broadcasting: artifacts you can hold</p>
-                </div>
-
-                <div class="archive-divider my-14 md:my-16" aria-hidden="true"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
-                    <div class="bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start">
-                        <div class="flex items-center gap-3">
-                            <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 01</span>
-                            <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Artifacts You Can Hold</span>
+                <div id="archive-channel-stage" class="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-8 items-center mt-0 max-w-5xl mx-auto justify-center lg:-translate-x-12">
+                    <div class="lg:col-span-10">
+                        <div class="relative z-20 flex flex-wrap items-center justify-center gap-3 mt-6 mb-2" aria-label="Field Archive channel controls">
+                            <button type="button" id="archive-channel-previous" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-oceans focus:outline-none focus:ring-4 focus:ring-oceans/40 transition" aria-label="Previous archive channel">←</button>
+                            <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="0" aria-pressed="true">CH 01 · PRODUCT VAULT</button>
+                            <button type="button" class="archive-channel-button border-2 border-darkSlate rounded-full px-4 py-2 font-sans text-[9px] font-black transition" data-archive-channel="1" aria-pressed="false">CH 02 · THE CLIPPER</button>
+                            <button type="button" id="archive-channel-next" class="w-10 h-10 rounded-full border-2 border-darkSlate bg-lightCream font-sans font-black hover:bg-flora focus:outline-none focus:ring-4 focus:ring-flora/40 transition" aria-label="Next archive channel">→</button>
                         </div>
-                        <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Enter the Product Vault</h3>
-                        <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
-                            Continue the investigation through a pixel-art archive of twelve real Vacation® products. Select an artifact to uncover how sunscreen, fragrance, candles, and resort accessories translate protection into indulgence, then visit each product in the official store.
-                        </p>
-                        <a href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-citrus text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-oceans/50 transition">
-                            OPEN THE PRODUCT VAULT
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </div>
-                    <div class="bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start">
-                        <div class="flex items-center gap-3">
-                            <span class="bg-flora text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 02</span>
-                            <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Complimentary Content · Est. 1986</span>
+                        <div class="text-center mb-1">
+                            <span id="archive-channel-status" class="font-sans text-[9px] font-black uppercase tracking-[0.2em]" aria-live="polite">Channel 01 · Product Vault</span>
                         </div>
-                        <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Make The Vacation Clipper</h3>
-                        <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
-                            Build a printable 1986-style coupon with custom copy, color, typography, draggable pixel stickers, and optional aged film grain. Beneath the maker, six real Vacation® advertisements reveal how discounts, fan co-creation, Poolsuite FM, honorary employment, and FACE all remain inside one meticulously controlled brand fiction.
-                        </p>
-                        <a href="https://amandavalverdedesign.github.io/culturedecoderapp/the-vacation-clipper.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-flora text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-flora/50 transition">
-                            OPEN THE VACATION CLIPPER
-                            <span aria-hidden="true">↗</span>
+                    </div>
+                    <div class="lg:col-span-6 -mt-6">
+                        <a id="archive-channel-link" href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="vault-tv-link relative z-0 block rounded-3xl focus:outline-none focus:ring-4 focus:ring-oceans/60" aria-label="Open the interactive Vacation Product Vault in a new tab">
+                            <img id="archive-channel-image" src="assets/old-tv-mockup.png" alt="Blue vintage television displaying the Vacation Product Vault pixel-art catalogue" class="archive-channel-image w-full h-auto object-contain">
                         </a>
+                        <p id="archive-channel-caption" class="font-sans text-[8px] md:text-[9px] font-black uppercase tracking-[0.18em] text-center text-darkSlate/55 -mt-8">Now broadcasting: artifacts you can hold</p>
+                    </div>
+                    <div class="lg:col-span-4 lg:-ml-16 -mt-6">
+                        <div id="archive-card-product" class="archive-card bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start shadow-xl" data-archive-card="0" aria-live="polite">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-citrus text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 01</span>
+                                <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Artifacts You Can Hold</span>
+                            </div>
+                            <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Enter the Product Vault</h3>
+                            <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
+                                Continue the investigation through a pixel-art archive of twelve real Vacation® products. Select an artifact to uncover how sunscreen, fragrance, candles, and resort accessories translate protection into indulgence, then visit each product in the official store.
+                            </p>
+                            <a href="https://amandavalverdedesign.github.io/culturedecoderapp/product-vault.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-citrus text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-oceans/50 transition">
+                                OPEN THE PRODUCT VAULT
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                        <div id="archive-card-clipper" class="archive-card bg-lightCream/55 border-2 border-darkSlate rounded-2xl p-6 md:p-8 flex flex-col items-start shadow-xl" data-archive-card="1" hidden>
+                            <div class="flex items-center gap-3">
+                                <span class="bg-flora text-darkSlate font-sans text-[9px] font-bold px-3 py-1 rounded border-2 border-darkSlate">CH 02</span>
+                                <span class="text-[10px] font-sans text-darkSlate/70 uppercase font-black tracking-widest">Complimentary Content · Est. 1986</span>
+                            </div>
+                            <h3 class="font-garamond-cond font-light text-3xl sm:text-4xl leading-tight mt-5">Make The Vacation Clipper</h3>
+                            <p class="page-paragraph text-sm text-darkSlate/90 leading-relaxed mt-4 flex-1">
+                                Build a printable 1986-style coupon with custom copy, color, typography, draggable pixel stickers, and optional aged film grain. Beneath the maker, six real Vacation® advertisements reveal how discounts, fan co-creation, Poolsuite FM, honorary employment, and FACE all remain inside one meticulously controlled brand fiction.
+                            </p>
+                            <a href="https://amandavalverdedesign.github.io/culturedecoderapp/the-vacation-clipper.html" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-flora text-darkSlate border-2 border-darkSlate rounded-full px-6 py-3 font-sans text-[10px] font-black tracking-wider shadow-[0_5px_0_#1C1917] hover:-translate-y-1 hover:shadow-[0_7px_0_#1C1917] focus:outline-none focus:ring-4 focus:ring-flora/50 transition">
+                                OPEN THE VACATION CLIPPER
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gradient-to-b from-lavender to-lightCream p-8 text-center text-xs font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-6 mt-auto font-bold">
-        <div class="flex flex-wrap justify-center gap-6 text-darkSlate font-extrabold uppercase tracking-widest text-[9px] font-black">
-            <span class="hover:text-citrus cursor-pointer">1986 Brand Manual</span>
-            <span>•</span>
-            <span class="hover:text-citrus cursor-pointer">Poolside Alignment Protocols</span>
-            <span>•</span>
-            <span class="hover:text-citrus cursor-pointer">Aesthetic Auditing Desk</span>
-        </div>
-        <div class="max-w-2xl text-center text-[9px] text-darkSlate/60 leading-relaxed font-bold">
-            VACATION® Audits conducted under strict resort-grade chromatic compliance. Layout built utilizing premium palettes and high-contrast typographic layouts. All corporate rights reserved &copy; 1986-2026.
-        </div>
+    <footer id="contributors-footer" class="bg-gradient-to-b from-lavender to-lightCream p-8 pb-32 text-center font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-3 mt-auto font-bold">
+        <span class="text-[9px] font-black uppercase tracking-[0.22em] text-darkSlate">Research &amp; Design Contributors</span>
+        <p class="max-w-2xl text-[10px] md:text-xs text-darkSlate/70 leading-relaxed">
+            Ted Dessert · Yiwen Gao · Ningxuan Liu · Amanda Valverde
+        </p>
+        <p class="max-w-2xl text-[8px] md:text-[9px] text-darkSlate/50 leading-relaxed">
+            Vacation® culture audit project. Not affiliated with Vacation Inc.
+        </p>
     </footer>
 
     <script>
         const heroAudioControls = document.getElementById('hero-audio-controls');
+        const heroViewport = document.getElementById('hero-viewport');
+        const heroSectionMenu = document.getElementById('hero-section-menu');
+        const heroSectionMenuToggle = document.getElementById('hero-section-menu-toggle');
+        const heroSectionMenuPanel = document.getElementById('hero-section-menu-panel');
+        const heroSectionMenuLinks = heroSectionMenuPanel.querySelectorAll('a');
         const heroAudioToggle = document.getElementById('hero-audio-toggle');
         const heroAudioVolume = document.getElementById('hero-audio-volume');
         const heroVideoPlayer = document.getElementById('hero-video-player');
@@ -1139,6 +1232,8 @@
         const archiveChannelStatus = document.getElementById('archive-channel-status');
         const archiveChannelCaption = document.getElementById('archive-channel-caption');
         const archiveChannelButtons = document.querySelectorAll('.archive-channel-button');
+        const archiveCards = document.querySelectorAll('[data-archive-card]');
+        const archiveSwipeArea = document.getElementById('archive-channel-stage');
         const archiveChannels = [
             {
                 image: 'assets/old-tv-mockup.png',
@@ -1159,8 +1254,26 @@
         ];
         let activeArchiveChannel = 0;
         let archiveTuneTimer = null;
+        let archiveSwipeStartX = null;
         let heroAudioHideTimer = null;
+        let heroSectionMenuHideTimer = null;
+        let heroSectionMenuOpen = false;
+        let heroSectionMenuHovered = false;
         const heroTopThreshold = 8;
+        const heroMenuSectionThemes = [
+            { id: 'architecture-of-leisure', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.94)', accent: '#FC8C5C' },
+            { id: 'scheins-levels', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.92)', accent: '#FC8C5C' },
+            { id: 'goffee-jones', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#E63A26' },
+            { id: 'design-maturity', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#ABCFDF' },
+            { id: 'evidence-deck', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.94)', accent: '#FC8C5C' },
+            { id: 'playbook-spec', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.94)', accent: '#E63A26' },
+            { id: 'aesthetic-synthesis', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.96)', accent: '#ABCFDF' },
+            { id: 'designer-synthesis', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#FBCEEA' },
+            { id: 'welcome-aboard', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#FC8C5C' },
+            { id: 'climate-index', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#E63A26' },
+            { id: 'field-archive', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.95)', accent: '#ABCFDF' },
+            { id: 'contributors-footer', fg: '#1C1917', bg: 'transparent', border: '#1C1917', panel: 'rgba(251, 246, 243, 0.96)', accent: '#FBCEEA' }
+        ];
 
         archiveChannels.forEach(channel => {
             const image = new Image();
@@ -1172,11 +1285,16 @@
             const channel = archiveChannels[activeArchiveChannel];
             clearTimeout(archiveTuneTimer);
             archiveChannelImage.classList.add('is-tuning');
+            archiveCards.forEach(card => card.classList.add('is-tuning'));
             archiveChannelStatus.textContent = 'Tuning...';
             archiveChannelButtons.forEach((button, index) => {
                 button.setAttribute('aria-pressed', String(index === activeArchiveChannel));
             });
             archiveTuneTimer = setTimeout(() => {
+                archiveCards.forEach((card, index) => {
+                    card.hidden = index !== activeArchiveChannel;
+                    card.classList.toggle('is-tuning', index !== activeArchiveChannel);
+                });
                 archiveChannelImage.src = channel.image;
                 archiveChannelImage.alt = channel.alt;
                 archiveChannelLink.href = channel.url;
@@ -1184,6 +1302,9 @@
                 archiveChannelStatus.textContent = channel.label;
                 archiveChannelCaption.textContent = channel.caption;
                 archiveChannelImage.classList.remove('is-tuning');
+                requestAnimationFrame(() => {
+                    archiveCards.forEach(card => card.classList.remove('is-tuning'));
+                });
             }, 240);
         }
 
@@ -1198,6 +1319,62 @@
         document.getElementById('archive-channel-next').addEventListener('click', () => {
             tuneArchiveChannel(activeArchiveChannel + 1);
         });
+        if (archiveSwipeArea) {
+            archiveSwipeArea.addEventListener('touchstart', event => {
+                archiveSwipeStartX = event.touches[0].clientX;
+            }, { passive: true });
+            archiveSwipeArea.addEventListener('touchend', event => {
+                if (archiveSwipeStartX === null) return;
+                const deltaX = event.changedTouches[0].clientX - archiveSwipeStartX;
+                archiveSwipeStartX = null;
+                if (Math.abs(deltaX) < 40) return;
+                tuneArchiveChannel(activeArchiveChannel + (deltaX < 0 ? 1 : -1));
+            }, { passive: true });
+        }
+
+        function syncHeroSectionMenuPanel() {
+            heroSectionMenuPanel.classList.toggle('hidden', !heroSectionMenuOpen);
+            heroSectionMenuToggle.setAttribute('aria-expanded', String(heroSectionMenuOpen));
+        }
+
+        function closeHeroSectionMenu() {
+            heroSectionMenuOpen = false;
+            syncHeroSectionMenuPanel();
+        }
+
+        function currentHeroMenuTheme() {
+            const heroStillVisible = heroViewport && heroViewport.getBoundingClientRect().bottom > 88;
+            if (heroStillVisible) {
+                return {
+                    fg: '#FFFFFF',
+                    bg: 'rgba(255, 255, 255, 0.08)',
+                    border: '#FFFFFF',
+                    panel: 'rgba(255, 255, 255, 0.12)',
+                    accent: '#FBCEEA'
+                };
+            }
+            let activeTheme = heroMenuSectionThemes[0];
+            const markerY = window.innerHeight * 0.28;
+            heroMenuSectionThemes.forEach(theme => {
+                const section = document.getElementById(theme.id);
+                if (!section) return;
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= markerY && rect.bottom > markerY) {
+                    activeTheme = theme;
+                }
+            });
+            return activeTheme;
+        }
+
+        function updateHeroSectionMenuPresentation() {
+            const theme = currentHeroMenuTheme();
+            heroSectionMenu.style.setProperty('--hero-menu-fg', theme.fg);
+            heroSectionMenu.style.setProperty('--hero-menu-bg', theme.bg);
+            heroSectionMenu.style.setProperty('--hero-menu-border', theme.border);
+            heroSectionMenu.style.setProperty('--hero-menu-panel-bg', theme.panel);
+            heroSectionMenu.style.setProperty('--hero-menu-accent', theme.accent);
+            heroSectionMenuToggle.style.boxShadow = window.scrollY > heroTopThreshold ? '0 10px 28px rgba(28, 25, 23, 0.16)' : 'none';
+        }
 
         function hideHeroAudioControls() {
             heroAudioControls.classList.add('opacity-0', 'pointer-events-none');
@@ -1205,17 +1382,72 @@
         }
 
         function revealHeroAudioControls() {
-            if (window.scrollY > heroTopThreshold) return;
-            heroAudioControls.classList.remove('opacity-0', 'pointer-events-none');
-            heroAudioControls.classList.add('opacity-100', 'pointer-events-auto');
-            clearTimeout(heroAudioHideTimer);
-            heroAudioHideTimer = setTimeout(hideHeroAudioControls, 1800);
+            const atHeroTop = window.scrollY <= heroTopThreshold;
+            if (atHeroTop) {
+                heroAudioControls.classList.remove('opacity-0', 'pointer-events-none');
+                heroAudioControls.classList.add('opacity-100', 'pointer-events-auto');
+                clearTimeout(heroAudioHideTimer);
+                heroAudioHideTimer = setTimeout(hideHeroAudioControls, 1800);
+            }
         }
 
-        window.addEventListener('mousemove', revealHeroAudioControls);
-        window.addEventListener('touchstart', revealHeroAudioControls, { passive: true });
-        heroAudioControls.addEventListener('input', revealHeroAudioControls);
-        heroAudioControls.addEventListener('click', revealHeroAudioControls);
+        function hideHeroSectionMenu() {
+            if (heroSectionMenuHovered || heroSectionMenuOpen) return;
+            heroSectionMenu.classList.add('opacity-0', 'pointer-events-none');
+            heroSectionMenu.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+
+        function showHeroSectionMenu() {
+            heroSectionMenu.classList.remove('opacity-0', 'pointer-events-none');
+            heroSectionMenu.classList.add('opacity-100', 'pointer-events-auto');
+            clearTimeout(heroSectionMenuHideTimer);
+            if (!heroSectionMenuHovered && !heroSectionMenuOpen) {
+                heroSectionMenuHideTimer = setTimeout(hideHeroSectionMenu, 1800);
+            }
+        }
+
+        function handleFloatingControlActivity() {
+            showHeroSectionMenu();
+            if (window.scrollY <= heroTopThreshold) {
+                revealHeroAudioControls();
+            }
+        }
+
+        window.addEventListener('mousemove', handleFloatingControlActivity);
+        window.addEventListener('touchstart', handleFloatingControlActivity, { passive: true });
+        heroAudioControls.addEventListener('input', handleFloatingControlActivity);
+        heroAudioControls.addEventListener('click', handleFloatingControlActivity);
+        heroSectionMenu.addEventListener('mousemove', handleFloatingControlActivity);
+        heroSectionMenu.addEventListener('click', handleFloatingControlActivity);
+        heroSectionMenuToggle.addEventListener('click', event => {
+            event.stopPropagation();
+            heroSectionMenuOpen = !heroSectionMenuOpen;
+            syncHeroSectionMenuPanel();
+            showHeroSectionMenu();
+        });
+        heroSectionMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeHeroSectionMenu();
+                showHeroSectionMenu();
+            });
+        });
+        heroSectionMenuPanel.addEventListener('mouseenter', () => {
+            heroSectionMenuHovered = true;
+            clearTimeout(heroSectionMenuHideTimer);
+            heroSectionMenuOpen = true;
+            syncHeroSectionMenuPanel();
+            showHeroSectionMenu();
+        });
+        heroSectionMenuPanel.addEventListener('mouseleave', () => {
+            heroSectionMenuHovered = false;
+            closeHeroSectionMenu();
+            showHeroSectionMenu();
+        });
+        document.addEventListener('click', event => {
+            if (!heroSectionMenu.contains(event.target)) {
+                closeHeroSectionMenu();
+            }
+        });
         heroVideoDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const videoIndex = Number(dot.dataset.videoIndex);
@@ -1236,6 +1468,11 @@
         function updateHeroViewportState() {
             const atHeroTop = window.scrollY <= heroTopThreshold;
             document.documentElement.classList.toggle('hero-at-top', atHeroTop);
+            updateHeroSectionMenuPresentation();
+            if (!atHeroTop) {
+                heroAudioControls.classList.add('opacity-0', 'pointer-events-none');
+                heroAudioControls.classList.remove('opacity-100', 'pointer-events-auto');
+            }
             return atHeroTop;
         }
 
@@ -1243,6 +1480,9 @@
         window.addEventListener('scroll', () => {
             const player = document.getElementById('horizontal-audio-player');
             const atHeroTop = updateHeroViewportState();
+            heroSectionMenuHovered = false;
+            closeHeroSectionMenu();
+            showHeroSectionMenu();
             if (!atHeroTop) {
                 clearTimeout(heroAudioHideTimer);
                 hideHeroAudioControls();
@@ -1256,6 +1496,7 @@
             }
         });
         updateHeroViewportState();
+        window.addEventListener('resize', updateHeroSectionMenuPresentation);
 
         // Audio Logic
         let audioCtx = null;
@@ -1617,7 +1858,7 @@
                 quadrant.style.backgroundColor = '';
             });
             document.getElementById('quad-communal').style.backgroundColor = '#FBCEEA';
-            document.getElementById('vacation-pin').style.backgroundColor = '#1C1917';
+            document.getElementById('vacation-pin').style.backgroundColor = '#DBD4FE';
             document.getElementById('quadrant-display-terminal').innerHTML = `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                     <span class="font-sans text-[10px] font-black tracking-widest px-3 py-1 rounded-full border border-darkSlate bg-flora">VACATION® OPERATING POINT</span>
