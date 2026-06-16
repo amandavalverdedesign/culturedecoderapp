@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation® Culture Audit Evidence Map</title>
+    <!-- Shared asset conventions match the main index.html: local assets under ./assets and Vacation imagery from the same CDN repository. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        citrus: '#FC8C5C',
+                        lush: '#F1D46C',
+                        flora: '#FBCEEA',
+                        oceans: '#ABCFDF',
+                        lavender: '#DBD4FE',
+                        exotic: '#F5A9B8',
+                        softBase: '#FBF6F3',
+                        coralReef: '#E63A26',
+                        darkSlate: '#1C1917',
+                        lightCream: '#FFFFFF'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['ITC Garamond Std Light Condensed', 'EB Garamond', 'Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'ITC Garamond Std Light Condensed';
+            src: url('./assets/fonts/ITC-Garamond-Std-Light-Condensed.otf') format('opentype');
+            font-style: normal;
+            font-weight: 300;
+            font-stretch: condensed;
+            font-display: swap;
+        }
+
+        :root {
+            --dark: #1C1917;
+            --cream: #FBF6F3;
+            --pink: #FBCEEA;
+            --lavender: #DBD4FE;
+            --orange: #FC8C5C;
+            --blue: #ABCFDF;
+            --red: #E63A26;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--cream);
+        }
+
+        body {
+            color: var(--dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                linear-gradient(180deg, #ABCFDF 0%, #FBCEEA 24%, #DBD4FE 49%, #FC8C5C 74%, #FBF6F3 100%);
+            min-height: 100vh;
+        }
+
+        .font-garamond-cond,
+        .font-serif {
+            font-family: 'ITC Garamond Std Light Condensed', 'EB Garamond', Garamond, serif;
+            font-weight: 300 !important;
+            font-stretch: condensed;
+            letter-spacing: -0.04em;
+        }
+
+        .page-paragraph {
+            font-family: 'ITC Garamond Std Light Condensed', 'EB Garamond', Garamond, serif;
+            font-stretch: condensed;
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.2rem);
+            line-height: 1.55;
+        }
+
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #FBF6F3; border-left: 3px solid #1C1917; }
+        ::-webkit-scrollbar-thumb { background: #FC8C5C; border: 3px solid #1C1917; border-radius: 4px; }
+
+        .evidence-shell {
+            background:
+                radial-gradient(circle at 18% 8%, rgba(251, 206, 234, 0.9), transparent 26%),
+                radial-gradient(circle at 82% 18%, rgba(252, 140, 92, 0.52), transparent 24%),
+                linear-gradient(135deg, rgba(171, 207, 223, 0.94), rgba(219, 212, 254, 0.9) 48%, rgba(251, 246, 243, 0.96));
+        }
+
+        .source-link {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+            transition: color 180ms ease, background-color 180ms ease;
+        }
+
+        .source-link:hover,
+        .source-link:focus-visible {
+            color: #E63A26;
+        }
+
+        .tab-button[aria-pressed="true"],
+        .source-filter[aria-pressed="true"] {
+            background: var(--dark);
+            color: #FFFFFF;
+            box-shadow: 4px 4px 0 rgba(28, 25, 23, 0.2);
+        }
+
+        .meter-fill {
+            transform-origin: left center;
+            transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .source-card {
+            transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+        }
+
+        .source-card:hover,
+        .source-card:focus-within {
+            transform: translateY(-3px);
+            box-shadow: 8px 8px 0 rgba(28, 25, 23, 0.16);
+        }
+
+        .map-pill {
+            border: 1px solid rgba(28, 25, 23, 0.2);
+            background: rgba(255, 255, 255, 0.62);
+        }
+
+        .stacked-note {
+            background-image: linear-gradient(90deg, rgba(28, 25, 23, 0.08) 1px, transparent 1px),
+                linear-gradient(rgba(28, 25, 23, 0.08) 1px, transparent 1px);
+            background-size: 18px 18px;
+        }
+    </style>
+</head>
+<body>
+    <header class="evidence-shell min-h-[92vh] px-6 py-8 md:py-10 flex flex-col border-b-[3px] border-darkSlate">
+        <nav class="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <a href="#top" class="flex items-center gap-3 group" aria-label="Evidence map home">
+                <img src="https://cdn.jsdelivr.net/gh/amandavalverdedesign/culturedecoderapp@main/images/vacation.png" alt="Vacation" class="w-36 md:w-44 drop-shadow-[0_4px_0_rgba(28,25,23,0.18)]">
+                <span class="font-sans text-[9px] uppercase tracking-[0.22em] font-black border-l-2 border-darkSlate pl-3 leading-relaxed">Culture Audit<br>Evidence Map</span>
+            </a>
+            <div class="flex flex-wrap gap-2 text-[9px] font-black uppercase tracking-wider">
+                <a href="#frameworks" class="border-2 border-darkSlate rounded-lg px-3 py-2 bg-lightCream/70 hover:bg-flora">Frameworks</a>
+                <a href="#sources" class="border-2 border-darkSlate rounded-lg px-3 py-2 bg-lightCream/70 hover:bg-oceans">Sources</a>
+                <a href="#boundary" class="border-2 border-darkSlate rounded-lg px-3 py-2 bg-lightCream/70 hover:bg-citrus">Boundaries</a>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto w-full grow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-10">
+            <div class="lg:col-span-7">
+                <span class="font-sans text-[10px] text-coralReef font-black tracking-[0.28em] uppercase">Public Evidence Register · Reviewed June 2026</span>
+                <h1 class="font-garamond-cond text-6xl sm:text-7xl md:text-8xl leading-[0.82] mt-5 max-w-4xl">How the Vacation® culture mappings were supported.</h1>
+                <p class="page-paragraph max-w-2xl mt-6 text-darkSlate/90">
+                    This companion document traces each framework claim in the culture audit back to the sources that informed it. The goal is not to flatten the analysis into certainty. It is to show which claims are documented, which are supported inferences, and where the public record still goes quiet.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#frameworks" class="bg-citrus text-lightCream border-2 border-darkSlate rounded-lg px-5 py-3 text-xs font-black shadow-[5px_5px_0_rgba(28,25,23,0.22)] hover:translate-y-[-2px] transition">INSPECT FRAMEWORKS</a>
+                    <a href="#sources" class="bg-lightCream text-darkSlate border-2 border-darkSlate rounded-lg px-5 py-3 text-xs font-black hover:bg-lavender transition">OPEN SOURCE LEDGER</a>
+                </div>
+            </div>
+            <aside class="lg:col-span-5 border-[3px] border-darkSlate bg-lightCream/86 rounded-xl p-5 shadow-2xl">
+                <div class="flex items-center justify-between gap-4 border-b-2 border-darkSlate/10 pb-3">
+                    <span class="font-sans text-[9px] uppercase tracking-[0.22em] font-black">Evidence Distribution</span>
+                    <span class="font-sans text-[8px] bg-flora border border-darkSlate rounded-full px-3 py-1 font-black">12 CORE SOURCES</span>
+                </div>
+                <div class="space-y-5 mt-5" aria-label="Evidence distribution by framework">
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase tracking-widest"><span>Schein Depths</span><span>High</span></div>
+                        <div class="h-4 border-2 border-darkSlate rounded-full bg-softBase overflow-hidden mt-2"><div class="meter-fill h-full bg-oceans" style="transform:scaleX(.86)"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase tracking-widest"><span>Goffee & Jones</span><span>Moderate</span></div>
+                        <div class="h-4 border-2 border-darkSlate rounded-full bg-softBase overflow-hidden mt-2"><div class="meter-fill h-full bg-flora" style="transform:scaleX(.68)"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase tracking-widest"><span>Design Maturity</span><span>High for L4</span></div>
+                        <div class="h-4 border-2 border-darkSlate rounded-full bg-softBase overflow-hidden mt-2"><div class="meter-fill h-full bg-citrus" style="transform:scaleX(.82)"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] font-black uppercase tracking-widest"><span>Counter-Signals</span><span>Moderate</span></div>
+                        <div class="h-4 border-2 border-darkSlate rounded-full bg-softBase overflow-hidden mt-2"><div class="meter-fill h-full bg-lavender" style="transform:scaleX(.62)"></div></div>
+                    </div>
+                </div>
+                <p class="page-paragraph text-sm mt-6 text-darkSlate/80">
+                    Strongest evidence: public brand artifacts, independent business reporting, founder interviews, and launch-performance reporting. Weakest evidence: direct employee experience and internal process maturity.
+                </p>
+            </aside>
+        </div>
+    </header>
+
+    <main>
+        <section id="frameworks" class="px-6 py-16 md:py-20 bg-softBase border-b-[3px] border-darkSlate">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-4">
+                    <span class="font-sans text-[10px] text-coralReef font-black tracking-[0.25em] uppercase">Framework Mapping Console</span>
+                    <h2 class="font-garamond-cond text-5xl md:text-6xl leading-none mt-3">Select a map. Audit the trail.</h2>
+                    <p class="page-paragraph mt-4 text-darkSlate/85">
+                        Each framework panel lists the mapping, the evidence that moved the interpretation, and the claims that remain hypotheses rather than verified internal facts.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 mt-7" aria-label="Framework selector">
+                        <button type="button" class="tab-button border-2 border-darkSlate rounded-lg p-3 text-left text-[10px] font-black uppercase tracking-wider" aria-pressed="true" data-framework="schein">Schein Depths</button>
+                        <button type="button" class="tab-button border-2 border-darkSlate rounded-lg p-3 text-left text-[10px] font-black uppercase tracking-wider" aria-pressed="false" data-framework="matrix">Culture Grid</button>
+                        <button type="button" class="tab-button border-2 border-darkSlate rounded-lg p-3 text-left text-[10px] font-black uppercase tracking-wider" aria-pressed="false" data-framework="maturity">Design Maturity</button>
+                        <button type="button" class="tab-button border-2 border-darkSlate rounded-lg p-3 text-left text-[10px] font-black uppercase tracking-wider" aria-pressed="false" data-framework="tension">Counter-Signals</button>
+                    </div>
+                </div>
+                <div class="lg:col-span-8">
+                    <article id="framework-output" class="border-[3px] border-darkSlate rounded-xl bg-lightCream shadow-2xl overflow-hidden" aria-live="polite"></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-16 md:py-20 bg-gradient-to-b from-flora to-lavender border-b-[3px] border-darkSlate">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                    <div>
+                        <span class="font-sans text-[10px] text-darkSlate/70 font-black tracking-[0.25em] uppercase">Crosswalk</span>
+                        <h2 class="font-garamond-cond text-5xl md:text-6xl leading-none mt-3">Which evidence informed which mapping?</h2>
+                    </div>
+                    <p class="page-paragraph md:max-w-md text-darkSlate/85">
+                        The same source can support multiple readings. Orange Gelée, for example, informs Schein's tacit assumption, Goffee & Jones solidarity, and the Level 4 design maturity claim.
+                    </p>
+                </div>
+                <div id="crosswalk" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mt-9"></div>
+            </div>
+        </section>
+
+        <section id="sources" class="px-6 py-16 md:py-20 bg-gradient-to-b from-lavender via-oceans to-softBase border-b-[3px] border-darkSlate">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+                    <div class="lg:col-span-7">
+                        <span class="font-sans text-[10px] text-coralReef font-black tracking-[0.25em] uppercase">Source Ledger</span>
+                        <h2 class="font-garamond-cond text-5xl md:text-6xl leading-none mt-3">Ranked by what each source can responsibly prove.</h2>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-2" aria-label="Source filters">
+                            <button class="source-filter border-2 border-darkSlate rounded-lg px-3 py-2 text-[9px] font-black uppercase" data-tier="all" aria-pressed="true" type="button">All</button>
+                            <button class="source-filter border-2 border-darkSlate rounded-lg px-3 py-2 text-[9px] font-black uppercase" data-tier="A" aria-pressed="false" type="button">Tier A</button>
+                            <button class="source-filter border-2 border-darkSlate rounded-lg px-3 py-2 text-[9px] font-black uppercase" data-tier="B" aria-pressed="false" type="button">Tier B</button>
+                            <button class="source-filter border-2 border-darkSlate rounded-lg px-3 py-2 text-[9px] font-black uppercase" data-tier="C" aria-pressed="false" type="button">Tier C</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="source-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-9"></div>
+            </div>
+        </section>
+
+        <section id="boundary" class="px-6 py-16 md:py-20 bg-gradient-to-b from-softBase to-flora">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5">
+                    <span class="font-sans text-[10px] text-coralReef font-black tracking-[0.25em] uppercase">Research Boundary</span>
+                    <h2 class="font-garamond-cond text-5xl md:text-6xl leading-none mt-3">What the public record cannot prove.</h2>
+                </div>
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="stacked-note border-[3px] border-darkSlate rounded-xl bg-lightCream/82 p-5">
+                        <span class="font-sans text-[9px] uppercase tracking-widest font-black bg-oceans border border-darkSlate rounded-full px-3 py-1">Unknown</span>
+                        <h3 class="font-garamond-cond text-3xl mt-4">Employee experience</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/85 mt-2">The audit can infer public brand culture and hiring expectations, but it cannot verify pace, psychological safety, compensation practices, or everyday autonomy without employee testimony or internal observation.</p>
+                    </div>
+                    <div class="stacked-note border-[3px] border-darkSlate rounded-xl bg-lightCream/82 p-5">
+                        <span class="font-sans text-[9px] uppercase tracking-widest font-black bg-citrus border border-darkSlate rounded-full px-3 py-1">Unknown</span>
+                        <h3 class="font-garamond-cond text-3xl mt-4">Process maturity</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/85 mt-2">Level 4 design maturity is supported by public outcomes. Level 5 would require proof that research systems, decision rights, and design authority are distributed beyond founder taste.</p>
+                    </div>
+                    <div class="stacked-note border-[3px] border-darkSlate rounded-xl bg-lightCream/82 p-5">
+                        <span class="font-sans text-[9px] uppercase tracking-widest font-black bg-flora border border-darkSlate rounded-full px-3 py-1">Caution</span>
+                        <h3 class="font-garamond-cond text-3xl mt-4">Customer love is not culture proof</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/85 mt-2">Community advocacy supports brand reception, not internal culture. Enthusiast threads are included only as weak signals for language, ritual, and product experience.</p>
+                    </div>
+                    <div class="stacked-note border-[3px] border-darkSlate rounded-xl bg-lightCream/82 p-5">
+                        <span class="font-sans text-[9px] uppercase tracking-widest font-black bg-lavender border border-darkSlate rounded-full px-3 py-1">Caution</span>
+                        <h3 class="font-garamond-cond text-3xl mt-4">Contradictions stay visible</h3>
+                        <p class="page-paragraph text-sm text-darkSlate/85 mt-2">The analysis keeps regulatory and scale-pressure counter-signals in view because they sharpen the mapping. Playful innovation is the advantage and the risk surface.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contributors-footer" class="bg-gradient-to-b from-lavender to-lightCream p-8 pb-32 text-center font-sans text-darkSlate/70 flex flex-col items-center justify-between gap-3 mt-auto font-bold">
+        <span class="text-[9px] font-black uppercase tracking-[0.22em] text-darkSlate">Research &amp; Design Contributors</span>
+        <p class="max-w-2xl text-[10px] md:text-xs text-darkSlate/70 leading-relaxed">
+            Ted Dessert · Yiwen Gao · Ningxuan Liu · Amanda Valverde
+        </p>
+        <p class="max-w-2xl text-[8px] md:text-[9px] text-darkSlate/50 leading-relaxed">
+            Vacation® culture audit project. Not affiliated with Vacation Inc.
+        </p>
+    </footer>
+
+    <script>
+        const sources = [
+            {
+                id: 'about',
+                tier: 'B',
+                title: 'Vacation official About page',
+                url: 'https://www.vacation.inc/about-us',
+                kind: 'Company-owned',
+                proves: 'Stated brand principles, corporate fiction, customer rituals, and the honorary-employee premise.',
+                caution: 'Best for espoused values and artifacts; not independent confirmation of workplace reality.',
+                maps: ['schein', 'matrix', 'maturity']
+            },
+            {
+                id: 'careers',
+                tier: 'B',
+                title: 'Vacation careers / Greenhouse profile',
+                url: 'https://boards.greenhouse.io/vacationinc',
+                kind: 'Company-owned hiring signal',
+                proves: 'Public expectations around creativity, accountability, proactivity, humility, attention to detail, and growth.',
+                caution: 'Hiring copy can be aspirational and may not reflect lived employee experience.',
+                maps: ['schein', 'boundary']
+            },
+            {
+                id: 'orange-gelee',
+                tier: 'A',
+                title: 'Glossy · Orange Gelée co-creation and ROI',
+                url: 'https://www.glossy.co/beauty/marty-bell-dakota-green-lach-hall-vacation-storytellers-2024/',
+                kind: 'Independent reporting',
+                proves: 'Fan co-creation, 15,000-person waitlist, and roughly two to three times typical advertising return.',
+                caution: 'A launch case study supports performance culture but does not alone prove internal norms.',
+                maps: ['schein', 'matrix', 'maturity', 'playbook']
+            },
+            {
+                id: 'series-a',
+                tier: 'A',
+                title: 'BeautyMatter · oversubscribed $6M Series A',
+                url: 'https://beautymatter.com/articles/vacation-closes-an-oversubscribed-6-million-series-a',
+                kind: 'Independent business reporting',
+                proves: 'Investor thesis that creative marketing is a competitive advantage and that the business is scaling.',
+                caution: 'Investor framing can emphasize growth upside more than organizational complexity.',
+                maps: ['schein', 'matrix', 'maturity']
+            },
+            {
+                id: 'lowenstein',
+                tier: 'A',
+                title: 'Lowenstein Sandler · funding, Ulta expansion, retail target',
+                url: 'https://www.lowenstein.com/news-insights/firm-news/lowenstein-sandler-represents-sunscreen-brand-vacation-in-series-a-funding-round',
+                kind: 'Transaction / firm news',
+                proves: 'Series A context, national retail expansion, Ulta scale, and a stated retail-sales target at the time of the raise.',
+                caution: 'Useful for scale and solidarity signals; it does not report employee sentiment.',
+                maps: ['matrix', 'playbook']
+            },
+            {
+                id: 'beauty-independent',
+                tier: 'A',
+                title: 'Beauty Independent · minority-stake process and market position',
+                url: 'https://www.beautyindependent.com/vacation-hires-investment-bank-minority-stake-deal/',
+                kind: 'Independent business reporting',
+                proves: 'Market-position context and growth/transaction pressure that may test communal warmth.',
+                caution: 'Supports scaling-risk analysis, not a definitive culture shift.',
+                maps: ['matrix', 'boundary']
+            },
+            {
+                id: 'fragrance',
+                tier: 'A',
+                title: 'Glossy · fragrance-led SPF strategy',
+                url: 'https://www.glossy.co/beauty/how-vacation-is-using-fragrance-to-sell-sunscreen/',
+                kind: 'Independent reporting',
+                proves: 'Scent as a strategic bridge from emotional memory to sunscreen purchase behavior.',
+                caution: 'Strong for design strategy; weaker for internal operating model.',
+                maps: ['maturity', 'playbook']
+            },
+            {
+                id: 'inc',
+                tier: 'A',
+                title: 'Inc. founder interview',
+                url: 'https://youtu.be/fv2Dkrf7aXo',
+                kind: 'Founder interview',
+                proves: 'Brand-world strategy, origin logic, and founder-authored creative direction.',
+                caution: 'Founder narrative is useful but self-presentational.',
+                maps: ['maturity', 'schein']
+            },
+            {
+                id: 'fashionista',
+                tier: 'A',
+                title: 'Fashionista · sun-care brand profile',
+                url: 'https://fashionista.com/2025/03/vacation-sun-care-brand',
+                kind: 'Independent brand profile',
+                proves: 'Origin story, category mission, and how the brand positions pleasure against clinical sunscreen norms.',
+                caution: 'Mostly supports brand-culture and market-position claims.',
+                maps: ['schein', 'maturity']
+            },
+            {
+                id: 'classic-whip',
+                tier: 'B',
+                title: 'Vacation · Classic Whip SPF 30 product system',
+                url: 'https://www.vacation.inc/products/classic-whip-spf-30',
+                kind: 'Official product artifact',
+                proves: 'Visible artifact strength: format, theatrical packaging, efficacy claims, and compliance-facing product details.',
+                caution: 'Official product pages are artifacts, not independent validation.',
+                maps: ['schein', 'tension', 'maturity']
+            },
+            {
+                id: 'allure',
+                tier: 'A',
+                title: 'Allure · FDA warning letters and foam sunscreen scrutiny',
+                url: 'https://www.allure.com/story/fda-warning-letters-vacation-supergoop-foam-sunscreen',
+                kind: 'Regulatory coverage',
+                proves: 'Counter-signal that memorable format innovation can create category-rule and credibility pressure.',
+                caution: 'A counter-signal does not invalidate the broader design strategy; it defines its risk surface.',
+                maps: ['tension', 'boundary']
+            },
+            {
+                id: 'reddit',
+                tier: 'C',
+                title: 'Fragrance community threads',
+                url: 'https://www.reddit.com/r/fragrance/comments/1ml4saa/i_tried_vacation_incs_fragrance_collection_a/',
+                kind: 'Community voice',
+                proves: 'Enthusiast language, product reception, and ritualized customer advocacy.',
+                caution: 'Cannot prove organizational culture; useful only as weak reception evidence.',
+                maps: ['matrix', 'boundary']
+            }
+        ];
+
+        const frameworks = {
+            schein: {
+                eyebrow: 'SCHEIN · THREE LEVELS OF CULTURE',
+                color: '#ABCFDF',
+                title: 'Mapping: visible leisure on top, disciplined commercial intent underneath.',
+                confidence: 'High for artifacts and espoused values; moderate for tacit assumptions.',
+                summary: 'The visible artifacts are unusually rich: whipped SPF canisters, retro copy systems, resort credentials, scent architecture, and nostalgic commerce. The espoused layer pairs pleasure with effectiveness and participation. The deeper inference is that fun must perform: playful ideas are treated as serious growth machinery.',
+                claims: [
+                    ['Artifacts', 'Classic Whip, Chardonnay Oil, fragrance, honorary employees, and retro resort language make the culture legible at the surface.'],
+                    ['Espoused values', 'Official and hiring language combines play, modern protection, detail, accountability, humility, growth, and operational excellence.'],
+                    ['Tacit assumption', 'Launch reporting and investor language support the inference that creativity is expected to convert into measurable advantage.']
+                ],
+                sources: ['about', 'careers', 'orange-gelee', 'classic-whip', 'series-a', 'fashionista', 'inc']
+            },
+            matrix: {
+                eyebrow: 'GOFFEE & JONES · SOCIABILITY VS. SOLIDARITY',
+                color: '#FBCEEA',
+                title: 'Mapping: communal culture, with a measurable mercenary undertow.',
+                confidence: 'Moderate external estimate; not an employee survey.',
+                summary: 'Sociability is signaled through customer participation, humor, ritual, and a shared fictional world. Solidarity is signaled through capital raising, retail expansion, sales targets, and ROI discipline. The culture reads communal from the outside, but scale pressure could intensify target-dominant behavior.',
+                claims: [
+                    ['Sociability', 'The big-tent resort fiction and honorary-employee premise invite belonging and shared language.'],
+                    ['Solidarity', 'Funding, Ulta expansion, market-position reporting, and Orange Gelée performance show strong commercial alignment.'],
+                    ['Scaling risk', 'A minority-stake process and retail growth may test whether warmth and dissent survive investor pressure.']
+                ],
+                sources: ['about', 'orange-gelee', 'series-a', 'lowenstein', 'beauty-independent', 'reddit']
+            },
+            maturity: {
+                eyebrow: 'DESIGN MATURITY · STRATEGIC LEVEL',
+                color: '#FC8C5C',
+                title: 'Mapping: Level 4 supported; Level 5 remains unverified.',
+                confidence: 'High for Level 4 public outcomes; low for Level 5 internal proof.',
+                summary: 'Design appears to shape products, customer journeys, launch strategy, and market opportunities. Orange Gelée converted archival storytelling into performance, while fragrance operates as a sensory marketing system for SPF. Level 5 would require internal evidence of distributed design authority, research operations, and enterprise-wide design governance.',
+                claims: [
+                    ['Level 4 proof', 'Design is a business capability when the brand system creates measurable market opportunities.'],
+                    ['System proof', 'Scent, packaging, product texture, retail theater, and digital rituals behave like one world.'],
+                    ['Level 5 boundary', 'Public evidence does not show whether design directs the entire enterprise beyond founder-led creative authorship.']
+                ],
+                sources: ['orange-gelee', 'fragrance', 'series-a', 'classic-whip', 'inc', 'fashionista', 'about']
+            },
+            tension: {
+                eyebrow: 'COUNTER-SIGNALS · ANALYTICAL CHECK',
+                color: '#DBD4FE',
+                title: 'Mapping: the advantage is also the risk surface.',
+                confidence: 'Moderate; based on documented counter-signal plus interpretation.',
+                summary: 'Vacation’s format innovation creates memory, virality, and shelf distinction. The same appetite for unusual formats can create compliance, comprehension, and trust pressure. The counter-signal sharpens the recommendation: designers should preserve delight while involving legal, regulatory, manufacturing, accessibility, and efficacy review early.',
+                claims: [
+                    ['Creative upside', 'Novel formats make sunscreen memorable and emotionally specific.'],
+                    ['Regulatory pressure', 'Foam-format scrutiny shows that metaphor cannot outrun category rules.'],
+                    ['Designer implication', 'The best concept survives dosage, safety, comprehension, compliance, and scale without losing the joke.']
+                ],
+                sources: ['allure', 'classic-whip', 'beauty-independent']
+            }
+        };
+
+        const frameworkLabels = {
+            schein: 'Schein Depths',
+            matrix: 'Culture Grid',
+            maturity: 'Design Maturity',
+            tension: 'Counter-Signals',
+            playbook: 'Playbook Spec',
+            boundary: 'Research Boundary'
+        };
+
+        function sourceById(id) {
+            return sources.find(source => source.id === id);
+        }
+
+        function renderFramework(id) {
+            const data = frameworks[id];
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.setAttribute('aria-pressed', String(button.dataset.framework === id));
+            });
+
+            document.getElementById('framework-output').innerHTML = `
+                <div class="p-5 md:p-7" style="background:linear-gradient(135deg, ${data.color} 0%, rgba(255,255,255,.88) 42%, #FFFFFF 100%)">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                        <span class="font-sans text-[9px] uppercase tracking-[0.22em] font-black">${data.eyebrow}</span>
+                        <span class="font-sans text-[8px] uppercase tracking-wider font-black border border-darkSlate/25 bg-lightCream rounded-full px-3 py-1">${data.confidence}</span>
+                    </div>
+                    <h3 class="font-garamond-cond text-4xl md:text-5xl leading-none mt-4">${data.title}</h3>
+                    <p class="page-paragraph text-darkSlate/88 mt-4 max-w-3xl">${data.summary}</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 border-y-[3px] border-darkSlate">
+                    ${data.claims.map(([label, text], index) => `
+                        <div class="p-5 ${index < 2 ? 'md:border-r-[3px] border-darkSlate' : ''}">
+                            <span class="font-sans text-[8px] uppercase tracking-[0.22em] font-black" style="color:${data.color}">${label}</span>
+                            <p class="font-sans text-[11px] leading-relaxed mt-3">${text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="p-5 md:p-7 bg-softBase">
+                    <span class="font-sans text-[9px] uppercase tracking-[0.22em] font-black">Source trail</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                        ${data.sources.map(id => {
+                            const source = sourceById(id);
+                            return `
+                                <a href="${source.url}" target="_blank" rel="noopener" class="block border border-darkSlate/20 rounded-lg bg-lightCream p-3 hover:bg-flora/50 transition">
+                                    <span class="font-sans text-[8px] font-black uppercase tracking-widest">Tier ${source.tier} · ${source.kind}</span>
+                                    <p class="font-sans text-[11px] font-bold mt-1">${source.title} ↗</p>
+                                    <p class="font-sans text-[9px] leading-relaxed text-darkSlate/65 mt-2">${source.proves}</p>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCrosswalk() {
+            const crosswalk = document.getElementById('crosswalk');
+            crosswalk.innerHTML = Object.entries(frameworks).map(([id, framework]) => `
+                <article class="border-[3px] border-darkSlate rounded-xl bg-lightCream/86 overflow-hidden shadow-xl">
+                    <div class="p-5 min-h-[160px]" style="background:${framework.color}">
+                        <span class="font-sans text-[8px] uppercase tracking-[0.22em] font-black">${framework.eyebrow}</span>
+                        <h3 class="font-garamond-cond text-3xl leading-none mt-3">${framework.title}</h3>
+                    </div>
+                    <div class="p-5 space-y-2">
+                        ${framework.sources.map(sourceId => {
+                            const source = sourceById(sourceId);
+                            return `<button type="button" class="w-full text-left map-pill rounded-lg px-3 py-2 font-sans text-[10px] font-bold hover:bg-lightCream" data-source-jump="${source.id}">Tier ${source.tier} · ${source.title}</button>`;
+                        }).join('')}
+                    </div>
+                </article>
+            `).join('');
+
+            document.querySelectorAll('[data-source-jump]').forEach(button => {
+                button.addEventListener('click', () => {
+                    renderSources('all');
+                    const target = document.querySelector(`[data-source-card="${button.dataset.sourceJump}"]`);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        target.classList.add('bg-lush');
+                        window.setTimeout(() => target.classList.remove('bg-lush'), 950);
+                    }
+                });
+            });
+        }
+
+        function renderSources(tier) {
+            document.querySelectorAll('.source-filter').forEach(button => {
+                button.setAttribute('aria-pressed', String(button.dataset.tier === tier));
+            });
+
+            const visibleSources = tier === 'all' ? sources : sources.filter(source => source.tier === tier);
+            document.getElementById('source-grid').innerHTML = visibleSources.map(source => `
+                <article class="source-card border-[3px] border-darkSlate rounded-xl bg-lightCream p-5 flex flex-col" data-source-card="${source.id}">
+                    <div class="flex items-start justify-between gap-3">
+                        <span class="font-sans text-[8px] font-black uppercase tracking-widest rounded-full px-3 py-1 border border-darkSlate ${source.tier === 'A' ? 'bg-citrus text-lightCream' : source.tier === 'B' ? 'bg-oceans' : 'bg-flora'}">Tier ${source.tier}</span>
+                        <span class="font-sans text-[8px] uppercase tracking-wider font-bold text-right text-darkSlate/55">${source.kind}</span>
+                    </div>
+                    <h3 class="font-garamond-cond text-3xl leading-none mt-5">${source.title}</h3>
+                    <p class="font-sans text-[11px] leading-relaxed mt-4"><span class="font-black">How it informed the mapping:</span> ${source.proves}</p>
+                    <p class="font-sans text-[10px] leading-relaxed text-darkSlate/65 mt-3"><span class="font-black text-coralReef">Limit:</span> ${source.caution}</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        ${source.maps.map(map => `<span class="map-pill rounded-full px-3 py-1 font-sans text-[8px] font-black uppercase">${frameworkLabels[map] || map}</span>`).join('')}
+                    </div>
+                    <a class="source-link font-sans text-[10px] font-black mt-5 inline-block" href="${source.url}" target="_blank" rel="noopener">OPEN SOURCE ↗</a>
+                </article>
+            `).join('');
+        }
+
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => renderFramework(button.dataset.framework));
+        });
+
+        document.querySelectorAll('.source-filter').forEach(button => {
+            button.addEventListener('click', () => renderSources(button.dataset.tier));
+        });
+
+        renderFramework('schein');
+        renderCrosswalk();
+        renderSources('all');
+    </script>
+</body>
+</html>
